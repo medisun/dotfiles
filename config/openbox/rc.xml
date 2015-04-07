@@ -266,6 +266,85 @@
     <keybind key="W-C-Up">
       <action name="MoveToEdgeNorth"/>
     </keybind>
+
+    <!-- Manual tiling using Keypad -->
+      <keybind key="W-KP_Begin">
+        <action name="ToggleMaximizeFull"/>
+      </keybind>
+      <keybind key="W-KP_Home">
+        <action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <x>0</x>
+          <y>0</y>
+          <width>50%</width>
+          <height>50%</height>
+        </action>
+      </keybind>
+      <keybind key="W-KP_Page_Up">
+        <action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <x>50%</x>
+          <y>0</y>
+          <width>50%</width>
+          <height>50%</height>
+        </action>
+      </keybind>
+      <keybind key="W-KP_Page_Down">
+        <action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <x>50%</x>
+          <y>50%</y>
+          <width>50%</width>
+          <height>50%</height>
+        </action>
+      </keybind>
+      <keybind key="W-KP_End">
+        <action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <x>0</x>
+          <y>50%</y>
+          <width>50%</width>
+          <height>50%</height>
+        </action>
+      </keybind>
+      <keybind key="W-KP_Up">
+        <action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <x>0</x>
+          <y>0</y>
+          <width>100%</width>
+          <height>50%</height>
+        </action>
+      </keybind>
+      <keybind key="W-KP_Right">
+        <action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <x>50%</x>
+          <y>0</y>
+          <width>50%</width>
+          <height>100%</height>
+        </action>
+      </keybind>
+      <keybind key="W-KP_Down">
+        <action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <x>0</x>
+          <y>50%</y>
+          <width>100%</width>
+          <height>50%</height>
+        </action>
+      </keybind>
+      <keybind key="W-KP_Left">
+        <action name="UnmaximizeFull"/>
+        <action name="MoveResizeTo">
+          <x>0</x>
+          <y>0</y>
+          <width>50%</width>
+          <height>100%</height>
+        </action>
+      </keybind>
+    <!-- // Manual tiling using Keypad -->
+
     <!-- ALT + FXX -->
     <keybind key="A-F1">
       <action name="ToggleAlwaysOnTop"/>
@@ -303,6 +382,7 @@
     <keybind key="A-F11">
       <action name="ToggleFullscreen"/>
     </keybind>
+
     <!-- MENUS-->
     <keybind key="A-space">
       <action name="ShowMenu">
@@ -333,6 +413,7 @@
         <command>scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp; viewnior ~/images/$f'</command>
       </action>
     </keybind>
+    
     <!-- Keybindings for window switching -->
     <keybind key="A-Tab">
       <action name="NextWindow">
