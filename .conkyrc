@@ -1,0 +1,40 @@
+# .conkyrc
+
+#display 0.0
+background yes
+use_xft yes
+xftfont Liberation Sans:size=9
+xftalpha 1
+update_interval 2.0
+total_run_times 0
+
+own_window yes
+own_window_transparent yes
+own_window_type override
+own_window_argb_visual yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 1880 1080
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+alignment top_left
+gap_x 35
+gap_y 0
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale yes
+
+## LUA
+lua_load /home/morock/.conky.lua
+lua_draw_hook_pre main
+
+##############################################
+#  Output
+##############################################
+TEXT
+
+#1366 768

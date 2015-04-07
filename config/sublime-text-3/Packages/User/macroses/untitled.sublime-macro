@@ -1,0 +1,17 @@
+[
+	{
+		"args": null,
+		"command": "expand_region"
+	},
+	{
+		"args": null,
+		"command": "cut"
+	},
+	{
+		"args":
+		{
+			"characters": "public function ($0){}"
+		},
+		"command": "insert_snippet"
+	},
+]

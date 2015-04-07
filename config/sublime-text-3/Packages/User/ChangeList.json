@@ -1,0 +1,161 @@
+{
+"/home/morock/documents/Structure diagram.mdown": {
+"history": "1011|814|811|1011|931|891|851|811|2279|2082:2134:2161:2191:2218|127|126|150|131,144:150,159|131|126|319|2279|2131|2093,2132:2136,2146:2163,2173:2193,2203:2220,2229:2256,2266|2122|2155|2188|2215|2242|2278|126|2053|286,335|2053|1281|2051|2104|2255|2092|2044|855|857:897:937|1017|1057|1011|851|811|867|971|920|889|0,17|2463|2673"
+}, 
+"/home/morock/projects/glisser/glisser-eventbrite-api/library/GlissrAPI/Service/version_v1/Eventbrite.php": {
+"history": "8017:9495"
+}, 
+"/home/morock/projects/glisser/glisser-eventbrite-api/config-dev-loc.ini": {
+"history": "357"
+}, 
+"/home/morock/projects/glisser/glisser-manage-integration/modules/Eventbrite/views/pages/presentations.php": {
+"history": "2314:2686:3068"
+}, 
+"/home/morock/projects/glisser/glisser-eventbrite-api/endpoint.php": {
+"history": "1023|745"
+}, 
+"/home/morock/projects/glisser/glisser-eventbrite-api/library/Api/Logger.php": {
+"history": "6745,6768"
+}, 
+"/home/morock/bin/add-host.sh": {
+"history": "1060|1134|1053|1236|1315|918|944|1315|1848|557|912|1042|646|1053|1141|1115|657|745|707|1427|1599:1738|1738|1599|1427|1401,1404|205|95,169|205|146:202|1665:1716|146:202|1664:1715|205|53|48|53|14|1001|612|736|879|865|659|813|1055|1239|811:1236|812|767|1187"
+}, 
+"/home/morock/.config/tilda/config_0": {
+"history": "348"
+}, 
+"/home/morock/.config/tilda/config_1": {
+"history": "0|0|0|0|0|759"
+}, 
+"/home/morock/bin/google_drive_backup.sh": {
+"history": "1267:1462:1576:1901:2154:2261:2326:2453:2558:2699:2770:2812|1676|2040|1872,2041|1890|2040|1913|2003|1962|1962|2040|1505|1377|2223|2522|1962|1977|2002|1947:1962:1977|1962|2039|2042|1370|67|65|1181|1176|2916|2871|2751|2750|2750|1947|206|2750|235|1930|485|1947|19|91|472|472|472|472|532|1115|532|505|1528,1550"
+}, 
+"/home/morock/projects/dealbook/git/src/app/Livlicious/Repositories/SaveImageTrait.php": {
+"history": "3597|2847,3730|1560|1647|2847,3730|3305|3600|3332|3340"
+}, 
+"/home/morock/tmp/.conky.lua": {
+"history": "215"
+}, 
+"/home/morock/projects/glisser/glisser-manage-integration/modules/Eventbrite/views/js/base.js": {
+"history": "10893,10916|1409|4221|3836|4221|12851|12812|10996"
+}, 
+"/home/morock/bin/gmail.py": {
+"history": "126"
+}, 
+"/home/morock/projects/glisser/glisser-manage-integration/modules/Eventbrite/app/AbstractModel.php": {
+"history": "168"
+}, 
+"/home/morock/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap": {
+"history": "914|2171|914|2171|914|2171|914|2171|914|2171|914|2171|995|914|2171|1018|2171|1163|2171|2171|1279|1164|2171|1341|2171|2171|1402,1919|1398|1398|2171|2170|1925|2153,2167|2104:2153,2167|1398|1401,1920|1921|1402|2170|2108|914|2177|148|147|271|73|42|267"
+}, 
+"/home/morock/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings": {
+"history": "16856"
+}, 
+"/home/morock/projects/glisser/glisser-manage-integration/modules/Eventbrite/app/Controller.php": {
+"history": "4631|4266:4594:4633|4266,4633|4319:4532:4572:4610|4633|4642|5555|5555|186|106:126:145:164:181|105|113:132:151:168:186|5555|5555|5555|5555|5555|5555|5555|5555|5555|5555|5555|5555|5555|5555|5555|5555|5555|5555|5555|5554|4890|5553|5259|5555|5513,5555|5555|5518|5503|4890|4645|5492|5307:5354:5401:5446:5492|5446|4101|4493|3130|2411|2714"
+}, 
+"/home/morock/repositories/configs/config/sublime-text-3/Packages/PlainTasks/PlainTasks (Linux).sublime-settings": {
+"history": "1183|1210"
+}, 
+"/home/morock/.config/sublime-text-3/Packages/User/Preferences.sublime-settings": {
+"history": "21|21|21|21|21|21|21|21|21|21|1348|104|1365|127|159|183|222|259|301|329|1363|1341|356:465|399|437|357|497|466|582|435|606|1341|607|1341|668|1341|668|1341|705:732|1341|1080|1341|858|1277|1311|1341|1471|307|1341"
+}, 
+"/home/morock/projects/glisser/sshfs-mng/modules/Eventbrite/views/pages/presentations.php": {
+"history": "2314:2686:3068"
+}, 
+"/home/morock/projects/glisser/sshfs-mng/modules/Eventbrite/app/Controller.php": {
+"history": "2439|2438|533|3362|2906|4809|4351|4350|4350|4332|4281|4350|4881:5109:5731:5983|4879|5107|5729|5981|4809|4784|4744|4444|4264|4656|4655|2453|2452:2453|2452|2453|2447|2428|2428|2414|3150|3046|2980"
+}, 
+"/home/morock/projects/dealbook/git/src/public/themes/default/assets/css/style.css": {
+"history": "108683"
+}, 
+"/home/morock/.config/pytyle2/config.ini": {
+"history": "132,318|132:156:180:204:232:260:288|1188|1157|1124|1097|1067|1038|1006|1038|982|926|905|877|860|843|825|807|787|773|599|722|690|684|563|288|335|355|410|288|926|955|807|787|379"
+}, 
+"/home/morock/projects/glisser/glisser-manage-integration/modules/Eventbrite/config/manage-staging.php": {
+"history": "211"
+}, 
+"/home/morock/repositories/configs/snippets/apache2.4-vhost.conf": {
+"history": "704|332|305,688|46|19,269"
+}, 
+"/home/morock/projects/glisser/glisser-manage-integration/modules/Eventbrite/app/Template.php": {
+"history": "84"
+}, 
+"/home/morock/.conky.lua": {
+"history": "4161|4075|3988|4074|4095|4008|3998:4085|3902|3922:4008:4095|3875,4163|3450:3779:3837|3875|3779|3835|3779|3387|3409|3409:3505:3602:3699:3796|3258|3125|2928|2693|2482|2445|2431:2463:2500:2711:2769:2947:3143|2530|2733:2792|2967|3167|3356|3187:3229:3278:3892|3899|3284|3381,3387|3902|2515|157|4647|2390|4188|4793|4647|225|4187|163|4647|4793|4647|4793|2435,2439"
+}, 
+"/home/morock/.config/sublime-text-3/Packages/HTML-CSS-JS Prettify/.jsbeautifyrc": {
+"history": "522"
+}, 
+"/home/morock/projects/glisser/sshfs-mng/eventbrite.php": {
+"history": "571|570|570|570|506,515|496|550"
+}, 
+"/home/morock/projects/glisser/sshfs-mng/modules/Eventbrite/app/Application.php": {
+"history": "241,277"
+}, 
+"/home/morock/projects/dealbook/git/src/app/start/artisan.php": {
+"history": "534"
+}, 
+"/home/morock/repositories/configs/config/tilda/config_1": {
+"history": "0,2165"
+}, 
+"/home/morock/.config/openbox/autostart": {
+"history": "557,589|1510|779|778|589|778|989|1533|1883|1771|1928|1962|52,237"
+}, 
+"/home/morock/.config/sublime-text-3/Packages/User/macroses/public-function.sublime-macro": {
+"history": "163|179|179|179|163|179|163|179|163|0|179|147|179|147|222|307|213|216"
+}, 
+"/home/morock/.config/sublime-text-3/Packages/User/snippets/log.sublime-snippet": {
+"history": "294"
+}, 
+"/home/morock/projects/dealbook/git/src/public/themes/default/views/offer/form.blade.php": {
+"history": "44270:44782|44360|44055|44782"
+}, 
+"/home/morock/projects/glisser/glisser-manage-integration/modules/Eventbrite/config/manage-glisser.php": {
+"history": "211"
+}, 
+"/home/morock/projects/dealbook/git/src/public/themes/default/views/article/form.blade.php": {
+"history": "16144|15608:15965:16299|16119,16129|569|16073|15731|16448|367,375|15687:16044:16372|16394|15690"
+}, 
+"/home/morock/projects/dealbook/git/src/app/Livlicious/Repositories/Customer/EloquentCustomerRepository.php": {
+"history": "1378"
+}, 
+"/home/morock/.conkyrc": {
+"history": "111"
+}, 
+"/home/morock/.config/sublime-text-3/Packages/User/macroses/untitled.sublime-macro": {
+"history": "153|193|193|193|153|193|153|188|153|193"
+}, 
+"/home/morock/projects/glisser/sshfs/library/Api/Logger.php": {
+"history": "6125"
+}, 
+"/home/morock/projects/glisser/sshfs-mng/modules/Eventbrite/app/View.php": {
+"history": "633|1016|881"
+}, 
+"/home/morock/projects/glisser/glisser-manage-integration/modules/Eventbrite/app/Application.php": {
+"history": "241|478|451|511|478|511|705"
+}, 
+"/home/morock/htdocs/dev.loc/index.php": {
+"history": "26|26|26"
+}, 
+"/home/morock/projects/glisser/glisser-manage-integration/PresentationHandler.php": {
+"history": "3331"
+}, 
+"/home/morock/.config/openbox/rc.xml": {
+"history": "11270|13848,14017|13722|13757|13807|13987|13975|13775"
+}, 
+"/home/morock/bin/test_var.sh": {
+"history": "524|515|430|514|515|502|515|411"
+}, 
+"/home/morock/projects/glisser/sshfs-mng/modules/Eventbrite/app/Model.php": {
+"history": "1515"
+}, 
+"/home/morock/projects/glisser/glisser-manage-integration/modules/Eventbrite/config/manage-glisser-loc.php": {
+"history": "22"
+}, 
+"/home/morock/.config/sublime-text-3/Packages/User/phpfmt.sublime-settings": {
+"history": "352"
+}, 
+"/home/morock/projects/glisser/sshfs-mng/modules/Eventbrite/app/Template.php": {
+"history": "374,386|435|323:389|84"
+}
+}

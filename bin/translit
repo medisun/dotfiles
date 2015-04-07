@@ -1,0 +1,7 @@
+#!/usr/bin/perl -CS
+use utf8;
+$lat=q(`~!@#$%^&qwertyuiop[]asdfghjkl;'zxcvbnm,./QWERTYUIOP{}ASDFGHJKL:"|ZXCVBNM<>?);
+$cyr=q(ёЁ!"№;%:?йцукенгшщзхъфывапролджэячсмитьбю.ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭ/ЯЧСМИТЬБЮ,);
+while(<>) { eval "tr{$lat$cyr}{$cyr$lat}"; print; }
+
+#xclip -out -sel clip| translit | xclip -in -sel clip

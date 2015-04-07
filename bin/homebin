@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#Bin directory has been added to ~/.profile.
+#Files in it, you can call in the terminal.
+
+#"homebin" is a file runtime.
+#You can add functionality to it, which been done with the startup.
+
+#Solution off the screen
+#If you install XScreenSaver, gnome-screensaver ...
+#delete the entry.
+
+#xset -dpms
+#xset s off
+
+exit

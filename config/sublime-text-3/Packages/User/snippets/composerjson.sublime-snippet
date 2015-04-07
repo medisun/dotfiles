@@ -1,0 +1,37 @@
+<snippet>
+    <content><![CDATA[
+{
+    "name": "author/pacage",
+    "description": "",
+    "keywords": [],
+    "license": "MIT",
+    "require": {
+    },
+    "require-dev": {
+    },
+    "target-dir": "",
+    "autoload": {
+        "psr-4": {
+        },
+        "classmap": [
+        ],
+        "files": [
+        ]
+    },
+    "scripts": {
+        "post-install-cmd": [
+        ],
+        "post-update-cmd": [
+        ],
+        "post-create-project-cmd": [
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>composerjson</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.json,source.php</scope> -->
+</snippet>

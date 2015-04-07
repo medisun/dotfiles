@@ -1,0 +1,118 @@
+[global_config]
+  enabled_plugins = APTURLHandler, LaunchpadCodeURLHandler, LaunchpadBugURLHandler
+  title_transmit_bg_color = "#ffb200"
+  inactive_color_offset = 0.91
+  title_inactive_bg_color = "#000000"
+[keybindings]
+  hide_window = <Shift><Control>a
+[profiles]
+  [[default]]
+    scrollbar_position = hidden
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
+    background_image = None
+    background_darkness = 0.06
+    scrollback_lines = 5000
+    use_system_font = False
+    cursor_color = "#009dda"
+    foreground_color = "#839496"
+    scroll_on_output = False
+    show_titlebar = False
+    color_scheme = custom
+    font = Monospace 8
+    background_color = "#002b36"
+    scrollback_infinite = True
+  [[xgoup]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_image = None
+    cursor_color = "#ff6a0e"
+    scroll_on_output = False
+    show_titlebar = False
+    font = Courier 10 Pitch 11
+    scrollback_infinite = True
+  [[xgodown]]
+    scrollbar_position = hidden
+    use_system_font = False
+    background_image = None
+    cursor_color = "#ff4908"
+    foreground_color = "#e53c00"
+    scroll_on_output = False
+    show_titlebar = False
+    font = Courier 10 Pitch 11
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = ""
+      size = 800, 315
+  [[xgoup]]
+    [[[child0]]]
+      position = 17:26
+      type = Window
+      order = 0
+      parent = ""
+      size = 981, 656
+    [[[child1]]]
+      labels = None, None, None, None, None, None, None
+      type = Notebook
+      order = 0
+      parent = child0
+    [[[child2]]]
+      position = 493
+      type = HPaned
+      order = 0
+      parent = child1
+    [[[terminal10]]]
+      profile = xgoup
+      command = gb-xgo-restart
+      type = Terminal
+      order = 6
+      parent = child1
+    [[[terminal3]]]
+      profile = xgodown
+      type = Terminal
+      order = 0
+      parent = child2
+      command = /usr/bin/patch-exec screenfetch -n -D GoBang
+    [[[terminal5]]]
+      profile = xgoup
+      command = mc
+      type = Terminal
+      order = 1
+      parent = child1
+    [[[terminal4]]]
+      profile = xgoup
+      command = man xgo
+      type = Terminal
+      order = 1
+      parent = child2
+    [[[terminal7]]]
+      profile = xgoup
+      command = netstat -tcp
+      type = Terminal
+      order = 3
+      parent = child1
+    [[[terminal6]]]
+      profile = xgoup
+      command = elinks
+      type = Terminal
+      order = 2
+      parent = child1
+    [[[terminal9]]]
+      profile = xgoup
+      command = htop
+      type = Terminal
+      order = 5
+      parent = child1
+    [[[terminal8]]]
+      profile = xgoup
+      command = alsamixer
+      type = Terminal
+      order = 4
+      parent = child1
+[plugins]

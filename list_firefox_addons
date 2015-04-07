@@ -1,0 +1,370 @@
+Software:Firefox 36.0.4 (20150320202338)
+OS:Linux (x86_64-gcc3)
+
+-Acebug 1.12.0
+    Syntax highlighting for the Firebug command line using Ace. Firebug 1.7X.0a10 or above must be installed in order to use this extension.
+-Addon List Dumper (restartless) 0.1
+    true
+-All-in-One Gestures 0.26
+    This extension allows you to execute common commands using mouse gestures, rocker navigation, scroll wheel navigation and page scrolling.
+-All-in-One Sidebar 0.7.25
+    Sidebar control with award-winning user experience!
+-AngScope - Simple AngularJS Scope Inspector for Firebug 0.1.2
+    Inspect the Angular JS scope of any DOM element in Firebug.
+-Autofill Forms 1.0.3
+    Fill out web forms automatically
+-Certificate Patrol 2.0.14
+    Monitor and compare certificates your application adopts for encrypted HTTPS web sites.
+-Classic Theme Restorer 1.2.9.6
+    'Classic Theme Restorer' brings back appmenu button, squared tabs, add-ons bar, small nav-bar buttons, a few older buttons and more to Firefox Australis UI. Use 'Customize' menu to move buttons on toolbars.
+-Customizable Shortcuts 0.6.2
+    Allows to customize shortcuts
+-DOM Inspector 2.0.15
+    Inspects the structure and properties of a window and its contents.
+-EventBug 0.1b10
+    Event views for Firebug.
+-FT DeepDark 12.0
+    Smooth dark theme for Firefox
+-Fasterfox 3.9.85
+    Fasterfox provides performance and network tweaks for Firefox. Fasterfox
+makes your browsing much faster! Watch Youtube Faster with Fasterfox!
+-Feed Sidebar 8.0.4
+    Displays the items from your Live Bookmarks in a sidebar.
+-FireLogger 1.3
+    Server-side logging support for web developers
+-Firebug 2.0.8
+    Web Development Evolved. Firebug is free and open source software distributed under the BSD License.
+-Firefox Plug-n-Hack 0.4
+    A Firefox addon for configuring and using security tools
+-FlashFirebug 4.8.4
+    Flash Development Evolved.
+-HackBar 1.6.3
+    A toolbar that helps you find and test SQL injections
+-Hide BookmarksBar 3.3
+    Hides and shows the bookmarks toolbar.
+-Hide Navigation Bar 1.41
+    Allows you to easily Hide the Navigation Bar with a toggle key.  You can configure which key is bound to the toggle function (F2 by default).  Also allows Auto-Hide.
+-Hide Tabbar 2.1.0
+    Toggles the Tabbar via chosen key.
+-HttpRequester 2.1
+    A tool for easily making HTTP requests (GET/PUT/POST/DELETE), and keeping a history of transactions.
+-JSON Inspector 0.2
+    Inspect JSON object from a URL or entered data. Requires DOM Inspector extension.
+-JSONovich 1.9.7.1
+    Pretty-prints JSON content in the browser for easy, unobtrusive viewing.
+-Lightbeam 1.2.1
+    Lightbeam is a Firefox add-on that allows you to see the third parties that are collecting information about your browsing activity, with and without your consent. Using interactive visualizations, Lightbeam shows you the relationships between these third parties and the sites you visit.
+-Locationbar² 1.0.6
+    Formats and linkifies addresses in your Location bar.
+-Menu Editor 1.2.7
+    Customize application menus
+-Modern Download Manager 0.2.1
+    Modern Download Manager add-on gives you total control over every aspect of your downloads, and modern design.
+-Multi Links 3.0.0.19
+    Multi Links lets you open, copy or bookmark multiple links at the same time rather than having to do them all individually.
+-NewScrollbars (aka NoiaScrollbars) 1.2.1
+    Add seven different scrollbar-colors and two different scrollbar backgrounds to your Firefox appearance.
+-OpenH264 Video Codec provided by Cisco Systems, Inc. 1.3
+    Play back web video and use video chats.
+-Pixlr Grabber 2.1.4
+    Grab images and screens to edit or share them in the pixlr services.
+-Proxy Tool 1.17
+    Proxy Tool - Powerful, yet User-friendly proxy tool to manage your proxies and anonymousity needs.
+-Quick Translator 1.0
+    The most lightweight and easiest translator. Translate between more than 50 languages with one click or a hot key. Translate from one word to a whole page.
+-ScrapBook 1.5.12
+    Helps you to save Web pages and organize the collection.
+-Session Manager 0.8.1.6
+    Saves and restores the state of all windows.
+-Shockwave Flash 11.2.202.442
+    Shockwave Flash 11.2 r202
+-Site Launcher 2.8.1
+    Open websites using special keyboard shortcuts
+-The easiest Xdebug 2.0.1
+    The easiest way to control Xdebug
+-Tile Tabs 12.9
+    Tiles browser tabs horizontally or vertically or in a grid.
+-Tree Style Tab 0.15.2014120101
+    Show tabs like a tree.
+-URL Lister 1.3
+    Shows the URLs of all the tabs in a textarea so that it can be copied easily.
+-User Agent Changer 2.6.8
+    Adds a menu and a toolbar button to change the user agent of a browser.
+-Video DownloadHelper 5.0.1
+    Download Videos from the Web
+-View Dependencies 0.3.3.2
+    Adds a tab listing dependencies and their sizes in the Page Info window.
+-VimFx 0.5.17
+    Vim keyboard shortcuts for Firefox
+-Wappalyzer 3.0.15
+    Identifies software on the web
+-Web Developer 1.2.5
+    Adds a menu and a toolbar with various web developer tools.
+-YSlow 3.1.8
+    Make your pages faster with Yahoo!'s page performance tool
+-µBlock 0.8.8.2
+    Finally, an efficient blocker. Easy on CPU and memory.
+
+
+
+
+Software:Firefox 36.0.4 (20150320202338)
+OS:Linux (x86_64-gcc3)
+
+-Adblock Plus 2.6.8 (Disabled)
+    Ads were yesterday!
+-Arboreal 0.1a2 (Disabled)
+    A Firebug extension for DOM tree visualization.
+-Auto Reload 1.20 (Disabled)
+    Reload current page when selected local files are
+            changed.
+-AutoProxy 0.4b2.2013051811 (Disabled)
+    GFW was yesterday!
+-Backbone Eye v0.2.0 (Disabled)
+    Firebug Extension to debug Backbone applications
+-CLEO 6.0 (Disabled)
+    Create multi-addon install package (Cleopack)
+-CSS Usage 0.3.3 (Disabled)
+    Firebug extension to view which CSS rules are really used on your site.
+-CSSsir 1.0.20131207 (Disabled)
+    CSS3-rules generator.
+-CacheViewer2 1.7.2 (Disabled)
+    Allows saving, deleting, searching and sorting of cache files.
+-ChmFox 2.10 (Disabled)
+    ChmFox brings the best CHM file reading experience to Firefox
+-Chromebug 1.8.0a2 (Disabled)
+    Chromebug: Firebug for Chrome
+-ColorZilla 2.8 (Disabled)
+    Advanced Eyedropper, Color Picker, Gradient Generator and other colorful goodies
+-ConsoleExport 0.5b5 (Disabled)
+    Use this extension to export data from Firebug's Console panel.
+-Console² 0.9 (Disabled)
+    The next generation error console.
+-CookieSwap 13.4.331 (Disabled)
+    Tool to save and swap out a collection of cookies on the fly
+-Cookies Manager+ 1.5.2 (Disabled)
+    Cookies manager that allows view, edit and create cookies as well as edit multiple cookies at once and backup/restore them
+-CronZilla 1.5 (Disabled)
+    Create and run cronjobs with FireFox. This extension will call any url, local or remote, in user defined times and intervals.
+-Crossfire 0.3a11 (Disabled)
+    Remote debugging for Firebug.
+-CryptoFox 2.2 (Disabled)
+    CryptoFox is an encryption/decryption tool for Mozilla Firefox, with dictionary attack support for cracking MD5 passwords.
+-Cutyfox URL Shortener (bit.ly, is.gd, goo.gl) 1.4.1 (Disabled)
+    Short too long URLs with only one click and get them copied shortened into your clipboard.
+-Dark Fox 1.0 (Disabled)
+    My dark version of the Firefox logo.
+-Default 36.0.4 (Disabled)
+    The default theme.
+-DevTools Tweaks 0.5.1 (Disabled)
+    Modifications for Firefox Devtools. Adds Edit Html, New Rule and Open URL to the inspector, and an option to turn off auto scroll-into-view.
+    Adds JSON parser and POST listing functionality to network view in Web Console.
+    Adds row-highlight to web console, and makes the top tabs smaller.
+-Download Manager (S3) 3.10 (Disabled)
+    View and manage downloads from a tidy statusbar
+-Dr.Web Anti-Virus Link Checker 3.4 (Disabled)
+    Dr.Web LinkCheckers is a free plug-in that allows you to scan web pages and files downloaded from the Internet. Install the plug-in for your browser, and enjoy virus-free web surfing!
+-Dummy Lipsum 3.0.0 (Disabled)
+    Generate "Lorem Ipsum" dummy text.
+-EPUBReader 1.5.0.5 (Disabled)
+    Read EPUB files just in the browser. No installation of additional software needed.
+-Extension List Dumper 1.15.2 (Disabled) (Incompatible)
+    Dumps a list of the installed extensions.
+-FEBE 8.3 (Disabled)
+    Backup your Firefox data
+-FindBar Tweak 1.4.18 (Disabled)
+    Anything between simple tweaks such as placing the findbar in the top corner, to the powerful "Find in All Tabs" tool, FindBar Tweak will make your find toolbar "just right"!
+-Fire Snippets 0.1b3 (Disabled)
+    Snippets extension for Firebug's Command Editor
+-FireDiff 1.2.1 (Disabled)
+    Track changes in Firebug
+-FireFTP 2.0.23 (Disabled)
+    FTP client for Mozilla Firefox.
+-FireFlow 0.3.1 (Disabled)
+    Javascript trace utility.
+-FireJSOD 1.8 (Disabled)
+    Firebug JSOD Integration
+-FirePHP 0.7.4 (Disabled)
+    Firebug Extension for PHP based AJAX Development
+-FirePath 0.9.7.1 (Disabled)
+    FirePath is a Firebug extension that adds a development tool to edit, inspect and generate XPath 1.0 expressions, CSS 3 selectors and JQuery selectors.
+-FireQuery 1.4.1 (Disabled)
+    Firebug extension for jQuery development
+-FireSSH 0.94.7 (Disabled)
+    SSH Client for Mozilla Firefox.
+-FireStarter 0.1a6 (Disabled)
+    Firebug extension providing advanced features for Firebug activation model.
+-FireStorage Plus! 1.7 (Disabled)
+    FireStorage Plus! - Manage web storage
+-Firefinder for Firebug 1.4 (Disabled)
+    Finds HTML elements matching chosen CSS selector(s) or XPath expression
+-Firepicker 1.4.3 (Disabled)
+    Simple color picker plugin for Firebug.
+-FlashGot 1.5.6.11 (Disabled)
+    Enables Firefox, Mozilla Suite, Netscape and Thunderbird to handle single and massive ("all" and "selection") downloads using the most popular external download managers for Windows, Mac OS X, Linux and FreeBSD (dozens currently supported, see Extension's Home Page for details). FlashGot offers also a Build Gallery functionality which helps to synthetize full media galleries in one page, from serial contents originally scattered on several pages, for easy and fast "download all".
+-Flashblock 1.5.18 (Disabled)
+    Replaces Flash objects with a button you can click to view them.
+-Focus Regainer 0.8 (Disabled)
+    Return focus from embedded object back to browser on browser hotkeys pressed.
+-Form History Control 1.4.0.3 (Disabled)
+    Manage Form History (view, edit, delete, clean-up, export/import)
+-Gcache+ 1.6 (Disabled)
+    Displays a google cached version of the webpage
+-Ghostery 5.4.3 (Disabled)
+    Protect your privacy. See who's tracking your web browsing and block them with Ghostery.
+-Google Docs Viewer 1.8.9 (Disabled)
+    View documents online without any plugins.
+-Greasemonkey 3.1 (Disabled)
+    A User Script Manager for Firefox
+-Group/Sort Tabs 2.0.1 (Disabled)
+    This extension adds group and sort support to tabs in Firefox.
+-HeaderTool 0.6.1 (Disabled)
+    A simple modify header extension
+-HeadingsMap 2.1 (Disabled)
+    Follow the head...
+-Illuminations for Developers 1.1.30 (Disabled)
+    Illuminating the web, one framework at a time...
+-JavaScript Debugger 0.9.89 (Disabled) (Incompatible)
+    JavaScript debugger and profiler
+-Live HTTP headers 0.17 (Disabled)
+    View HTTP headers of a page and while browsing.
+-MD5 Reborned Hasher 0.9.0 (Disabled)
+    This extension allows to check the MD2, MD5, SHA1, SHA256, SHA384 or SHA512 sum of a downloaded file.
+-MarkDown Editor 0.5.2 (Disabled)
+    Simple MarkDown editor.
+-MemChaser 0.6 (Disabled)
+    Chasing garbage collection and memory usage
+-Memory Restart 1.18 (Disabled)
+    Gives you a quick way to restart if memory usage is too high.
+-Movable Firefox Button 1.4 (Disabled)
+    Move Firefox Button to anywhere you want
+-MozRepl 1.1.2 (Disabled)
+    Interactive console for Mozilla applications
+-Mozilla Archive Format 3.0.4 (Disabled)
+    Save exactly what you see, in a single file. MAFF (based on ZIP) is compact and exceptional for video and audio. MHT (Internet Explorer's format) allows easy exchange with IE users. Store many tabs, find original, and more!
+-NASA Night Launch 0.6.20150319 (Disabled)
+    Dark theme for Firefox.  Inspired by the night launch of STS-116.
+-NetExport 0.9b7 (Disabled)
+    Use this extension to export data from Firebug's Net panel.
+-NoRedirect 1.3.2.13 (Disabled)
+    Lets the user take control of HTTP redirects; can be used to interdict an ISP's DNS search redirection hijacks, screen "shortened" URLs (e.g., TinyURL), stop the annoying redirection of "smart" error pages, etc.
+-NoScript 2.6.9.19 (Disabled)
+    Extra protection for your Firefox: NoScript allows JavaScript, Java (and other plugins) only for trusted domains of your choice (e.g. your home-banking web site). This whitelist based pre-emptive blocking approach  prevents exploitation of security vulnerabilities (known and even unknown!) with no loss of functionality... Experts will agree: Firefox is really safer with NoScript :-)
+-OPIE 5.0.2 (Disabled)
+    Import/Export extension preferences
+-Omnibug 0.5.508 (Disabled)
+    Firebug Extension for web metrics testing and debugging
+-Originz 0.1.4 (Disabled)
+    A source viewer that enables you to view not only page's HTML source but also style sheets and scripts.
+-Page Hacker Revived 3.0.8 (Disabled)
+    Adds a toolbar to edit the current page
+-Page Speed 1.12.9.2 (Disabled)
+    Speed up your web pages with this performance diagnostics tool. Requires Firebug.
+-PassiveRecon 2.00 (Disabled)
+    Powerful Security Assessment Target Reconnaissance (Discovery) Tool.
+-Pencil 2.0.5 (Disabled)
+    Sketching, simplified
+-Phoenix 1.7.5 (Disabled)
+    Live HTML, CSS & JavaScript editing.
+-Pixel Perfect 1.8.0 (Disabled)
+    Make your web development Pixel Perfect
+-Private Tab 0.1.7.3 (Disabled)
+    Adds private tabs
+-QRCode Scanner(offline) 1.0 (Disabled)
+    Read the information contained in a QR Code.
+-QuickNote 0.7.5 (Disabled)
+    A note taking extension with advanced features.
+-RESTClient 2.0.3 (Disabled)
+    RESTClient, a debugger for RESTful web services.
+-Reader 36.0 (Disabled)
+    Reader is the ultimate Reader tool for Firefox.
+-ReminderFox 2.1.5.2 (Disabled)
+    Displays and manages reminders and ToDos.
+-SQL Inject Me 0.4.7 (Disabled)
+    An extension to test for SQL injection vulnerabilities
+-SQLite Manager 0.8.3 (Disabled)
+    Manage any SQLite database on your computer
+-ScrapBook CHM Creator 1.1.6 (Disabled)
+    Windows Compiled Help creator for the Scrapbook extension.
+-ScrollyFox 2.4 (Disabled)
+    This is a basic FireFox extension which simply scrolls the page down (and optionally up again) automatically at an adjustable rate.
+-Selenium IDE 2.8.0 (Disabled)
+    Record, edit and play Selenium tests
+-Selenium IDE Button 1.2.0 (Disabled)
+    One button to open Selenium IDE.
+-Selenium IDE: PHP Formatters 1.3.2 (Disabled)
+    PHP code formatters for Selenium IDE
+-Selenium XML Formatter 1.5 (Disabled)
+    An XML Formatter for Selenium-IDE API
+-SenSEO 2.5.0.1 (Disabled)
+    SenSEO ist an extension checking SEO-critical on page criteria.
+-Session Manager Export Tool 0.2 (Disabled)
+    Allows you to export the sessions stored by Session Manager as a bookmarks.html file.
+-Silent-nigh 1.0 (Disabled)
+    I created this personas for the GTK theme Silent Night by Nale12
+-SimpleFill 2.0.1 (Disabled)
+    Simply Fill Forms with SimpleFill. The Simplest and Easiest Form Filler ever.
+-Stylish 2.0.2 (Disabled)
+    Restyle the web with Stylish, a user styles manager. Stylish lets you easily install themes and skins for Google, Facebook, YouTube, Orkut, and many, many other sites. You can even customize Firefox and other programs themselves.
+-Super Start 7.3.3 (Disabled)
+    Just another visual bookmark and a simple todo-list in your homepage
+-Tab Groups Helper 0.1.11 (Disabled)
+    List-style UI for Firefox Tab Groups (Panorama) and then some
+-Tab Kit 2nd Edition 0.12.1 (Disabled)
+    Tab grouping, multi-rows, tree view, and other tweaks. Firefox 4+ compatible!!
+-Tab Mix Plus 0.4.1.7 (Disabled)
+    Tab browsing with an added boost.
+-Tab Utilities 1.6pre4+ (Disabled)
+    Open Bookmarks/History/URL/Search in new tabs, and more utilities for tabbed browsing.
+-TagsSidebar 1.0 (Disabled)
+    Simple add-on that allows quick and easy browsing your bookmarks by the tags.
+-Tamper Data 11.0.1 (Disabled)
+    View and modify HTTP/HTTPS headers etc.
+-Tamper Data Icon Redux 1.2 (Disabled)
+    Open tamper data with a toolbar icon, an item in the Tools menu in 4+, or from an item in the Web Developer menu in 6+
+-Task Information Collections v20130619 (Disabled)
+    Project/task management of information on a spatial area by creating links to files, folders, web pages, web based email and pieces of text by dragging them over the extension page.
+-Tilt 1.0.1 (Disabled)
+    Tilt is a fun new Firefox extension focused on creating a 3D visualization of a webpage, drawn using WebGL. Since the DOM is essentially a tree-like representation of a document, this tool layers each node based on the nesting in the tree, creating stacks of elements, each having a corresponding depth and being textured according to the webpage rendering.
+-Todoist 3.7 (Disabled)
+    Managing millions of tasks, Todoist is the best online task management app and todo list. For Web, Firefox, iPhone, Android, Windows, Outlook and more.
+-Toolbar Buttons 1.0.2 (Disabled)
+    Adds toolbar buttons to the customize toolbar window in several programs including Firefox, Thunderbird and Sunbird.  Some of the buttons make commonly preformed actions quicker, others add new functionality.
+-Ubuntu Firefox Modifications 3.0 (Disabled)
+    Ubuntu configuration defaults and apt support for firefox extensions/plugins.
+-Update Scanner 3.2.0 (Disabled)
+    Monitors webpages for updates
+-UrlbarExt 1.8.1 (Disabled)
+    Extends the Location Bar with set of commands to (Shorten URL, Copy URL, Site search using Google, Navigate up/down, Tag pages, Navigate through sequential URL's, Surf anonymously using online phproxy servers, pNg, Twitter, And more!)
+-Vimperator 3.9 (Disabled)
+    Vimperator adds an efficient, Vim-inspired user interface on top of Firefox
+-Web page to source code & viceversa 1.0.0 (Disabled)
+    Switch between a web page and its source code easily! Press: Control + Shift + s and enjoy!
+-Wolfram Alpha Google 1.1 (Disabled)
+    Display Wolfram Alpha results in Google searches.
+-XML Developer Toolbar 0.2 (Disabled)
+    XML Developer's Toolbar
+-XSS Me 0.4.6 (Disabled)
+    An extension to test for Cross Site Scripting vulnerabilities
+-Xdebug Error Toggler 1.2 (Disabled)
+    Addon for PHP developers that use Xdebug, to toggle the visibility of Xdebug's stack traces
+-about:addons-memory 10 (Disabled)
+    Adds an about:addons-memory page that details add-on memory usage
+-iMacros for Firefox 8.8.9 (Disabled)
+    Automate your web browser. Record and replay repetitious work.
+-lori (Life-of-request info) 0.2.0.20080521 (Disabled)
+    For tracking the life of a request
+-proxylist initial.rev19 (Disabled)
+    ProxyList.ro tool for changing proxies
+-rightclickxss 0.2.1 (Disabled)
+    Add easy insert options to insert XSS from the right click menu
+
+
+
+Software:Firefox 36.0.4 (20150320202338)
+OS:Linux (x86_64-gcc3)
+
+-Extension List Dumper 1.15.2 (Disabled) (Incompatible)
+    Dumps a list of the installed extensions.
+-JavaScript Debugger 0.9.89 (Disabled) (Incompatible)
+    JavaScript debugger and profiler

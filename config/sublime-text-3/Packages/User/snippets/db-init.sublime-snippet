@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+CREATE USER '${1:name}'@'localhost' IDENTIFIED BY '${2:password}';
+
+GRANT USAGE ON * . * TO '${1:name}'@'localhost' IDENTIFIED BY '${2:password}' WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
+
+CREATE DATABASE IF NOT EXISTS `${1:name}` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;;
+
+GRANT ALL PRIVILEGES ON `${1:name}` . * TO '${1:name}'@'localhost';
+
+USE `${1:name}`;
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>dbinit</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<scope>source.sql,source.php</scope>
+</snippet>
