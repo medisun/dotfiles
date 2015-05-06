@@ -23,6 +23,9 @@ USERDIR=/home/morock
 
 BACKUPDATE=`date +"%Y-%m-%d %H:%M"`
 
+# Startup notify
+notify-send -i emblem-downloads "Start Backup & Sync to Google drive..."
+
 # Requirements checking
 command -v pv >/dev/null 2>&1 || { echo "I require 'pv' but it's not installed.  Aborting." >&2; exit 1; }
 command -v notify-send >/dev/null 2>&1 || { echo "I require 'notify-send' but it's not installed.  Aborting." >&2; exit 1; }
@@ -30,8 +33,14 @@ command -v tar >/dev/null 2>&1 || { echo "I require 'tar' but it's not installed
 command -v find >/dev/null 2>&1 || { echo "I require 'find' but it's not installed.  Aborting." >&2; exit 1; }
 command -v grive >/dev/null 2>&1 || { echo "I require 'grive' but it's not installed.  Aborting." >&2; exit 1; }
 
-# Startup notify
-notify-send -i emblem-downloads "Start Backup & Sync to Google drive..."
+# Locking file
+LN="${BACKUPDIR}/autopull.running"
+
+if [[ -f "$LN" ]]; then
+    exit 0
+fi
+
+touch "$LN"
 
 # Make sure only root can run our script
 if [ ! -w "$GDRIVEDIR" ]; then
@@ -102,6 +111,9 @@ find ${GDRIVEDIR}/${TARGETDIR}/
 # Final sync
 echo ">>> Final Google Drive Sync"
 grive
+
+# Remove lock file
+rm -f "$LN"
 
 echo ">>> Backup & Sync Finished."
 

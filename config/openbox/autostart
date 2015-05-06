@@ -74,10 +74,10 @@ xscreensaver -no-splash &
 ## Start tyling manager
 (sleep 6s && pytyle2) &
 
-/opt/firefox/firefox -profile /home/morock/.mozilla/firefox/default.profile &
 /opt/firefox-dev/firefox -profile /home/morock/.mozilla/firefox/gggndna9.dev-edition-default &
-/op/sublime_text_3/sublime_text &
+# /opt/firefox/firefox -profile /home/morock/.mozilla/firefox/default.profile &
+# /opt/sublime_text_3/sublime_text &
 thunderbird &
-terminator &
-spacefm &
+# terminator &
+# spacefm &
 skype &

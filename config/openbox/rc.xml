@@ -567,22 +567,22 @@
         <command>~/bin/activate_app.sh '/opt/sublime_text_3/sublime_text'</command>
       </action>
     </keybind>
-    <keybind key="W-S-1">
+    <keybind key="W-S-2">
       <action name="Execute">
-        <command>/opt/firefox/firefox</command>
+        <command>/opt/firefox/firefox -profile '/home/morock/.mozilla/firefox/stable.profile'</command>
       </action>
     </keybind>
-    <keybind key="W-1">
+    <keybind key="W-2">
       <action name="Execute">
         <command>~/bin/show_window_by_path.sh '/opt/firefox/firefox'</command>
       </action>
     </keybind>
-    <keybind key="W-S-2">
+    <keybind key="W-S-1">
       <action name="Execute">
-        <command>/opt/firefox-dev/firefox</command>
+        <command>/opt/firefox-dev/firefox -profile '/home/morock/.mozilla/firefox/devel.profile'</command>
       </action>
     </keybind>
-    <keybind key="W-2">
+    <keybind key="W-1">
       <action name="Execute">
         <command>~/bin/show_window_by_path.sh '/opt/firefox-dev/firefox'</command>
       </action>

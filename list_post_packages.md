@@ -11,6 +11,7 @@
 * ctags
 * cups
 * deadbeef
+* deluge
 * dmenu
 * dnsmasq
 * evince
