@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://openbox.org/                 file:///usr/share/openbox/menu.xsd">
+	<menu id="root-menu" label="Openbox 3">
+		
+		<menu execute="cat ~/.cache/uxdgmenu/applications.openbox" id="uxm-applications" label="Applications"/>
+		<menu id="uxm" label="Places">
+			<menu execute="uxm-places -f openbox" id="uxm-places" label="Home"/>
+			<menu execute="cat ~/.cache/uxdgmenu/bookmarks.openbox" id="uxm-bookmarks" label="Bookmarks"/>
+			<menu execute="cat ~/.cache/uxdgmenu/recent-files.openbox" id="uxm-recent-files" label="Recent Files"/>
+			<menu execute="cat ~/.cache/uxdgmenu/devices.openbox" id="uxm-devices" label="Partitions"/>
+		</menu>
+		<menu id="settings" label="Settings">
+			<menu id="obConfig" label="Openbox">
+				<item label="Edit menu.xml">
+					<action name="Execute">
+						<execute>
+							geany ~/.config/openbox/menu.xml
+						</execute>
+					</action>
+				</item>
+				<item label="Edit rc.xml">
+					<action name="Execute">
+						<execute>
+							geany ~/.config/openbox/rc.xml
+						</execute>
+					</action>
+				</item>
+				<item label="Edit autostart">
+					<action name="Execute">
+						<execute>
+							geany ~/.config/openbox/autostart
+						</execute>
+					</action>
+				</item>
+				<item label="Edit Shortcuts">
+					<action name="Execute">
+						<execute>obkey ~/.config/openbox/rc.xml</execute>
+					</action>
+				</item>
+				<item label="Edit profile apps">
+					<action name="Execute">
+						<execute>geany ~/.config/openbox/profile/restore/profapps</execute>
+					</action>
+				</item>
+				<item label="Edit autostart Hbin">
+					<action name="Execute">
+						<execute>geany ~/bin/homebin</execute>
+					</action>
+				</item>
+				<item label="GUI Menu Editor">
+					<action name="Execute">
+						<execute>
+							obmenu
+						</execute>
+					</action>
+				</item>
+				<item label="GUI Applications Settings Editor">
+					<action name="Execute">
+						<execute>
+							obapps
+						</execute>
+					</action>
+				</item>
+				<item label="GUI Config Tool">
+					<action name="Execute">
+						<execute>
+							obconf
+						</execute>
+					</action>
+				</item>
+				<item label="Reconfigure">
+					<action name="Reconfigure"/>
+				</item>
+				<item label="Restart">
+					<action name="Restart"/>
+				</item>
+			</menu>
+			<menu id="uxm-menu" label="Auto Menu">
+				<item label="Update menus">
+					<action name="Execute">
+						<execute>uxm-daemon update -p -f openbox</execute>
+					</action>
+				</item>
+				<item label="Regenerate rootmenu">
+					<action name="Execute">
+						<execute>uxm-daemon update:rootmenu -p -f openbox</execute>
+					</action>
+				</item>
+				<item label="Clear cache">
+					<action name="Execute">
+						<execute>uxm-daemon clear:cache -p -f openbox</execute>
+					</action>
+				</item>
+			</menu>
+			<menu execute="gb-compmgr" id="CompositingPipeMenu" label="Compositing"/>
+			<menu id="settings-102017" label="Config Layout">
+				<menu id="settings-205519" label="icon">
+					<item label="AnyColorYouLike">
+						<action name="Execute">
+							<execute>gksudo acyl-set</execute>
+						</action>
+					</item>
+					<item label="Awoken">
+						<action name="Execute">
+							<execute>awoken-icon-theme-customization</execute>
+						</action>
+					</item>
+				</menu>
+				<menu id="settings-29141" label="wbar">
+					<menu execute="gb-changer-wbar" id="pipe-121949" label="WbarChanger"/>
+					<item label="WbarConfig">
+						<action name="Execute">
+							<execute>wbar-config</execute>
+						</action>
+					</item>
+				</menu>
+				<menu id="tint2config" label="tint2">
+					<menu execute="gb-changer-tint2" id="pipe-211914" label="Tint2Changer"/>
+					<item label="Edit config file">
+						<action name="Execute">
+							<execute>
+							geany ~/.config/tint2/tint2rc
+						</execute>
+						</action>
+					</item>
+					<item label="Tintwizard">
+						<action name="Execute">
+							<execute>/usr/bin/tintwizard.py</execute>
+						</action>
+					</item>
+					<item label="Tint2conf">
+						<action name="Execute">
+							<execute>tint2conf</execute>
+						</action>
+					</item>
+					<item label="Restart tint2">
+						<action name="Execute">
+							<execute>
+							tint2restart
+						</execute>
+						</action>
+					</item>
+					<item label="Online Help">
+						<action name="Execute">
+							<execute>
+							x-www-browser http://code.google.com/p/tint2/wiki/Welcome
+						</execute>
+						</action>
+					</item>
+				</menu>
+				<menu id="conkyconfig" label="conky">
+					<menu execute="gb-changer-conky" id="pipe-94277" label="ConkyChanger"/>
+					<item label="Edit .conkyrc">
+						<action name="Execute">
+							<execute>
+							geany ~/.conkyrc
+						</execute>
+						</action>
+					</item>
+					<item label="Edit .conkyrc.switch">
+						<action name="Execute">
+							<execute>geany ~/.conkyrc.switch</execute>
+						</action>
+					</item>
+					<item label="Restart Conky">
+						<action name="Execute">
+							<execute>
+							conkywonky
+						</execute>
+						</action>
+					</item>
+					<item label="Wiki Page">
+						<action name="Execute">
+							<execute>
+							x-www-browser http://conky.pl
+						</execute>
+						</action>
+					</item>
+				</menu>
+				<menu execute="gb-menu-notifyd" id="pipe-77421" label="notifyd"/>
+				<menu id="dmenuconfig" label="dmenu">
+					<item label="Edit start-up script">
+						<action name="Execute">
+							<execute>
+							geany ~/.config/dmenu/dmenu-bind.sh
+						</execute>
+						</action>
+					</item>
+				</menu>
+				<menu id="gmrunconfig" label="gmrun">
+					<item label="Edit config file">
+						<action name="Execute">
+							<execute>
+							geany ~/.gmrunrc
+						</execute>
+						</action>
+					</item>
+				</menu>
+				<menu id="terminatorconfig" label="terminator">
+					<item label="Edit config file">
+						<action name="Execute">
+							<execute>
+							geany ~/.config/terminator/config
+						</execute>
+						</action>
+					</item>
+				</menu>
+			</menu>
+			<item label="Monitors">
+				<action name="Execute">
+					<execute>
+						arandr
+					</execute>
+				</action>
+			</item>
+			<item label="Wallpaper">
+				<action name="Execute">
+					<execute>nitrogen /usr/share/backgrounds</execute>
+				</action>
+			</item>
+			<item label="User Interface Settings">
+				<action name="Execute">
+					<execute>patch-lxappearance</execute>
+				</action>
+			</item>
+			<item label="Power Management">
+				<action name="Execute">
+					<execute>
+							xfce4-power-manager-settings
+						</execute>
+				</action>
+			</item>
+			<item label="Edit login screen">
+				<action name="Execute">
+					<execute>gksudo slimconf</execute>
+				</action>
+			</item>
+			<item label="Edit Default Browser">
+				<action name="Execute">
+					<execute>terminator --command=&quot;sudo update-alternatives --config x-ww-browser&quot;</execute>
+				</action>
+			</item>
+			<item label="Edit Default Applications">
+				<action name="Execute">
+					<execute>
+							terminator --command=&quot;sudo update-alternatives --all&quot;
+						</execute>
+				</action>
+			</item>
+			<item label="Edit G.B.L Configurations">
+				<action name="Execute">
+					<execute>gb-conf-tool</execute>
+				</action>
+			</item>
+		</menu>
+		<item label="Exit">
+			<action name="Execute">
+				<execute>goout</execute>
+			</action>
+		</item>
+	</menu>
+</openbox_menu>

@@ -1,0 +1,91 @@
+#!/bin/bash
+# tint2-changer.sh
+# check config files in a common folder and
+# generate an openbox pipe-menu, 9menu or terminal menu to chose one
+# ver 0.2
+
+# If we want to allow the characters & < > " ' in filenames,
+# some escaping will have to be added. (can be done though)
+
+conf_dir=$HOME/.config/tint2/conf # is there a better place?
+
+
+# if sent --change option, load that config and exit
+[[ $1 = --change ]] && {
+    [[ -r $2 ]] || { echo "$0: cannot read $2"; exit 1; }
+    cp "$2" $HOME/.config/tint2/tint2rc
+    tint2restart &
+    cp $HOME/.config/tint2/tint2rc $HOME/.config/tint2/default.tint2rc
+    exit
+}
+
+[[ -t 1 ]] || { # stdout not going to terminal so output OB menu or 9menu
+
+if [[ $1 = --9menu ]]
+then
+    unset menu # 9menu's menu is an array
+    add_menu_item() {
+        label=${1##*/} # strip out path for label
+        label=${label%rc} # remove rc ending for label
+        menu+=("$label:$0 --change $1")
+    }
+else
+    menu='<openbox_pipe_menu>
+<separator label="Choose a Tint2:" />
+'
+    add_menu_item() {
+        label=${1##*/} # strip out path for label
+        label=${label%rc} # remove rc ending for label
+        menu+='<item label="'"$label"'">
+    <action name="Execute">
+        <command>
+        &apos;'"$0"'&apos; --change &apos;'"$1"'&apos;
+        </command>
+    </action>
+</item>
+'
+    }
+fi
+
+for i in "$conf_dir"/* # dotfiles will be ignored, OK?
+do
+    [[ $i =~ ^.*rc$ ]] || continue
+    # regex for accepted names can be tweaked later
+    # right now anything ending with rc is OK, others will be ignored
+    add_menu_item "$i"
+done
+
+if [[ $1 = --9menu ]]
+then
+    menu+=(cancel:exit)
+    9menu -popup -label 'Choose a tint2:' -font -*-lucida-medium-r-*-*-14-*-*-*-*-*-*-* "${menu[@]}"
+else
+    menu+='</openbox_pipe_menu>
+'
+    printf '%s' "$menu"
+fi
+exit
+}
+
+# Terminal menu
+[[ -t 0 ]] || exit 1 # stdin not coming from terminal - cannot interact
+unset list
+declare -A list # make associative array
+for i in "$conf_dir"/*
+do
+    [[ $i =~ ^.*rc$ ]] || continue
+    label=${i##*/} # strip out path for label
+    label=${label%rc} # remove rc ending
+    list["$label"]="$i"
+done
+echo "Conkys available:"
+PS3='Please enter the number of your choice > '
+select name in "${!list[@]}" Cancel
+do
+    [[ $name = Cancel ]] && exit 0
+    [[ $name ]] && {
+        "$0" --change "${list[$name]}"
+        break
+    }
+done
+exit

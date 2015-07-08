@@ -1,0 +1,4 @@
+[Configuration]
+AutomountMedia = TRUE
+AutomountDrives = TRUE
+

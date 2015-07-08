@@ -1,0 +1,75 @@
+## Setup second monitor
+# (xrandr --output VGA-1 --mode 1920x1080) &
+# (xrandr --output DVI-I-1 --mode 1920x1080) &
+# (sleep 3s && xrandr --output VGA-1 --left-of DVI-I-1) &
+# (xrandr --output VGA-1 --primary) &
+
+## GNOME PolicyKit and Keyring
+eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
+
+## Set root window colour
+hsetroot -solid "#2E3436" &
+
+## Set keyboard settings - 250 ms delay and 25 cps (characters per second) repeat rate.
+## Adjust the values according to your preferances.
+xset r rate 250 25 &
+
+## Set mouse speed
+xset m 3 3 &
+
+## Detect and configure touchpad. See 'man synclient' for more info.
+if egrep -iq 'touchpad' /proc/bus/input/devices; then
+    synclient VertEdgeScroll=1 &
+    synclient TapButton1=1 &
+fi
+
+## Turn on/off system beep
+xset b off &
+
+## Horizontal scroll with shift+mousewheel
+xbindkeys &
+
+## Add russian layout
+setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num
+
+# Compositing manager
+gb-compmgr --xcompmgr & sleep 2s &
+
+## Enable power management
+xfce4-power-manager &
+
+## Start Thunar Daemon
+thunar --daemon &
+
+## Set desktop wallpaper
+nitrogen --restore &
+
+## Launch panel
+tint2 &
+
+## Enable Eyecandy - off by default, uncomment one of the commands below.
+## Note: cairo-compmgr prefers a sleep delay, else it tends to produce
+## odd shadows/quirks around tint2 & Conky.
+#(sleep 10s && gb-compmgr --cairo-compmgr) &
+#gb-compmgr --xcompmgr & 
+
+## Launch network manager applet
+(sleep 4s && nm-applet) &
+
+## Start xscreensaver
+xscreensaver -no-splash &
+
+## Start Conky after a slight delay
+(sleep 3s && conky -q) &
+
+## Start Clipboard manager
+(sleep 3s && clipit) &
+
+## Top tilda
+(sleep 5s && tilda) &
+
+## Start tyling manager
+# (sleep 6s && pytyle2) &
+
+thunderbird &
+skype &

@@ -1,0 +1,188 @@
+#!/bin/sh
+
+bspc config border_width        2
+bspc config window_gap          10
+bspc config top_padding 16
+
+
+i=1
+for monitor in $(bspc query -M); do
+    bspc monitor $monitor \
+        -n "$i" \
+        -d "D${i}1" "D${i}2" "D${i}3"  "D${i}4"
+    i=$((i+1))
+done
+# NMON=$i
+unset i
+
+# bspc monitor -d I II III IV V VI VII VIII IX X
+bspc desktop ^1 -l monocle
+bspc desktop ^2 -l monocle
+bspc desktop ^3 -l tiled
+bspc desktop ^5 -l monocle
+
+# Visual options
+bspc config auto_alternate            true
+bspc config auto_cancel               true
+bspc config borderless_monocle        true
+bspc config focus_follows_pointer     true
+bspc config gapless_monocle           false
+bspc config ignore_ewmh_focus         false
+bspc config pointer_follows_monitor   true
+bspc config pointer_follows_focus     false
+bspc config remove_unplugged_monitors true
+bspc config split_ratio         0.72
+
+# Color of the border of a focused window of a focused monitor.
+bspc config focused_border_color "#839698"
+# Color of the border of a focused window of an unfocused monitor.
+bspc config active_border_color "#4f4742"
+# Color of the border of an unfocused window.
+bspc config normal_border_color "#4f4742"
+# Color of the presel message feedback.
+bspc config presel_border_color "#ffbc00"
+# Color of the border of a focused locked window of a focused monitor.
+bspc config focused_locked_border_color "#ffffff"
+# Color of the border of a focused locked window of an unfocused monitor.
+bspc config active_locked_border_color "#4f4742"
+# Color of the border of an unfocused locked window.
+bspc config normal_locked_border_color "#4f4742"
+# Color of the border of a focused sticky window of a focused monitor.
+bspc config focused_sticky_border_color "#80129b"
+# Color of the border of a focused sticky window of an unfocused monitor.
+bspc config active_sticky_border_color "#4f4742"
+# Color of the border of an unfocused sticky window.
+bspc config normal_sticky_border_color "#4f4742"
+# Color of the border of a focused private window of a focused monitor.
+bspc config focused_private_border_color "#61bfe2"
+# Color of the border of a focused private window of an unfocused monitor.
+bspc config active_private_border_color "#4f4742"
+# Color of the border of an unfocused private window.
+bspc config normal_private_border_color "#4f4742"
+# Color of the border of an urgent window.
+bspc config urgent_border_color "#ff4027"
+
+
+bspc config normal_frame_opacity 0.0
+bspc config focused_frame_opacity 0.0
+
+
+# Rules
+# 
+# -a, --add <class_name>|<instance_name>|* 
+#           [-o|--one-shot] [monitor=MONITOR_SEL|desktop=DESKTOP_SEL|window=WINDOW_SEL] 
+#           [(floating|fullscreen|pseudo_tiled|locked|sticky|private|center|follow|manage|focus|border)=(on|off)] 
+#           [split_dir=DIR] [split_ratio=RATIO]
+# 
+#     Create a new rule.
+# -r, --remove ^<n>|head|tail|<class_name>|<instance_name>|*…
+# 
+#     Remove the given rules.
+# -l, --list [<class_name>|<instance_name>|*]
+# 
+#     List the rules.
+
+# bspc rule -a '*' floating=on
+bspc rule -a Conky sticky=on manage=off lower=on
+bspc rule -a feh floating=on manage=off
+bspc rule -a Tilda floating=on
+bspc rule -a Skype split_dir=right desktop=^3 split_ratio=0.2
+# bspc rule -a Skype pseudo_tiled=on
+
+# /home/sunn/.config/bspwm/panel/panel &
+
+# xprop -id $(bspc query -W | tail -n 1) WM_WINDOW_ROLE | cut -d \" -f 2
+
+# Two monitor config
+(xrandr --output VGA-1 --mode 1920x1080) &
+(xrandr --output DVI-I-1 --mode 1920x1080) &
+(sleep 3s && xrandr --output DVI-I-1 --left-of VGA-1) &
+(xrandr --output DVI-I-1 --primary) &
+
+sxhkd &
+
+## Setup second monitor
+# (xrandr --output VGA-1 --mode 1920x1080) &
+# (xrandr --output DVI-I-1 --mode 1920x1080) &
+# (sleep 3s && xrandr --output VGA-1 --left-of DVI-I-1) &
+# (xrandr --output VGA-1 --primary) &
+
+## GNOME PolicyKit and Keyring
+eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
+
+## Redshift 
+# adjusts the color temperature of your screen according to your surroundings. 
+# This may help your eyes hurt less if you are working in front of the screen at night.
+# This program is inspired by f.lux.
+
+## sample X compositing manager
+pidof compton || compton &
+
+xrdb ~/.Xresources &
+wmname LG3D &
+xsetroot -cursor_name left_ptr &
+
+## Set root window colour
+# hsetroot -solid "#2E3436" &
+
+## Wallpaper
+nitrogen --restore
+
+## Set keyboard settings - 250 ms delay and 25 cps (characters per second) repeat rate.
+## Adjust the values according to your preferances.
+xset r rate 250 25 &
+
+## Set mouse speed
+xset m 3 3 &
+
+## Detect and configure touchpad. See 'man synclient' for more info.
+if egrep -iq 'touchpad' /proc/bus/input/devices; then
+    synclient VertEdgeScroll=1 &
+    synclient TapButton1=1 &
+fi
+
+## Turn on/off system beep
+xset b off &
+
+## Horizontal scroll with shift+mousewheel
+xbindkeys &
+
+## Add russian layout
+setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num
+
+## Enable power management
+xfce4-power-manager &
+
+## Start Thunar Daemon
+thunar --daemon &
+
+## Launch panel
+# tint2 &
+
+## Enable Eyecandy - off by default, uncomment one of the commands below.
+## Note: cairo-compmgr prefers a sleep delay, else it tends to produce
+## odd shadows/quirks around tint2 & Conky.
+#(sleep 10s && gb-compmgr --cairo-compmgr) &
+#gb-compmgr --xcompmgr & 
+
+## Launch network manager applet
+(sleep 4s && (pidof nm-applet || nm-applet)) &
+
+## Start xscreensaver
+pidof xscreensaver || xscreensaver -no-splash &
+
+## Start Clipboard manager
+(sleep 3s && (pidof clipit || clipit)) &
+
+## Top tilda
+(sleep 5s && (pidof tilda || tilda)) &
+
+## Right ALT = Super_L
+# xmodmap -e "keycode 108 = Super_L" &
+# xmodmap -e "remove mod1 = Super_L" &
+
+## Fix for normal mouse click on statusbar for non-english layouts
+# for awesome wm
+# xkbcomp $DISPLAY - | egrep -v "group . = AltGr;" | xkbcomp - $DISPLAY &
+
+[ ! -s ~/.config/mpd/pid ] && mpd &
