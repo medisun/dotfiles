@@ -109,22 +109,34 @@ function user_main()
 
     text(
         conky(
+            " - CP  ${cpu 0}%  ${cpu 1}%\n"
+         .. " - MM  ${memperc}%  ${swapperc}%\n"
+         .. " - IO  ${diskio}\n"
+        )
+    , 250, 15, nil, 12)
+
+    text(
+        conky(
             " - ${time}\n  '\n"
          .. " - ${uptime} up\n  '\n"
          .. " - CPU  < ${cpu 0}% ${cpu 1}% >\n"
          .. "  `-${top cpu 1}% ${top name 1}\n"
          .. "  `-${top cpu 2}% ${top name 2}\n"
          .. "  `- proc ${processes} / ${running_processes}\n  '\n"
-         .. " - MEM  < ${memperc}% >  ${mem}/${memmax}\n"
-         .. " - SWAP < ${swapperc}% >  ${swap}/${swapmax}\n"
+         .. " - MEM  < ${memperc}% >\n"
+         .. "  `- ${mem}/${memmax}\n"
+         .. " - SWAP < ${swapperc}% >\n"
+         .. "  `- ${swap}/${swapmax}\n"
          .. "  `-${top_mem mem 1}% ${top_mem name 1}\n"
          .. "  `-${top_mem mem 2}% ${top_mem name 2}\n  '\n"
-         .. " - IO   < ${diskio} >  W ${diskio_write}  R ${diskio_read}\n"
+         .. " - IO   < ${diskio} >\n"
+         .. "  `- W ${diskio_write}  R ${diskio_read}\n"
          .. "  `-${top_io io_perc 1}% ${top_io name 1}\n"
          .. "  `-${top_io io_perc 2}% ${top_io name 2}\n  '\n"
          .. " - IP   < ${addr p4p1} > \n"
-         .. "  `- UP   ${upspeed p4p1}\n"
-         .. "  `- DOWN ${downspeed p4p1}\n  '\n"
+         .. "  `- UP   < ${upspeed p4p1} >\n"
+         .. "  `- DOWN < ${downspeed p4p1} >\n"
+         .. "  `- PING " .. shell("ping -c1 192.232.219.83 | tail -1 | awk -F '/' '{print \"< \"$5\"ms >\"}'") .. "  '\n"
          .. "  `- PORT in < ${tcp_portmon 1 32767 count} / ${tcp_portmon 32768 61000 count} > out\n"
          .. "  `- REMOTE \n"
          .. "    `- ${tcp_portmon 32768 61000 rservice 0} ${tcp_portmon 32768 61000 rhost 0}\n"
@@ -132,27 +144,27 @@ function user_main()
          .. "    `- ${tcp_portmon 32768 61000 rservice 2} ${tcp_portmon 32768 61000 rhost 2}\n" 
          .. "    `- ${tcp_portmon 32768 61000 rservice 3} ${tcp_portmon 32768 61000 rhost 3}\n" 
          .. "    `- ${tcp_portmon 32768 61000 rservice 4} ${tcp_portmon 32768 61000 rhost 4}\n" 
+         .. "    `- ${tcp_portmon 32768 61000 rservice 5} ${tcp_portmon 32768 61000 rhost 5}\n" 
+         .. "    `- ${tcp_portmon 32768 61000 rservice 6} ${tcp_portmon 32768 61000 rhost 6}\n" 
+         .. "    `- ${tcp_portmon 32768 61000 rservice 7} ${tcp_portmon 32768 61000 rhost 7}\n" 
+         .. "    `- ${tcp_portmon 32768 61000 rservice 8} ${tcp_portmon 32768 61000 rhost 8}\n" 
          .. "  `- LOCAL \n"
          .. "  `- ${tcp_portmon 1 32767 rhost 0} ${tcp_portmon 1 32767 lservice 0}\n"
          .. "  `- ${tcp_portmon 1 32767 rhost 1} ${tcp_portmon 1 32767 lservice 1}\n" 
          .. "  `- ${tcp_portmon 1 32767 rhost 2} ${tcp_portmon 1 32767 lservice 2}\n" 
-         )
+         .. "\n\n\n"
+         .. "${if_running apache2}ON ${else}OFF${endif} apache\n"
+         .. "${if_running dnsmasq}ON ${else}OFF${endif} dnsmasq\n"
+         .. "${if_running mysqld}ON ${else}OFF${endif} mysql\n"
+         .. "${if_running nginx}ON ${else}OFF${endif} nginx\n\n"
+         .. "${if_existing /tmp/google_drive_backup_sync/backup_details.txt}${head /tmp/google_drive_backup_sync/backup_details.txt 1}${else}No backup details${endif}"
+        )
     , 15, 15)
-
-    text(
-        conky("${if_running apache2}ON ${else}OFF${endif} apache\n"
-     .. "${if_running dnsmasq}ON ${else}OFF${endif} dnsmasq\n"
-     .. "${if_running mysqld}ON ${else}OFF${endif} mysql\n"
-     .. "${if_running nginx}ON ${else}OFF${endif} nginx\n")
-     .. "\n"
-     .. conky("${if_existing /tmp/google_drive_backup_sync/backup_details.txt}${head /tmp/google_drive_backup_sync/backup_details.txt 1}${else}No backup details${endif}")
-    , 15, 400)
-
 
     text(
         shell("w") .. "\n"
      .. shell("df -h | mawk '{print $5 \"\t\" $2 \"\t\" $4 \"\t\" $6}' | sort -g | expand")
-    , 15, 500)
+    , 15, 560)
 end
 
 

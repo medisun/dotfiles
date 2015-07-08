@@ -1,5 +1,4 @@
-
-## Openbox autostart.sh
+#!/usr/bin/env bash
 
 ## Setup second monitor
 # (xrandr --output VGA-1 --mode 1920x1080) &
@@ -10,8 +9,27 @@
 ## GNOME PolicyKit and Keyring
 eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 
+## Redshift 
+# adjusts the color temperature of your screen according to your surroundings. 
+# This may help your eyes hurt less if you are working in front of the screen at night.
+# This program is inspired by f.lux.
+redshift -l 50.0318313:36.2242183 &
+
+## sample X compositing manager
+pidof compton || compton &
+
+xrdb ~/.Xresources &
+wmname LG3D &
+xsetroot -cursor_name left_ptr &
+
 ## Set root window colour
-hsetroot -solid "#2E3436" &
+# hsetroot -solid "#2E3436" &
+
+## Wallpaper
+nitrogen --restore
+
+## Bspwm keybindings daemon
+sxhkd &
 
 ## Set keyboard settings - 250 ms delay and 25 cps (characters per second) repeat rate.
 ## Adjust the values according to your preferances.
@@ -35,20 +53,14 @@ xbindkeys &
 ## Add russian layout
 setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num
 
-# Compositing manager
-gb-compmgr --xcompmgr & sleep 2s &
-
 ## Enable power management
 xfce4-power-manager &
 
 ## Start Thunar Daemon
 thunar --daemon &
 
-## Set desktop wallpaper
-nitrogen --restore &
-
 ## Launch panel
-tint2 &
+# tint2 &
 
 ## Enable Eyecandy - off by default, uncomment one of the commands below.
 ## Note: cairo-compmgr prefers a sleep delay, else it tends to produce
@@ -57,27 +69,23 @@ tint2 &
 #gb-compmgr --xcompmgr & 
 
 ## Launch network manager applet
-(sleep 4s && nm-applet) &
+(sleep 4s && (pidof nm-applet || nm-applet)) &
 
 ## Start xscreensaver
-xscreensaver -no-splash &
-
-## Start Conky after a slight delay
-(sleep 3s && conky -q) &
+pidof xscreensaver || xscreensaver -no-splash &
 
 ## Start Clipboard manager
-(sleep 3s && clipit) &
+(sleep 3s && (pidof clipit || clipit)) &
 
 ## Top tilda
-(sleep 5s && tilda) &
+(sleep 5s && (pidof tilda || tilda)) &
 
-## Start tyling manager
-(sleep 6s && pytyle2) &
+## Right ALT = Super_L
+# xmodmap -e "keycode 108 = Super_L" &
+# xmodmap -e "remove mod1 = Super_L" &
 
-/opt/firefox-dev/firefox -profile /home/morock/.mozilla/firefox/gggndna9.dev-edition-default &
-# /opt/firefox/firefox -profile /home/morock/.mozilla/firefox/default.profile &
-# /opt/sublime_text_3/sublime_text &
-thunderbird &
-# terminator &
-# spacefm &
-skype &
+## Fix for normal mouse click on statusbar for non-english layouts
+# for awesome wm
+# xkbcomp $DISPLAY - | egrep -v "group . = AltGr;" | xkbcomp - $DISPLAY &
+
+[ ! -s ~/.config/mpd/pid ] && mpd &

@@ -26,9 +26,15 @@ widget_class "*Scrollbar" style "hide-scrollbar-style"
 widget_class "*ScrolledWindow" style "hide-scrollbar-style"
 """)
 
-view = webkit.WebView()
+def browser_title_changed(widget, frame, title):
+    win.set_title(title)
+
+browser = webkit.WebView()
+
+browser.connect('title-changed', browser_title_changed)
+
 sw = gtk.ScrolledWindow()
-sw.add(view)
+sw.add(browser)
 sw.set_policy(gtk.POLICY_ALWAYS, gtk.POLICY_ALWAYS)
 
 win = gtk.Window(gtk.WINDOW_TOPLEVEL)
@@ -36,6 +42,6 @@ win.add(sw)
 win.set_default_size(200, 400)
 win.show_all()
 
-view.open(sys.argv[1])
+browser.open(sys.argv[1])
 
 gtk.main()

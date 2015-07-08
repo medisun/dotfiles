@@ -26,5 +26,4 @@ do
 done
 $MYSQL -u $MUSER -p$MPASS $MDB -e "SET GLOBAL FOREIGN_KEY_CHECKS = 1;"
 
-
 exit 0
