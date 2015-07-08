@@ -34,7 +34,6 @@
 !.gitignore
 !.mpdconf
 !.profile
-!.profile
 !.selected_editor
 !.stalonetrayrc
 !.tmux.conf
