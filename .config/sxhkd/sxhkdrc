@@ -22,7 +22,7 @@ super + {_,shift +} Tab
 											bspc desktop --focus {next,prev}
 super + Home
 											bspc desktop --focus last.free
-super + shift + m
+super + m
 											bspc desktop --layout next
 super + ctrl + {_,shift + } Tab
 											bspc desktop --circulate {backward,forward}
@@ -53,7 +53,7 @@ super + Escape
 											bspc window --to-desktop next
 super + alt + {1-9}
 											bspc window --ratio 0.{1-9}
-super + m
+super + alt + Return
 											bspc window --swap biggest
 super + {_,shift + } {Left,Down,Up,Right}
 											bspc window --{focus,swap} {left,down,up,right}
