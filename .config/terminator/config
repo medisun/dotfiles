@@ -24,12 +24,12 @@
     scrollback_lines = 5000
     use_system_font = False
     cursor_color = "#009dda"
-    foreground_color = "#839496"
+    foreground_color = "#c0b18b"
     scroll_on_output = False
     show_titlebar = False
     color_scheme = custom
     font = Monospace 8
-    background_color = "#002b36"
+    background_color = "#1f1f1f"
     scrollback_infinite = True
   [[xgoup]]
     scrollbar_position = hidden

@@ -35,6 +35,8 @@ super + apostrophe
 
 super + d
 											bspc control --toggle-visibility
+super + b : {_,alt +,super +} {Left,Down,Up,Right}
+											bspc window {--to-window, --swap, --focus} {left,down,up,right}
 alt + {_,shift +} F4
 											bspc window --{close,kill}
 super + {o,l,p,space,alt + space}
@@ -71,7 +73,7 @@ super + alt + shift + {Left,Down,Up,Right}
 											bspc window --edge {right -10,up +10,down -10,left +10}
 super + {_,shift + }{1-9,0}
 											bspc {desktop --focus,window -d} ^{1-9,10}
-super + {minus,equal}
+super + {equal,minus}
 											bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 3 ))
 alt + {_, shift} + equal
 											bspc config -d focused right_padding  $((`bspc config -d focused right_padding` {+,-} 10 ))
@@ -89,11 +91,11 @@ ctrl + {_, shift} + minus
 ~button1
 											bspc pointer --grab focus
 alt + button{1-3}
-											bspc pointer --grab {move,resize_side,resize_corner}
+											; bspc pointer --grab {move,resize_side,resize_corner}
 alt + @button{1-3}
 											bspc pointer --ungrab
 super + button{1-3}
-											bspc pointer --grab {move,resize_side,resize_corner}
+											; bspc pointer --grab {move,resize_side,resize_corner}
 super + @button{1-3}
 											bspc pointer --ungrab
 alt + button{4,5}
