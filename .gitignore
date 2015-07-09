@@ -65,6 +65,7 @@ Thumbs.db
 !.xinitrc
 !/.config/
 !/.config/bspwm
+!/.config/sxhkd
 !/.config/clipit
 !/.config/dmenu
 !/.config/fontconfig

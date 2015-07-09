@@ -4,7 +4,17 @@
   inactive_color_offset = 1.0
   title_inactive_bg_color = "#000000"
 [keybindings]
+  switch_to_tab_10 = <Primary>0
+  switch_to_tab_6 = <Primary>6
+  switch_to_tab_7 = <Primary>7
+  switch_to_tab_4 = <Primary>4
+  switch_to_tab_5 = <Primary>5
+  switch_to_tab_2 = <Primary>2
+  switch_to_tab_3 = <Primary>3
+  switch_to_tab_1 = <Primary>1
   hide_window = <Shift><Control>a
+  switch_to_tab_8 = <Primary>8
+  switch_to_tab_9 = <Primary>9
 [profiles]
   [[default]]
     scrollbar_position = hidden
@@ -14,12 +24,12 @@
     scrollback_lines = 5000
     use_system_font = False
     cursor_color = "#009dda"
-    foreground_color = "#ffffff"
+    foreground_color = "#839496"
     scroll_on_output = False
     show_titlebar = False
     color_scheme = custom
     font = Monospace 8
-    background_color = "#300a24"
+    background_color = "#002b36"
     scrollback_infinite = True
   [[xgoup]]
     scrollbar_position = hidden
