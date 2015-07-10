@@ -35,12 +35,12 @@ super + apostrophe
 
 super + d
 											bspc control --toggle-visibility
-super + b : {_,alt +,super +} {Left,Down,Up,Right}
-											bspc window {--to-window, --swap, --focus} {left,down,up,right}
+super + b : {_,alt +,shift +} {Left,Down,Up,Right}
+											bspc window {--focus, --swap, --to-window} {left,down,up,right}
 alt + {_,shift +} F4
 											bspc window --{close,kill}
-super + {o,l,p,space,alt + space}
-											bspc window --toggle {sticky,locked,private,floating,pseudo_tiled}
+super + {i,o,p,space,alt + space}
+											bspc window --toggle {locked,sticky,private,floating,pseudo_tiled}
 alt + Return
 											bspc window --toggle fullscreen
 alt + {_,shift +} Tab
@@ -53,9 +53,11 @@ super + Escape
 											bspc window --to-desktop next
 super + alt + {1-9}
 											bspc window --ratio 0.{1-9}
-super + alt + Return
+super + v
 											bspc window --swap biggest
 super + {_,shift + } {Left,Down,Up,Right}
+											bspc window --{focus,swap} {left,down,up,right}
+super + {_,shift + } {h,j,k,l}
 											bspc window --{focus,swap} {left,down,up,right}
 super + u
 											bspc window --focus last.urgent

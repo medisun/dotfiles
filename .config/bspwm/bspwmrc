@@ -1,7 +1,7 @@
 #!/bin/sh
 
-bspc config border_width        2
-bspc config window_gap          10
+bspc config border_width        5
+bspc config window_gap         20
 bspc config top_padding 16
 
 
@@ -131,7 +131,7 @@ xsetroot -cursor_name left_ptr &
 # hsetroot -solid "#2E3436" &
 
 ## Wallpaper
-nitrogen --restore
+( sleep 4s && nitrogen --restore ) &
 
 ## Set keyboard settings - 250 ms delay and 25 cps (characters per second) repeat rate.
 ## Adjust the values according to your preferances.
