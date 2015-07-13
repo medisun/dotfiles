@@ -53,7 +53,7 @@ super + Escape
 											bspc window --to-desktop next
 super + alt + {1-9}
 											bspc window --ratio 0.{1-9}
-super + v
+super + alt + Return
 											bspc window --swap biggest
 super + {_,shift + } {Left,Down,Up,Right}
 											bspc window --{focus,swap} {left,down,up,right}
@@ -89,7 +89,8 @@ ctrl + {_, shift} + minus
 ## 
 ## Mouse
 ## 
-
+asdasdasddas
+`
 ~button1
 											bspc pointer --grab focus
 alt + button{1-3}
@@ -109,6 +110,8 @@ super + ctrl + button{4,5}
 ## Applications
 ## 
 
+super + v
+											bspc desktop -n $( zenity --entry --text "Rename current desktop" )
 super + Return
 											terminator
 alt + Escape
