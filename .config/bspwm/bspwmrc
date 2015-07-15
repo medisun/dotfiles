@@ -4,22 +4,29 @@ bspc config border_width        5
 bspc config window_gap         20
 bspc config top_padding 16
 
-
 i=1
 for monitor in $(bspc query -M); do
     bspc monitor $monitor \
         -n "$i" \
         -d "D${i}1" "D${i}2" "D${i}3"  "D${i}4"
+
+    if [ $i -eq '1' ]; then
+        bspc desktop ^1 -n "dev"  -l monocle
+        bspc desktop ^2 -n "term" -l monocle
+        bspc desktop ^3 -n "chat" -l tiled
+    fi
+
+    if [ $i -eq '2' ]; then
+        bspc desktop ^5 -n "web" -l monocle
+        bspc desktop ^6 -n "mail" -l monocle
+    fi
+
     i=$((i+1))
 done
 # NMON=$i
 unset i
 
 # bspc monitor -d I II III IV V VI VII VIII IX X
-bspc desktop ^1 -l monocle
-bspc desktop ^2 -l monocle
-bspc desktop ^3 -l tiled
-bspc desktop ^5 -l monocle
 
 # Visual options
 bspc config auto_alternate            true
@@ -83,6 +90,9 @@ bspc config focused_frame_opacity 0.0
 # 
 #     List the rules.
 
+# Remove all previous rules
+bspc rule -l | sed "s/^\(.*\) => \(.*\)/'\1' /" | xargs bspc rule -r
+
 # bspc rule -a '*' floating=on
 bspc rule -a '*' private=on
 bspc rule -a Mysql-workbench-bin locked=on
@@ -91,7 +101,7 @@ bspc rule -a Firefox locked=on
 bspc rule -a Conky sticky=on manage=off lower=on
 bspc rule -a feh floating=on manage=off
 bspc rule -a Tilda floating=on
-bspc rule -a Skype split_dir=right desktop=^3 split_ratio=0.2
+bspc rule -a Skype split_dir=left desktop=^3 split_ratio=0.4
 # bspc rule -a Skype pseudo_tiled=on
 
 # /home/sunn/.config/bspwm/panel/panel &
@@ -104,13 +114,8 @@ bspc rule -a Skype split_dir=right desktop=^3 split_ratio=0.2
 (sleep 3s && xrandr --output DVI-I-1 --left-of VGA-1) &
 (xrandr --output DVI-I-1 --primary) &
 
-sxhkd &
+(pidof /usr/local/bin/sxhkd || sxhkd) &
 
-## Setup second monitor
-# (xrandr --output VGA-1 --mode 1920x1080) &
-# (xrandr --output DVI-I-1 --mode 1920x1080) &
-# (sleep 3s && xrandr --output VGA-1 --left-of DVI-I-1) &
-# (xrandr --output VGA-1 --primary) &
 
 ## GNOME PolicyKit and Keyring
 eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
@@ -123,7 +128,7 @@ eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 ## sample X compositing manager
 pidof compton || compton &
 
-xrdb ~/.Xresources &
+# xrdb ~/.Xresources &
 wmname LG3D &
 xsetroot -cursor_name left_ptr &
 
@@ -153,13 +158,13 @@ xset b off &
 xbindkeys &
 
 ## Add russian layout
-setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num
+setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num &
 
 ## Enable power management
-xfce4-power-manager &
+(pidof xfce4-power-manager || xfce4-power-manager) &
 
 ## Start Thunar Daemon
-thunar --daemon &
+(pidof /usr/bin/thunar || thunar --daemon) &
 
 ## Launch panel
 # tint2 &
@@ -174,7 +179,7 @@ thunar --daemon &
 (sleep 4s && (pidof nm-applet || nm-applet)) &
 
 ## Start xscreensaver
-pidof xscreensaver || xscreensaver -no-splash &
+(pidof xscreensaver || xscreensaver -no-splash) &
 
 ## Start Clipboard manager
 (sleep 3s && (pidof clipit || clipit)) &
@@ -190,4 +195,4 @@ pidof xscreensaver || xscreensaver -no-splash &
 # for awesome wm
 # xkbcomp $DISPLAY - | egrep -v "group . = AltGr;" | xkbcomp - $DISPLAY &
 
-[ ! -s ~/.config/mpd/pid ] && mpd &
+[ ! -s ~/.mpd/pid ] && mpd &

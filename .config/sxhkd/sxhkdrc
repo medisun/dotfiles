@@ -166,12 +166,16 @@ shift + Print
 											xfce4-screenshooter
 super + alt + v
 											( pidof pavucontrol && wmctrl -xa Pavucontrol ) || pavucontrol
+super + alt + w
+											/home/morock/.config/awesome/wallsroll.sh
 Print
 											scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp; viewnior ~/images/$f'
 XF86Tools
 											urxvt -e ncmpcpp
 XF86Audio{Prev,Next,Play,Stop}
 											mpc -q {prev,next,play,pause}
+shift + XF86Audio{Prev,Next}
+											mpc seek {-,+}00:00:10
 XF86Audio{Lower,Raise}Volume
 											amixer -D pulse sset Master 4%{-,+} &> /dev/null
 XF86AudioMute
