@@ -114,7 +114,7 @@ super + v
 											bspc desktop -n $( zenity --entry --text "Rename current desktop" )
 super + Return
 											terminator
-alt + Escape
+super + alt + Escape
 											/opt/scripts/killbymouse.sh
 alt + F2
 											/usr/bin/gmrun
@@ -137,7 +137,7 @@ super + shift + a
 super + shift + f
 											/usr/bin/thunar
 super + shift + e
-											/usr/bin/thunderbird
+											/usr/bin/thunderbir
 super + q
 											jumpapp '/opt/firefox-dev/firefox'
 super + w

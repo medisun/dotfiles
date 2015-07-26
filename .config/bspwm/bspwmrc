@@ -138,6 +138,10 @@ xsetroot -cursor_name left_ptr &
 ## Wallpaper
 ( sleep 4s && nitrogen --restore ) &
 
+## Panels
+PATH=$PATH:/home/morock/.config/bspwm/panel PANEL_FIFO="/tmp/panel-fifo" panel &
+tint2 &
+
 ## Set keyboard settings - 250 ms delay and 25 cps (characters per second) repeat rate.
 ## Adjust the values according to your preferances.
 xset r rate 250 25 &
@@ -187,7 +191,7 @@ setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num &
 ## Top tilda
 (sleep 5s && (pidof tilda || tilda)) &
 
-## Right ALT = Super_L
+## Right ALT = Super_Lq
 # xmodmap -e "keycode 108 = Super_L" &
 # xmodmap -e "remove mod1 = Super_L" &
 
