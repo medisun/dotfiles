@@ -1,5 +1,5 @@
 [global_config]
-  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  enabled_plugins = ,
   title_transmit_bg_color = "#ffb200"
   inactive_color_offset = 1.0
   title_inactive_bg_color = "#000000"
@@ -30,7 +30,7 @@
     scroll_on_output = False
     show_titlebar = False
     color_scheme = custom
-    font = Monospace 8
+    font = Terminus 8
     background_color = "#1f1f1f"
     scrollback_infinite = True
   [[xgoup]]

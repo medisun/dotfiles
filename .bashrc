@@ -1,3 +1,10 @@
+# Add nano as default editor
+export EDITOR=nano
+export TERMINAL=terminator
+export BROWSER=surf
+# Gtk themes 
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -88,22 +95,28 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ -n "$RANGER_LEVEL" ]; then
-    RANGER_PROMPT='ranger:'$RANGER_LEVEL
+    RANGER_PROMPT='RG:'$RANGER_LEVEL
 else
     RANGER_PROMPT=''
+fi
+
+if [ "$EUID" -ne 0 ]; then
+    USER_PROMPT='\u@\H \$'
+else
+    USER_PROMPT='\e[1;31m\u@\H \$'
 fi
 
 ## TODO: TMUX
 
 if [ "$color_prompt" = yes ]; then
-    PS1="\nlast:$?\n\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)}\[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;92m\]\u@\H \$\[\e[00m\] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] \[\e[92m\] shlvl:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
+    PS1="\[\e[0m\]\nlast:$?\n\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)} \[\e[1;92m\]$USER_PROMPT\[\e[00m\] \[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] \[\e[92m\] SL:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
 
-    GIT_PROMPT_START="\nlast:$?\n\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)}\[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;92m\]\u@\H \$\[\e[00m\] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] "    
-    GIT_PROMPT_END="\[\e[92m\] shlvl:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
+    GIT_PROMPT_START="\[\e[0m\]\nlast:$?\n\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)} \[\e[1;92m\]$USER_PROMPT\[\e[00m\] \[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] "    
+    GIT_PROMPT_END="\[\e[92m\] SL:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
 else
-    PS1="\nlast:$?\n┳ \#.${debian_chroot:+($debian_chroot)}[ \w ] \u@\H \$ \$(stat -c %A '$PWD') shlvl:$SHLVL $RANGER_PROMPT\n┗ "
+    PS1="\nlast:$?\n┳ \#.${debian_chroot:+($debian_chroot)}[ \w ] \u@\H \$ \$(stat -c %A '$PWD') SL:$SHLVL $RANGER_PROMPT\n┗ "
     GIT_PROMPT_START="\nlast:$?\n┳ \#.${debian_chroot:+($debian_chroot)}[ \w ] \u@\H \$ \$(stat -c %A '$PWD') "    
-    GIT_PROMPT_END=" shlvl:$SHLVL $RANGER_PROMPT \n┗ "
+    GIT_PROMPT_END=" SL:$SHLVL $RANGER_PROMPT \n┗ "
 fi
 
 unset color_prompt force_color_prompt
@@ -163,13 +176,13 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
+    alias ls='ls --color=always'
+    alias dir='dir --color=always'
+    alias vdir='vdir --color=always'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    alias grep='grep --color=always'
+    alias fgrep='fgrep --color=always'
+    alias egrep='egrep --color=always'
 fi
 
 # Tools
@@ -177,14 +190,26 @@ alias lh='ls -Alh'
 alias ll='ls -Alh'
 alias la='ls -A'
 alias l='ls -CF'
+alias composer='composer --ansi'
+alias pacman='pacman --color always'
 alias hist='history | grep'
-alias install='sudo aptitude install'
-alias search='sudo aptitude search'
-alias show='sudo aptitude show'
+alias update='sudo pacman -Syyu'
+alias remove='sudo pacman -Rs'
+alias install='sudo pacman -S'
+alias search='pacman -Ss'
+alias show='pacman -Si'
 alias rg='ranger'
 alias subl="sublime_text"
 alias note="vim ~/documents/quicknotes"
-alias matrix=matrix
+# alias matrix=matrix
+
+## Git aliases
+alias ga="git add"
+alias gst="git status"
+alias gbl="git branch -l"
+alias gpl="git pull"
+alias gp="git push"
+alias gcm="git commit -m"
 
 ## artisan aliases
 alias migrate='php artisan migrate'

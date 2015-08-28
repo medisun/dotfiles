@@ -5,17 +5,21 @@
 # reload sxhkd config:
 ctrl + alt + Escape
 											pkill -USR1 -x sxhkd
-ctrl + alt + Delete
+super + Delete
 											bspc quit
 
 ## 
 ## Desktop
 ## 
 
-super + {comma,period}
-											bspc monitor --focus {prev,next}
 super + {less,greater}
+											bspc monitor --focus {prev,next}
+super + {comma,period}
 											bspc desktop --focus {prev,next}
+ctrl + shift + super + {comma,period}
+											bspc desktop --to-monitor {prev,next}
+ctrl + super + {comma,period}
+											bspc desktop --swap {prev,next}
 super + n
 											bspc desktop --balance
 super + {_,shift +} Tab
@@ -28,7 +32,8 @@ super + ctrl + {_,shift + } Tab
 											bspc desktop --circulate {backward,forward}
 super + apostrophe
 											bspc desktop --swap last
-
+super + alt + {_,shift + }{1-9,0}
+											bspc {monitor --focus, desktop --to-monitor } ^{1-9,10}
 ## 
 ## Windows
 ## 
@@ -51,8 +56,6 @@ alt + Escape
 											bspc window --focus last
 super + Escape
 											bspc window --to-desktop next
-super + alt + {1-9}
-											bspc window --ratio 0.{1-9}
 super + alt + Return
 											bspc window --swap biggest
 super + {_,shift + } {Left,Down,Up,Right}
@@ -77,13 +80,13 @@ super + {_,shift + }{1-9,0}
 											bspc {desktop --focus,window -d} ^{1-9,10}
 super + {equal,minus}
 											bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 3 ))
-alt + {_, shift} + equal
+super + alt + {_, shift} + equal
 											bspc config -d focused right_padding  $((`bspc config -d focused right_padding` {+,-} 10 ))
-alt + {_, shift} + minus
+super + alt + {_, shift} + minus
 											bspc config -d focused left_padding   $((`bspc config -d focused left_padding` {+,-} 10 ))
-ctrl + {_, shift} + equal
+super + ctrl + {_, shift} + equal
 											bspc config -d focused bottom_padding $((`bspc config -d focused bottom_padding` {+,-} 10 ))
-ctrl + {_, shift} + minus
+super + ctrl + {_, shift} + minus
 											bspc config -d focused top_padding    $((`bspc config -d focused top_padding` {+,-} 10 ))
 
 ## 
@@ -120,8 +123,6 @@ alt + F2
 											/usr/bin/gmrun
 alt + F3
 											/home/morock/.config/dmenu/dmenu-bind.sh
-super + shift + q
-											zenity --question --text 'firefox devel'   && /opt/firefox-dev/firefox -profile '/home/morock/.mozilla/firefox/devel.profile'
 super + shift + w
 											zenity --question --text 'firefox stable'  && /opt/firefox/firefox -profile '/home/morock/.mozilla/firefox/stable.profile'
 super + shift + g
@@ -129,7 +130,7 @@ super + shift + g
 super + shift + x
 											zenity --question --text 'mysql-workbench' && /usr/bin/mysql-workbench
 super + shift + q
-											zenity --question --text 'zap'             && /opt/zap/ZAP_2.3.1/zap.sh
+											zenity --question --text 'zap'             && /opt/zap/zap.sh
 super + shift + r
 											zenity --question --text 'filezilla'       && /usr/bin/filezilla
 super + shift + a
@@ -139,7 +140,7 @@ super + shift + f
 super + shift + e
 											/usr/bin/thunderbir
 super + q
-											jumpapp '/opt/firefox-dev/firefox'
+											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'
 super + w
 											jumpapp '/opt/firefox/firefox'
 super + t
@@ -158,6 +159,8 @@ super + g
 											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh'
 super + y
 											wmctrl -a 'Log for '
+super + c
+											wmctrl -a 'HttpRequester'
 XF86Mail
 											jumpapp thunderbird
 super + Delete
@@ -167,7 +170,7 @@ shift + Print
 super + alt + v
 											( pidof pavucontrol && wmctrl -xa Pavucontrol ) || pavucontrol
 super + alt + w
-											/home/morock/.config/awesome/wallsroll.sh
+											jumpapp -c Chromium -i Chromium '/usr/bin/chromium'
 Print
 											scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp; viewnior ~/images/$f'
 XF86Tools
