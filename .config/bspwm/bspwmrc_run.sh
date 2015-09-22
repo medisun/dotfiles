@@ -55,7 +55,7 @@ xbindkeys &
 setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num &
 
 ## layout tray indicator
-sbxkb & 
+# sbxkb & 
 
 ## Enable power management
 (pidof xfce4-power-manager || xfce4-power-manager) &
@@ -74,7 +74,8 @@ sbxkb &
 
 ## Panels
 tint2 &
-(sleep 4s && PATH=$PATH:/home/morock/.config/bspwm/panel PANEL_FIFO="/tmp/panel-fifo" panel) &
+(pidof dzen2 || $HOME/bin/panel/panel.sh) &
+# (sleep 4s && PATH=$PATH:/home/morock/.config/bspwm/panel PANEL_FIFO="/tmp/panel-fifo" panel) &
 
 ## Launch network manager applet
 (sleep 3s && (pidof nm-applet || nm-applet)) &

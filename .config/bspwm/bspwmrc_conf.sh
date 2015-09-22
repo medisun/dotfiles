@@ -1,8 +1,8 @@
 #!/bin/sh
 
-bspc config border_width        2
-bspc config window_gap         10
-bspc config top_padding 24
+bspc config border_width   2
+bspc config window_gap    10
+bspc config top_padding   24
 
 i=1
 for monitor in $(bspc query -M); do
@@ -108,5 +108,8 @@ bspc rule -a Chromium desktop=music
 bspc rule -a Conky sticky=on manage=off lower=on
 bspc rule -a Tilda floating=on border=off locked=on
 bspc rule -a Gmrun floating=on border=off
+bspc rule -a Viewnior floating=on border=off
+bspc rule -a MPlayer floating=on border=off
+bspc rule -a Pavucontrol floating=on border=off
 bspc rule -a Skype split_dir=left desktop=chat split_ratio=0.4
 # bspc rule -a Skype pseudo_tiled=on

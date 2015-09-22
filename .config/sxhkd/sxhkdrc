@@ -79,15 +79,15 @@ super + alt + shift + {Left,Down,Up,Right}
 super + {_,shift + }{1-9,0}
 											bspc {desktop --focus,window -d} ^{1-9,10}
 super + {equal,minus}
-											bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 3 ))
+											bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 1 ))
 super + alt + {_, shift} + equal
-											bspc config -d focused right_padding  $((`bspc config -d focused right_padding` {+,-} 10 ))
+											bspc config -d focused right_padding  $((`bspc config -d focused right_padding` {+,-} 1 ))
 super + alt + {_, shift} + minus
-											bspc config -d focused left_padding   $((`bspc config -d focused left_padding` {+,-} 10 ))
+											bspc config -d focused left_padding   $((`bspc config -d focused left_padding` {+,-} 1 ))
 super + ctrl + {_, shift} + equal
-											bspc config -d focused bottom_padding $((`bspc config -d focused bottom_padding` {+,-} 10 ))
+											bspc config -d focused bottom_padding $((`bspc config -d focused bottom_padding` {+,-} 1 ))
 super + ctrl + {_, shift} + minus
-											bspc config -d focused top_padding    $((`bspc config -d focused top_padding` {+,-} 10 ))
+											bspc config -d focused top_padding    $((`bspc config -d focused top_padding` {+,-} 1 ))
 
 ## 
 ## Mouse
@@ -173,12 +173,12 @@ super + alt + w
 											jumpapp -c Chromium -i Chromium '/usr/bin/chromium'
 Print
 											scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp; viewnior ~/images/$f'
-XF86Tools
-											urxvt -e ncmpcpp
-XF86Audio{Prev,Next,Play,Stop}
-											mpc -q {prev,next,play,pause}
-shift + XF86Audio{Prev,Next}
-											mpc seek {-,+}00:00:10
+# XF86Tools
+											# urxvt -e ncmpcpp
+# XF86Audio{Prev,Next,Play,Stop}
+											# mpc -q {prev,next,play,pause}
+# shift + XF86Audio{Prev,Next}
+											# mpc seek {-,+}00:00:10
 XF86Audio{Lower,Raise}Volume
 											amixer -D pulse sset Master 4%{-,+} &> /dev/null
 XF86AudioMute

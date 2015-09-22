@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# Dbus fix
+if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
+    eval "$(dbus-launch --sh-syntax --exit-with-session)"
+fi
+
 ## Setup second monitor
 # (xrandr --output VGA-1 --mode 1920x1080) &
 # (xrandr --output DVI-I-1 --mode 1920x1080) &

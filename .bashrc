@@ -109,12 +109,14 @@ fi
 ## TODO: TMUX
 
 if [ "$color_prompt" = yes ]; then
-    PS1="\[\e[0m\]\nlast:$?\n\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)} \[\e[1;92m\]$USER_PROMPT\[\e[00m\] \[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] \[\e[92m\] SL:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
+    PROMPT_COMMAND='echo; echo "ret" $?'
+    PS1="\[\e[0m\]\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)} \[\e[1;92m\]$USER_PROMPT\[\e[00m\] \[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] \[\e[92m\] SL:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
 
     GIT_PROMPT_START="\[\e[0m\]\nlast:$?\n\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)} \[\e[1;92m\]$USER_PROMPT\[\e[00m\] \[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] "    
     GIT_PROMPT_END="\[\e[92m\] SL:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
 else
-    PS1="\nlast:$?\n┳ \#.${debian_chroot:+($debian_chroot)}[ \w ] \u@\H \$ \$(stat -c %A '$PWD') SL:$SHLVL $RANGER_PROMPT\n┗ "
+    PROMPT_COMMAND='echo; echo "ret" $?'
+    PS1="┳ \#.${debian_chroot:+($debian_chroot)}[ \w ] \u@\H \$ \$(stat -c %A '$PWD') SL:$SHLVL $RANGER_PROMPT\n┗ "
     GIT_PROMPT_START="\nlast:$?\n┳ \#.${debian_chroot:+($debian_chroot)}[ \w ] \u@\H \$ \$(stat -c %A '$PWD') "    
     GIT_PROMPT_END=" SL:$SHLVL $RANGER_PROMPT \n┗ "
 fi
@@ -219,3 +221,5 @@ alias dbseed='php artisan db:seed'
 
 
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
