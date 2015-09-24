@@ -20,11 +20,6 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-export GOPATH="$HOME/go"
-export PATH="$HOME/go/bin:$PATH"
-
-TOOLS_DIR=$(dirname "${BASH_SOURCE[0]}")
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth:erasedups
@@ -93,42 +88,82 @@ if [ -n "$force_color_prompt" ]; then
     color_prompt=
     fi
 fi
+## 
+## if [ -n "$RANGER_LEVEL" ]; then
+##     RANGER_PROMPT='RG:'$RANGER_LEVEL
+## else
+##     RANGER_PROMPT=''
+## fi
+## 
+## if [ "$EUID" -ne 0 ]; then
+##     USER_PROMPT='\u@\H \$'
+## else
+##     USER_PROMPT='\e[1;31m\u@\H \$'
+## fi
+## 
+## ## TODO: TMUX
+## 
+## if [ "$color_prompt" = yes ]; then
+##     PROMPT_COMMAND='echo; echo "ret" $?'
+##     PS1="\[\e[0m\]\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)} \[\e[1;92m\]$USER_PROMPT\[\e[00m\] \[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] \[\e[92m\] SL:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
+## 
+##     GIT_PROMPT_START="\[\e[0m\]\nlast:$?\n\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)} \[\e[1;92m\]$USER_PROMPT\[\e[00m\] \[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] "    
+##     GIT_PROMPT_END="\[\e[92m\] SL:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
+## else
+##     PROMPT_COMMAND='echo; echo "ret" $?'
+##     PS1="┳ \#.${debian_chroot:+($debian_chroot)}[ \w ] \u@\H \$ \$(stat -c %A '$PWD') SL:$SHLVL $RANGER_PROMPT\n┗ "
+##     GIT_PROMPT_START="\nlast:$?\n┳ \#.${debian_chroot:+($debian_chroot)}[ \w ] \u@\H \$ \$(stat -c %A '$PWD') "    
+##     GIT_PROMPT_END=" SL:$SHLVL $RANGER_PROMPT \n┗ "
+## fi
 
-if [ -n "$RANGER_LEVEL" ]; then
-    RANGER_PROMPT='RG:'$RANGER_LEVEL
-else
-    RANGER_PROMPT=''
-fi
+function __prompt_command() {
+    local EXIT="$?"             # This needs to be first
+    PS1=""
 
-if [ "$EUID" -ne 0 ]; then
-    USER_PROMPT='\u@\H \$'
-else
-    USER_PROMPT='\e[1;31m\u@\H \$'
-fi
+    local LOW='\[\e[m\]'
+    local RED='\[\e[0;91m\]'
+    local REDB='\[\e[1;92m\]'
+    local GRN='\[\e[0;92m\]'
+    local GRNB='\[\e[1;92m\]'
+    local BLWH='\[\e[1;30;107m\]'
+    local WHB='\[\e[1;37m\]'
+    local CLR='\[\e[0;0m\]'
 
-## TODO: TMUX
+    if [ -n "$RANGER_LEVEL" ]; then
+        RANGER_PROMPT="rg:${RANGER_LEVEL}"
+    else
+        RANGER_PROMPT=''
+    fi
 
-if [ "$color_prompt" = yes ]; then
-    PROMPT_COMMAND='echo; echo "ret" $?'
-    PS1="\[\e[0m\]\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)} \[\e[1;92m\]$USER_PROMPT\[\e[00m\] \[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] \[\e[92m\] SL:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
+    if [ "$EUID" -ne 0 ]; then
+        USER_PROMPT="${GRNB}\u@\H \$"
+    else
+        USER_PROMPT="${REDB}\u@\H \$"
+    fi
 
-    GIT_PROMPT_START="\[\e[0m\]\nlast:$?\n\[\e[92m\]┳ \#.${debian_chroot:+($debian_chroot)} \[\e[1;92m\]$USER_PROMPT\[\e[00m\] \[\e[0m\][\[\e[1;07m\] \w \[\e[0m\]] \[\e[1;37m\]\$(stat -c %A '$PWD')\[\e[00m\] "    
-    GIT_PROMPT_END="\[\e[92m\] SL:$SHLVL $RANGER_PROMPT\n┗\[\e[01;0m\] "
-else
-    PROMPT_COMMAND='echo; echo "ret" $?'
-    PS1="┳ \#.${debian_chroot:+($debian_chroot)}[ \w ] \u@\H \$ \$(stat -c %A '$PWD') SL:$SHLVL $RANGER_PROMPT\n┗ "
-    GIT_PROMPT_START="\nlast:$?\n┳ \#.${debian_chroot:+($debian_chroot)}[ \w ] \u@\H \$ \$(stat -c %A '$PWD') "    
-    GIT_PROMPT_END=" SL:$SHLVL $RANGER_PROMPT \n┗ "
-fi
+    if [ -n "$TMUX" ]; then
+        TMUX_PROMPT=" tmux"
+    else
+        TMUX_PROMPT=""
+    fi
+
+    # if [ "$color_prompt" = yes ]; then
+        PS1="${CLR}${LOW}\nexit: ${EXIT}\n${GRN}┳ \#.${debian_chroot:+($debian_chroot)} $USER_PROMPT${GRN} [${BLWH} \w ${GRN}] ${WHB}\$(stat -c %A '$PWD')${GRN} shl:${SHLVL}${TMUX_PROMPT}${RANGER_PROMPT}\n┗${CLR} "
+    # else
+    #     PS1="\nexit: ${EXIT}\n┳ \#.${debian_chroot:+($debian_chroot)} \u@\H \$ [ \w ] \$(stat -c %A '$PWD') SL:$SHLVL $RANGER_PROMPT\n┗ "
+    # fi
+}
+
+PROMPT_COMMAND=__prompt_command
 
 unset color_prompt force_color_prompt
 
 ## Git prompt
 ##
-GIT_PROMPT_ONLY_IN_REPO=1
-GIT_PROMPT_FETCH_REMOTE_STATUS=0
-GIT_PROMPT_THEME=Solarized
-source /opt/bash-git-prompt/gitprompt.sh
+# GIT_PROMPT_ONLY_IN_REPO=1
+# GIT_PROMPT_FETCH_REMOTE_STATUS=0
+# GIT_PROMPT_THEME=Solarized
+# source /opt/bash-git-prompt/gitprompt.sh
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -211,15 +246,12 @@ alias gst="git status"
 alias gbl="git branch -l"
 alias gpl="git pull"
 alias gp="git push"
+alias gcb="git checkout"
 alias gcm="git commit -m"
 
 ## artisan aliases
 alias migrate='php artisan migrate'
 alias dbseed='php artisan db:seed'
-
-
-
-
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
