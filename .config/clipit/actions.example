@@ -1,0 +1,3 @@
+xclip -n -sel clip < ~/.ssh/id_rsa.pub
+
+echo 'mail@gmail.com' | xclip -n -sel clip

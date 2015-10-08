@@ -1,0 +1,2 @@
+wmctrl -ia $(wmctrl -l | zenity --list --hide-header --separator="\n" --column='1' --print-column='1' --list | awk '{print $1}')
+

@@ -20,6 +20,8 @@ ctrl + shift + super + {comma,period}
 											bspc desktop --to-monitor {prev,next}
 ctrl + super + {comma,period}
 											bspc desktop --swap {prev,next}
+alt + super + {comma,period}
+											{bspc window --to-desktop prev; bspc desktop --focus prev, bspc window --to-desktop next; bspc desktop --focus next}
 super + n
 											bspc desktop --balance
 super + {_,shift +} Tab
@@ -40,20 +42,20 @@ super + alt + {_,shift + }{1-9,0}
 
 super + d
 											bspc control --toggle-visibility
-super + b : {_,alt +,shift +} {Left,Down,Up,Right}
-											bspc window {--focus, --swap, --to-window} {left,down,up,right}
+super + b : {_,alt +,shift +,ctrl +} {Left,Down,Up,Right}
+											bspc window {--focus, --to-window, --swap, --presel} {left,down,up,right}
 alt + {_,shift +} F4
 											bspc window --{close,kill}
 super + {i,o,p,space,alt + space}
 											bspc window --toggle {locked,sticky,private,floating,pseudo_tiled}
-alt + Return
+super + F11
 											bspc window --toggle fullscreen
 alt + {_,shift +} Tab
 											bspc window --focus {next,prev}
 alt + e
 											bspc window --focus {last.floating,last.tiled}
 alt + Escape
-											bspc window --focus last
+											bspc window --focus prev
 super + Escape
 											bspc window --to-desktop next
 super + alt + Return
@@ -77,7 +79,7 @@ super + alt + {Left,Down,Up,Right}
 super + alt + shift + {Left,Down,Up,Right}
 											bspc window --edge {right -10,up +10,down -10,left +10}
 super + {_,shift + }{1-9,0}
-											bspc {desktop --focus,window -d} ^{1-9,10}
+											bspc {desktop --focus,window --to-desktop } ^{1-9,10}
 super + {equal,minus}
 											bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 1 ))
 super + alt + {_, shift} + equal
@@ -106,8 +108,10 @@ super + @button{1-3}
 											bspc pointer --ungrab
 alt + button{4,5}
 											bspc window --focus {prev,next}
+super + shift + button{4,5}
+											{bspc window --to-desktop prev; bspc desktop --focus prev, bspc window --to-desktop next; bspc desktop --focus next}
 super + ctrl + button{4,5}
-											bspc window --to-desktop {prev,next}
+											bspc desktop --focus {prev, next}
 
 ## 
 ## Applications

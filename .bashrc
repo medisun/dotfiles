@@ -130,7 +130,7 @@ function __prompt_command() {
     local CLR='\[\e[0;0m\]'
 
     if [ -n "$RANGER_LEVEL" ]; then
-        RANGER_PROMPT="rg:${RANGER_LEVEL}"
+        RANGER_PROMPT=" rg:${RANGER_LEVEL}"
     else
         RANGER_PROMPT=''
     fi
@@ -255,3 +255,4 @@ alias dbseed='php artisan db:seed'
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.bash/bspc_completion ] && source ~/.bash/bspc_completion

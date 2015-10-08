@@ -1,7 +1,7 @@
 #!/bin/sh
 
 bspc config border_width   2
-bspc config window_gap    10
+bspc config window_gap     3
 bspc config top_padding   24
 
 i=1
@@ -28,15 +28,16 @@ for monitor in $(bspc query -M); do
 
     i=$((i+1))
 done
-# NMON=$i
 unset i
 
 # bspc monitor -d I II III IV V VI VII VIII IX X
 
 # Visual options
+bspc config apply_floating_atom       true
 bspc config auto_alternate            true
 bspc config auto_cancel               true
 bspc config borderless_monocle        true
+bspc config leaf_monocle              true
 bspc config center_pseudo_tiled       false
 bspc config focus_follows_pointer     true
 bspc config gapless_monocle           false
@@ -99,6 +100,7 @@ bspc config focused_frame_opacity 0.0
 bspc rule -l | sed "s/^\(.*\) => \(.*\)/'\1' /" | xargs bspc rule -r
 
 # bspc rule -a '*' floating=on
+# tildabspc rule -a '*' desktop=music floating=on ## all windows will appear only on selected desktop
 bspc rule -a '*' private=on
 bspc rule -a Mysql-workbench-bin locked=on desktop=staff
 bspc rule -a Terminator locked=on
@@ -112,4 +114,7 @@ bspc rule -a Viewnior floating=on border=off
 bspc rule -a MPlayer floating=on border=off
 bspc rule -a Pavucontrol floating=on border=off
 bspc rule -a Skype split_dir=left desktop=chat split_ratio=0.4
-# bspc rule -a Skype pseudo_tiled=on
+
+bspc config external_rules_command "${XDG_CONFIG_HOME:-"$HOME/.config/bspwm"}/.external_rules.sh'
+
+
