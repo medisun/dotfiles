@@ -22,6 +22,8 @@ ctrl + super + {comma,period}
 											bspc desktop --swap {prev,next}
 alt + super + {comma,period}
 											{bspc window --to-desktop prev; bspc desktop --focus prev, bspc window --to-desktop next; bspc desktop --focus next}
+ctrl + alt + super + {comma,period}
+											{bspc desktop --to-monitor prev; bspc monitor --focus prev, bspc desktop --to-monitor next; bspc monitor --focus next}
 super + n
 											bspc desktop --balance
 super + {_,shift +} Tab
@@ -148,9 +150,9 @@ super + q
 super + w
 											jumpapp '/opt/firefox/firefox'
 super + t
-											jumpapp '/usr/bin/skype'
+											jumpapp -f '/usr/bin/skype'
 super + e
-											jumpapp '/usr/bin/thunderbird'
+											jumpapp -f '/usr/bin/thunderbird'
 super + s
 											jumpapp '/opt/sublime_text_3/sublime_text'
 super + x

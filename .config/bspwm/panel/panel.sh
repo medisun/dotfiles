@@ -4,7 +4,7 @@ SRCDIR="$(dirname "$0")"
 
 . "$SRCDIR/panel_colors"
 
-PANEL_FIFO=/tmp/bspwm-panel-dzen2
+# PANEL_FIFO=/tmp/bspwm-panel-dzen2
 PANEL_HEIGHT=20
 PANEL_WIDTH=1920
 FONT='-*-terminus-medium-r-normal-*-12-120-72-72-c-60-*-*'
@@ -15,8 +15,8 @@ FONT='-*-terminus-medium-r-normal-*-12-120-72-72-c-60-*-*'
 
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
-[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
-mkfifo "$PANEL_FIFO"
+# [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+# mkfifo "$PANEL_FIFO"
 
 bspc config top_padding $PANEL_HEIGHT
 

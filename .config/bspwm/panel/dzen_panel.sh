@@ -77,5 +77,7 @@ while read -r line ; do
             ;;
     esac
 
+    # wm_infos="${wm_infos}        "$(uptime)
+
     echo "${wm_infos}"
 done

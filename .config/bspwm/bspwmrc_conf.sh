@@ -30,7 +30,8 @@ for monitor in $(bspc query -M); do
 done
 unset i
 
-# bspc monitor -d I II III IV V VI VII VIII IX X
+# bspc monitor DVI-0 -d D1 D2 D3
+# bspc monitor HDMI-2 -d H1 H2 H3
 
 # Visual options
 bspc config apply_floating_atom       true
@@ -112,9 +113,10 @@ bspc rule -a Tilda floating=on border=off locked=on
 bspc rule -a Gmrun floating=on border=off
 bspc rule -a Viewnior floating=on border=off
 bspc rule -a MPlayer floating=on border=off
+bspc rule -a Nitrogen floating=on border=off
 bspc rule -a Pavucontrol floating=on border=off
 bspc rule -a Skype split_dir=left desktop=chat split_ratio=0.4
 
-bspc config external_rules_command "${XDG_CONFIG_HOME:-"$HOME/.config/bspwm"}/.external_rules.sh'
+bspc config external_rules_command "$HOME/.config/bspwm/external_rules.sh"
 
 
