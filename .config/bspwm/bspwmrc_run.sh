@@ -57,7 +57,7 @@ eval $(/usr/bin/gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 # adjusts the color temperature of your screen according to your surroundings. 
 # This may help your eyes hurt less if you are working in front of the screen at night.
 # This program is inspired by f.lux.
-(pidof /usr/bin/redshift || /usr/bin/redshift -l 50.0318313:36.2242183) &
+(pidof /usr/bin/redshift || /usr/bin/redshift -l 50.0318313:36.2242183 -t 6500:4500) &
 
 ## sample X compositing manager
 (pidof /usr/bin/compton || /usr/bin/compton) &

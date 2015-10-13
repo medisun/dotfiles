@@ -23,7 +23,7 @@ while read -r line ; do
             set -- ${line#?}
 
             wm_infos="${wm_infos}^ca(1, bspc control --toggle-visibility )[ \` ]^ca()"
-            wm_infos="${wm_infos}^ca(1, zenity --question --text 'remove?' && bspc desktop --remove )[ x ]^ca()"
+            wm_infos="${wm_infos}^ca(1, zenity --question --text 'remove?' && bspc monitor --remove-desktops $(bspc query -d focused -D) )[ x ]^ca()"
             wm_infos="${wm_infos}^ca(1, zenity --entry --text 'rename' | xargs --no-run-if-empty bspc desktop --rename )[ ~ ]^ca()"
             wm_infos="${wm_infos}^ca(1, zenity --entry --text 'add' | xargs --no-run-if-empty bspc monitor --add-desktops )[ + ]^ca()"
 

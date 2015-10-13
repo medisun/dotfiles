@@ -2,7 +2,7 @@
 
 bspc config border_width   2
 bspc config window_gap     3
-bspc config top_padding   24
+bspc config top_padding   20
 
 i=1
 for monitor in $(bspc query -M); do
@@ -13,8 +13,8 @@ for monitor in $(bspc query -M); do
     if [ $i -eq '1' ]; then
         bspc desktop ^1 -n "dev"  -l monocle
         bspc desktop ^2 -n "term" -l tiled
-        bspc desktop ^3 -n "staff" -l monocle
-        bspc desktop ^4 -n "zap" -l tiled
+        bspc desktop ^3 -n "git" -l monocle
+        bspc desktop ^4 -n "qp" -l tiled
         bspc desktop ^5 -n "disk" -l tiled
     fi
 
@@ -101,18 +101,20 @@ bspc config focused_frame_opacity 0.0
 bspc rule -l | sed "s/^\(.*\) => \(.*\)/'\1' /" | xargs bspc rule -r
 
 # bspc rule -a '*' floating=on
-# tildabspc rule -a '*' desktop=music floating=on ## all windows will appear only on selected desktop
+# bspc rule -a '*' desktop=music floating=on ## all windows will appear only on selected desktop
 bspc rule -a '*' private=on
 bspc rule -a Mysql-workbench-bin locked=on desktop=staff
 bspc rule -a Terminator locked=on
 bspc rule -a Sublime_text desktop=dev
 bspc rule -a Firefox locked=on
+bspc rule -a Spacefm desktop=disk
 bspc rule -a Chromium desktop=music
 bspc rule -a Conky sticky=on manage=off lower=on
 bspc rule -a Tilda floating=on border=off locked=on
 bspc rule -a Gmrun floating=on border=off
 bspc rule -a Viewnior floating=on border=off
 bspc rule -a MPlayer floating=on border=off
+bspc rule -a Xfce4-notifyd floating=on border=off sticky=on
 bspc rule -a Nitrogen floating=on border=off
 bspc rule -a Pavucontrol floating=on border=off
 bspc rule -a Skype split_dir=left desktop=chat split_ratio=0.4

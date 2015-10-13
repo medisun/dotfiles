@@ -31,6 +31,16 @@ case "$class" in
             ;;
         esac
     ;;
+    "Thunderbird")
+        case "$instance" in
+            "Mail")
+                echo "desktop=chat split_dir=down split_ratio=0.5"
+            ;;
+            "Msgcompose")
+                echo "desktop=chat floating=on"
+            ;;
+        esac
+    ;;
     "Skype")
         case "$instance" in
             "skype")

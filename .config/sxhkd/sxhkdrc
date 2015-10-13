@@ -133,9 +133,9 @@ super + shift + w
 											zenity --question --text 'firefox stable'  && /opt/firefox/firefox -profile '/home/morock/.mozilla/firefox/stable.profile'
 super + shift + g
 											zenity --question --text 'smartgit'        && /opt/smartgit/bin/smartgit.sh
-super + shift + x
-											zenity --question --text 'mysql-workbench' && /usr/bin/mysql-workbench
 super + shift + q
+											zenity --question --text 'mysql-workbench' && /usr/bin/mysql-workbench
+super + shift + x
 											zenity --question --text 'zap'             && /opt/zap/zap.sh
 super + shift + r
 											zenity --question --text 'filezilla'       && /usr/bin/filezilla
@@ -145,7 +145,7 @@ super + shift + f
 											/usr/bin/thunar
 super + shift + e
 											/usr/bin/thunderbir
-super + q
+super + x
 											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'
 super + w
 											jumpapp '/opt/firefox/firefox'
@@ -155,7 +155,7 @@ super + e
 											jumpapp -f '/usr/bin/thunderbird'
 super + s
 											jumpapp '/opt/sublime_text_3/sublime_text'
-super + x
+super + q
 											jumpapp mysql-workbench
 super + a
 											jumpapp spacefm

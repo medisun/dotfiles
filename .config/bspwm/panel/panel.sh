@@ -20,4 +20,7 @@ trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 bspc config top_padding $PANEL_HEIGHT
 
+# conky -c /home/morock/.config/bspwm/panel/conkyrc > "/tmp/bspwm-panel-dzen2-conky" &
+# bspc control --subscribe | "/home/morock/.config/bspwm/panel/dzen_panel.sh" > "/tmp/bspwm-panel-dzen2-desktop" &
+
 bspc control --subscribe | "$SRCDIR/dzen_panel.sh" | LANG=ru_RU dzen2 -xs 2 -h $PANEL_HEIGHT -w $PANEL_WIDTH -ta l -fg $COLOR_FOREGROUND -bg $COLOR_BACKGROUND -fn $FONT
