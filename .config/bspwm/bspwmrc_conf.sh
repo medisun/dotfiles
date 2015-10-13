@@ -106,8 +106,10 @@ bspc rule -a '*' private=on
 bspc rule -a Mysql-workbench-bin locked=on desktop=staff
 bspc rule -a Terminator locked=on
 bspc rule -a Sublime_text desktop=dev
-bspc rule -a Firefox locked=on
 bspc rule -a Spacefm desktop=disk
+bspc rule -a SmartGit desktop=git
+bspc rule -a Mysql-workbench-bin desktop=qp
+bspc rule -a org-zaproxy-zap-ZAP desktop=qp
 bspc rule -a Chromium desktop=music
 bspc rule -a Conky sticky=on manage=off lower=on
 bspc rule -a Tilda floating=on border=off locked=on

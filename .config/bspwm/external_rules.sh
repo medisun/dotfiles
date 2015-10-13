@@ -18,26 +18,34 @@ case "$class" in
             "Firebug")
                 case "$role" in
                     "Detached")
-                        echo "split_dir=down split_ratio=0.75"
+                        echo 'split_dir=down split_ratio=0.75'
                     ;;
                 esac
             ;;
             "Devtools")
                 case "$role" in
                     "toolbox")
-                        echo "split_dir=right split_ratio=0.7"
+                        echo 'split_dir=right split_ratio=0.7'
+                    ;;
+                esac
+            ;;
+            "Window")
+                case "$role" in
+                    "httprequester")
+                        echo 'desktop=req'
                     ;;
                 esac
             ;;
         esac
+        echo 'locked=on'
     ;;
     "Thunderbird")
         case "$instance" in
             "Mail")
-                echo "desktop=chat split_dir=down split_ratio=0.5"
+                echo 'desktop=chat split_dir=down split_ratio=0.5'
             ;;
             "Msgcompose")
-                echo "desktop=chat floating=on"
+                echo 'desktop=chat floating=on'
             ;;
         esac
     ;;
@@ -46,21 +54,21 @@ case "$class" in
             "skype")
                 case "$role" in
                     "ConversationsWindow")
-                        echo "split_dir=left split_ratio=0.75"
+                        echo 'split_dir=left split_ratio=0.75'
                     ;;
                     *)
                         case $(echo "$title" | cut -c-11) in
                             "File Transf")
-                                echo "split_dir=down split_ratio=0.8"
+                                echo 'split_dir=down split_ratio=0.8'
                             ;;
                             "Information")
-                                echo "floating=on"
+                                echo 'floating=on'
                             ;;
                             "Profile for")
-                                echo "floating=on"
+                                echo 'floating=on'
                             ;;
                             *)
-                                echo "split_dir=right split_ratio=0.75"
+                                echo 'split_dir=right split_ratio=0.75'
                             ;;
                         esac
                     ;;
