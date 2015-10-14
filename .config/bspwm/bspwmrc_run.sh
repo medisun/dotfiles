@@ -7,7 +7,7 @@ required_cmds=(
     "/usr/bin/gnome-keyring-daemon"
     "/usr/bin/nitrogen"
     "/usr/bin/nm-applet"
-    "/usr/bin/pa-applet"
+    # "/usr/bin/pa-applet"
     "/usr/bin/redshift"
     "/usr/bin/setxkbmap"
     "/usr/bin/sleep"

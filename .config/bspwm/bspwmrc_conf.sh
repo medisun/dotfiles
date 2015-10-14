@@ -14,12 +14,12 @@ for monitor in $(bspc query -M); do
         bspc desktop ^1 -n "dev"  -l monocle
         bspc desktop ^2 -n "term" -l tiled
         bspc desktop ^3 -n "git" -l monocle
-        bspc desktop ^4 -n "qp" -l tiled
+        bspc desktop ^4 -n "qp" -l monocle
         bspc desktop ^5 -n "disk" -l tiled
     fi
 
     if [ $i -eq '2' ]; then
-        bspc desktop ^6 -n "web" -l monocle
+        bspc desktop ^6 -n "web" -l tiled
         bspc desktop ^7 -n "req" -l monocle
         bspc desktop ^8 -n "chat" -l tiled
         bspc desktop ^9 -n "music" -l monocle
@@ -30,6 +30,8 @@ for monitor in $(bspc query -M); do
 done
 unset i
 
+bspc monitor 2 --add-desktops "gimp"
+
 # bspc monitor DVI-0 -d D1 D2 D3
 # bspc monitor HDMI-2 -d H1 H2 H3
 
@@ -38,15 +40,17 @@ bspc config apply_floating_atom       true
 bspc config auto_alternate            true
 bspc config auto_cancel               true
 bspc config borderless_monocle        true
-bspc config leaf_monocle              true
 bspc config center_pseudo_tiled       false
 bspc config focus_follows_pointer     true
+bspc config focus_by_distance         true
 bspc config gapless_monocle           false
 bspc config ignore_ewmh_focus         false
+bspc config initial_polarity          second_child
+bspc config leaf_monocle              true
 bspc config pointer_follows_focus     false
 bspc config pointer_follows_monitor   true
 bspc config remove_unplugged_monitors true
-bspc config split_ratio         0.72
+bspc config split_ratio               0.72
 
 # Color of the border of a focused window of a focused monitor.
 bspc config focused_border_color "#839698"
@@ -100,26 +104,26 @@ bspc config focused_frame_opacity 0.0
 # Remove all previous rules
 bspc rule -l | sed "s/^\(.*\) => \(.*\)/'\1' /" | xargs bspc rule -r
 
-# bspc rule -a '*' floating=on
-# bspc rule -a '*' desktop=music floating=on ## all windows will appear only on selected desktop
-bspc rule -a '*' private=on
-bspc rule -a Mysql-workbench-bin locked=on desktop=staff
-bspc rule -a Terminator locked=on
-bspc rule -a Sublime_text desktop=dev
-bspc rule -a Spacefm desktop=disk
-bspc rule -a SmartGit desktop=git
-bspc rule -a Mysql-workbench-bin desktop=qp
-bspc rule -a org-zaproxy-zap-ZAP desktop=qp
-bspc rule -a Chromium desktop=music
-bspc rule -a Conky sticky=on manage=off lower=on
-bspc rule -a Tilda floating=on border=off locked=on
-bspc rule -a Gmrun floating=on border=off
-bspc rule -a Viewnior floating=on border=off
-bspc rule -a MPlayer floating=on border=off
-bspc rule -a Xfce4-notifyd floating=on border=off sticky=on
-bspc rule -a Nitrogen floating=on border=off
-bspc rule -a Pavucontrol floating=on border=off
-bspc rule -a Skype split_dir=left desktop=chat split_ratio=0.4
+# bspc rule -a '*' floating=on    ## all windows will floated
+# bspc rule -a '*' desktop=music  ## all windows will appear only on selected desktop
+bspc rule -a '*'                  private=on    
+bspc rule -a Chromium             desktop=music 
+bspc rule -a Conky                sticky=on      manage=off lower=on
+bspc rule -a Gmrun                floating=on    border=off
+bspc rule -a MPlayer              floating=on    border=off
+bspc rule -a Mysql-workbench-bin  desktop=qp     locked=on
+bspc rule -a Nitrogen             floating=on    border=off
+bspc rule -a org-zaproxy-zap-ZAP  desktop=qp    
+bspc rule -a Pavucontrol          floating=on    border=off
+bspc rule -a Skype                split_dir=left desktop=chat split_ratio=0.4
+bspc rule -a SmartGit             desktop=git   
+bspc rule -a Spacefm              desktop=disk  
+bspc rule -a Sublime_text         desktop=dev   
+bspc rule -a Terminator           locked=on     
+bspc rule -a Thunar               floating=on    border=off
+bspc rule -a Tilda                floating=on    border=off locked=on
+bspc rule -a Viewnior             floating=on    border=off
+bspc rule -a Xfce4-notifyd        floating=on    border=off sticky=on
 
 bspc config external_rules_command "$HOME/.config/bspwm/external_rules.sh"
 

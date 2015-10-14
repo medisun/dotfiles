@@ -3,15 +3,23 @@
 ## 
 
 # reload sxhkd config:
-ctrl + alt + Escape
-											pkill -USR1 -x sxhkd
 super + Delete
+											pkill -USR1 -x sxhkd
+shift + super + Delete
+											/bin/sh "$HOME/.config/bspwm/bspwmrc_conf.sh"
+alt + super + Delete
+											/bin/sh "$HOME/.config/bspwm/bspwmrc_run.sh"
+ctrl + super + Delete
 											bspc quit
-
+ 
 ## 
 ## Desktop
 ## 
 
+super + {Next,Prior}
+											bspc desktop focused --circulate {forward,backward}
+ctrl + super + apostrophe
+											bspc monitor --swap last
 super + {less,greater}
 											bspc monitor --focus {prev,next}
 super + {comma,period}
@@ -27,7 +35,7 @@ ctrl + alt + super + {comma,period}
 super + n
 											bspc desktop --balance
 super + {_,shift +} Tab
-											bspc desktop --focus {next,prev}
+											bspc window --focus {next,prev}
 super + Home
 											bspc desktop --focus last.free
 super + m
@@ -42,6 +50,8 @@ super + alt + {_,shift + }{1-9,0}
 ## Windows
 ## 
 
+shift + super + {x,v}
+											bspc control --toggle-visibility
 super + d
 											bspc control --toggle-visibility
 super + b : {_,alt +,shift +,ctrl +} {Left,Down,Up,Right}
@@ -119,6 +129,17 @@ super + ctrl + button{4,5}
 ## Applications
 ## 
 
+
+ctrl + alt + super + r
+											jumpapp '/opt/sublime_text_3/sublime_text'; \
+											jumpapp '/opt/firefox/firefox'; \
+											jumpapp -f '/usr/bin/thunderbird'; \
+											jumpapp spacefm; \
+											jumpapp mysql-workbench; \
+											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh'; \
+											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'; \
+											jumpapp -f '/usr/bin/skype'
+
 super + v
 											bspc desktop -n $( zenity --entry --text "Rename current desktop" )
 super + Return
@@ -144,7 +165,7 @@ super + shift + a
 super + shift + f
 											/usr/bin/thunar
 super + shift + e
-											/usr/bin/thunderbir
+											/usr/bin/thunderbird
 super + x
 											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'
 super + w
@@ -171,12 +192,12 @@ XF86Mail
 											jumpapp thunderbird
 super + Delete
 											/home/morock/bin/logout.sh
-shift + Print
-											xfce4-screenshooter
 super + alt + v
 											( pidof pavucontrol && wmctrl -xa Pavucontrol ) || pavucontrol
 super + alt + w
 											jumpapp -c Chromium -i Chromium '/usr/bin/chromium'
+shift + Print
+											xfce4-screenshooter
 Print
 											scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp; viewnior ~/images/$f'
 # XF86Tools
