@@ -1,3 +1,25 @@
+## HOTKEY
+##     COMMAND
+## 
+## HOTKEY      := CHORD_1 ; CHORD_2 ; … ; CHORD_n
+## CHORD_i     := [MODIFIERS_i +] [@|;|~]KEYSYM_i
+## MODIFIERS_i := MODIFIER_i1 + MODIFIER_i2 + … + MODIFIER_ik
+## 
+## The valid modifier names are: super, hyper, meta, alt, control, ctrl, shift, mode_switch, lock, mod1, mod2, mod3, mod4, mod5 and any.
+## The keysym names are given by the output of xev.
+## Hotkeys and commands can be spread across multiple lines by ending each partial line with a backslash character.
+## When multiple chords are separated by semicolons, the hotkey is a chord chain: the command will only be executed after receiving each chord of the chain in consecutive order.
+## The colon character can be used instead of the semicolon to indicate that the chord chain shall not be aborted when the chain tail is reached.
+## If a command starts with a semicolon, it will be executed synchronously, otherwise asynchronously.
+## The Escape key can be used to abort a chord chain.
+## If @ is added at the beginning of the keysym, the command will be run on key release events, otherwise on key press events.
+## If ~ is added at the beginning of the keysym, the captured event will be replayed for the other clients.
+## Mouse hotkeys can be defined by using one of the following special keysym names: button1, button2, button3, …, button24.
+## The hotkey and the command may contain sequences of the form {STRING_1,…,STRING_N}.
+## In addition, the sequences can contain ranges of the form A-Z where A and Z are alphanumeric characters.
+## The underscore character represents an empty sequence element.
+
+
 ## 
 ## Bspwm
 ## 
@@ -50,6 +72,10 @@ super + alt + {_,shift + }{1-9,0}
 ## Windows
 ## 
 
+super + semicolon ; {a,r,x}
+											{ zenity --entry --text 'add' | xargs --no-run-if-empty bspc monitor --add-desktops, \
+											  zenity --entry --text 'rename' | xargs --no-run-if-empty bspc desktop --rename, \
+											  zenity --question --text 'remove?' && bspc monitor --remove-desktops $(bspc query -d focused -D) }
 shift + super + {x,v}
 											bspc control --toggle-visibility
 super + d
@@ -106,18 +132,16 @@ super + ctrl + {_, shift} + minus
 ## 
 ## Mouse
 ## 
-asdasdasddas
-`
 ~button1
 											bspc pointer --grab focus
 alt + button{1-3}
 											; bspc pointer --grab {move,resize_side,resize_corner}
 alt + @button{1-3}
 											bspc pointer --ungrab
-super + button{1-3}
-											; bspc pointer --grab {move,resize_side,resize_corner}
-super + @button{1-3}
-											bspc pointer --ungrab
+super + button1
+											/home/morock/bin/windowmap.sh $(bspc query -w focused -W)
+super + button3
+											/home/morock/bin/windowmap.sh
 alt + button{4,5}
 											bspc window --focus {prev,next}
 super + shift + button{4,5}
@@ -132,7 +156,7 @@ super + ctrl + button{4,5}
 
 ctrl + alt + super + r
 											jumpapp '/opt/sublime_text_3/sublime_text'; \
-											jumpapp '/opt/firefox/firefox'; \
+											/opt/firefox/firefox --profile $HOME/.mozilla/firefox/stable.profile; \
 											jumpapp -f '/usr/bin/thunderbird'; \
 											jumpapp spacefm; \
 											jumpapp mysql-workbench; \
@@ -169,9 +193,9 @@ super + shift + e
 super + x
 											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'
 super + w
-											jumpapp '/opt/firefox/firefox'
+											jumpapp -c Firefox -i Navigator '/opt/firefox/firefox'
 super + t
-											jumpapp -f '/usr/bin/skype'
+											jumpapp -c Skype -i skype -f '/usr/bin/skype'
 super + e
 											jumpapp -f '/usr/bin/thunderbird'
 super + s
@@ -197,7 +221,7 @@ super + alt + v
 super + alt + w
 											jumpapp -c Chromium -i Chromium '/usr/bin/chromium'
 shift + Print
-											xfce4-screenshooter
+											xfce4-screenshooteri
 Print
 											scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp; viewnior ~/images/$f'
 # XF86Tools

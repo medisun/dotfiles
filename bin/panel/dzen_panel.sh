@@ -6,9 +6,6 @@ SRCDIR="$(dirname "$0")"
 
 num_mon=$(bspc query -M | wc -l)
 
-SESSION_FOLDER=$(dirname "${BSPWM_SOCKET}")
-WINDOW_STACK="${SESSION_FOLDER}/windowmap"
-
 while read -r line ; do
     case $line in
         # S*)
@@ -26,7 +23,7 @@ while read -r line ; do
             set -- ${line#?}
 
             wm_infos="${wm_infos}^ca(1, bspc control --toggle-visibility )[ \` ]^ca()"
-            wm_infos="${wm_infos}^ca(1, zenity --question --text 'remove?' && bspc monitor --remove-desktops $(bspc query -d focused -D) )[ x ]^ca()"
+            wm_infos="${wm_infos}^ca(1, zenity --question --text 'remove?' && bspc monitor --remove-desktops $(bspc query -d focused -D))[ x ]^ca()"
             wm_infos="${wm_infos}^ca(1, zenity --entry --text 'rename' | xargs --no-run-if-empty bspc desktop --rename )[ ~ ]^ca()"
             wm_infos="${wm_infos}^ca(1, zenity --entry --text 'add' | xargs --no-run-if-empty bspc monitor --add-desktops )[ + ]^ca()"
 
@@ -79,9 +76,6 @@ while read -r line ; do
             done
             ;;
     esac
-
-    wm_infos="${wm_infos} [h$(cat "${WINDOW_STACK}" | wc -l)] " 
-    # wm_infos="${wm_infos} ^ca(1, /home/morock/bin/dzen_menu.sh)[h$(cat "${WINDOW_STACK}" | wc -l)]^ca() " 
 
     echo "${wm_infos}"
 done

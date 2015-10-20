@@ -1,0 +1,318 @@
+#!/usr/bin/env bash
+
+show_usage() {
+    local cmd=$(basename "${BASH_SOURCE[0]}")
+    echo "Usage: $cmd [OPTION]... COMMAND [ARG]...
+
+Jump to (focus) the first open window for an application, if it's running.
+Otherwise, launch COMMAND (with opitonal ARGs) to start the application.
+
+Options:
+  -f -- force COMMAND to launch if process found but no windows found
+  -L -- list matching windows for COMMAND and quit
+  -n -- do not fork into background when launching COMMAND
+  -r -- cycle through windows in reverse order
+  -p -- always launch COMMAND when ARGs passed
+        (see Argument Passthrough in man page)
+  -c NAME -- find window using NAME as WM_CLASS (instead of COMMAND)
+  -i NAME -- find process using NAME as the command name (instead of COMMAND)
+  -R NAME -- find process using additional ROLE as the command name (instead of COMMAND)"
+}
+
+main() {
+    local classid cmdid roleid force fork=1 list passthrough='' in_reverse=''
+
+    local OPTIND
+
+    if (( ! $# )); then
+        show_usage
+        exit 0
+    fi
+
+    while getopts c:fhi:R:Lnpr opt; do
+        case "$opt" in
+            c) classid="$OPTARG" ;;
+            f) force=1 ;;
+            h) show_usage; exit 0 ;;
+            i) cmdid="$OPTARG" ;;
+            R) roleid="$OPTARG" ;;
+            L) list=1 ;;
+            n) fork='' ;;
+            p) passthrough=1; force=1 ;; # passthrough implies force
+            r) in_reverse=1 ;;
+        esac
+    done
+    shift $(( OPTIND - 1 ))
+
+    echo $classid ' ' $cmdid ' ' $roleid >> ~/tmp/jmp.log
+
+    local cmd=$1
+    shift
+
+    check_for_prerequisites &&
+    jumpapp "$@"
+}
+
+check_for_prerequisites() {
+    if ! has_command wmctrl; then
+        die 'Error: wmctrl(1) can not be found. Please install it to continue.'
+    fi
+}
+
+jumpapp() {
+    if [[ -z "$cmdid" ]]; then
+        local cmdid=$(basename "$cmd")
+    fi
+
+    if [[ -z "$classid" ]]; then
+        local classid=$cmdid
+    fi
+
+    local pids=( $(list_pids_for_command "$cmdid") )
+    local windowids=(
+      $(list_matching_windows "$classid" "${pids[@]}" | select_windowid)
+    )
+
+    if [[ -n "$list" ]]; then
+      printf 'Matched Windows [%d]\n' ${#windowids[@]}
+      list_matching_windows "$classid" "${pids[@]}" | print_windows
+    elif (( ${#windowids[@]} )) && ! needs_passthrough "$@"; then
+        activate_window "$(get_subsequent_window "${windowids[@]}")" ||
+            die "Error: unable to focus window for '$cmdid'"
+    else
+        if (( ${#pids[@]} )) && [[ -z "$force" ]]; then
+            die "Error: found running process for '$cmdid', but found no window to jump to"
+        else
+            launch_command "$@"
+        fi
+    fi
+}
+
+needs_passthrough() {
+    [[ "$passthrough" ]] && (( $# ))
+}
+
+list_matching_windows() {
+    list_windows |
+        where_class_or_pid_matches "$@" |
+        where_role_matches "$@" |
+        where_normal_window   # spawns `xprop` process per-id, so do it last
+}
+
+where_class_or_pid_matches() {
+    local target_class=$1
+    local target_role=$roleid
+    shift
+
+    local local_hostname=$(get_hostname)
+
+    local windowid hostname pid desktop class title role
+    while read -r windowid hostname pid desktop class title role; do
+        if equals_case_insensitive "$class" "$target_class"; then
+            printf '%s\n' "$windowid $hostname $pid $desktop $class $title $role"
+            continue
+        fi
+        if equals_case_insensitive "$hostname" "$local_hostname"; then
+            for target_pid in "$@"; do
+                if (( pid == target_pid )); then
+                    printf '%s\n' "$windowid $hostname $pid $desktop $class $title $role"
+                    continue 2
+                fi
+            done
+        fi
+    done
+}
+
+where_role_matches() {
+    local target_role=$roleid
+
+    local windowid hostname pid desktop class title role
+    while read -r windowid hostname pid desktop class title role; do
+            echo 'role: '"$role" ' target_role '"$target_role" >> ~/tmp/jmp.log
+            if equals_case_insensitive "$role" "$target_role"; then
+                echo 'aga' >> ~/tmp/jmp.log
+            fi
+
+            if [[ -n "$target_role" ]] && ! equals_case_insensitive "$role" "$target_role"; then
+                continue
+            fi
+            printf '%s\n' "$windowid $hostname $pid $desktop $class $title $role"
+            continue
+    done
+}
+
+where_normal_window() {
+    local windowid rest
+    while read -r windowid rest; do
+        case "$(get_window_types "$windowid")" in
+            '' | *_NET_WM_WINDOW_TYPE_NORMAL* | *_NET_WM_WINDOW_TYPE_DIALOG*)
+                printf '%s\n' "$windowid $rest"
+                ;;
+        esac
+    done
+}
+
+select_windowid() {
+    local windowid rest
+    while read -r windowid rest; do
+        printf '%s\n' "$windowid"
+    done
+}
+
+print_windows() {
+    local windowid hostname pid desktop class title
+    while read -r windowid hostname pid desktop class title; do
+        printf '%s: %s\n' "$windowid $hostname $pid $desktop $class" "$title"
+    done
+}
+
+get_subsequent_window() {
+    if [[ -n "$in_reverse" ]]; then
+        get_prev_window "$@"
+    else
+        get_next_window "$@"
+    fi
+}
+
+get_prev_window() {
+    local active=$(get_active_windowid) prev
+
+    if (( $1 == active )); then
+        shift $(( $# - 1 ))
+        printf '%s\n' "$1"
+    else
+        while [[ "$1" ]] && (( $1 != active )); do
+            prev=$1
+            shift
+        done
+
+        printf '%s\n' "$prev"
+    fi
+}
+
+get_next_window() {
+    local first=$1
+
+    local active=$(get_active_windowid)
+    while [[ "$1" ]] && (( $1 != active )); do
+        shift
+    done
+    shift # get windowid *after* active
+
+    if [[ "$1" ]]; then
+        printf '%s\n' "$1"
+    else
+        printf '%s\n' "$first"
+    fi
+}
+
+launch_command() {
+    has_command "$cmd" || die "Error: unable to find command '$cmd'"
+
+    printf 'Launching: %s\n' "$cmd $*"
+
+    if [[ "$fork" ]]; then
+        fork_command "$cmd" "$@"
+    else
+        exec_command "$cmd" "$@"
+    fi
+}
+
+basename() {
+    printf '%s\n' "${1##*/}"
+}
+
+equals_case_insensitive() {
+    [[ "${1^^}" == "${2^^}" ]]
+}
+
+
+##### External Interfaces #####
+
+# list_pids_for_command -- list all pids that have a matching argv[0]
+#     A note on argv[0]: it's just a convention, not a kernel enforced value!
+#     Programs are free to set it as they want, and so of course they do, ugh.
+#     Some include the full path, others just the program name. Some
+#     confusingly include all arguments in argv[0] (I'm looking at you
+#     chromium-browser).
+list_pids_for_command() {
+    if has_command pgrep; then
+        list_pids_for_command_with_pgrep "$@"
+    else
+        list_pids_for_command_from_procfs "$@"
+    fi
+}
+
+list_pids_for_command_with_pgrep() {
+    pgrep -f "^(/.*/)?$1\b"
+}
+
+list_pids_for_command_from_procfs() {
+    local cmd_argv0
+    for path in /proc/*/cmdline; do
+        read -rd '' cmd_argv0 <"$path"
+        local cmd=${cmd_argv0##*/} # substring removal in-lined for performance
+        if [[ "$cmd" == "$1"* ]]; then
+            basename "${path%/cmdline}"
+        fi
+    done
+}
+
+# list_windows() -- list windowids with associated information
+#   Column spec: windowid hostname pid desktop class
+#   Where 'class' is the second WM_CLASS string (http://tronche.com/gui/x/icccm/sec-4.html#WM_CLASS)
+list_windows() {
+    local windowid desktop pid wm_class hostname title role
+    while read -r windowid desktop pid wm_class hostname title; do
+        role=$(/usr/bin/xprop -id "${windowid}" 'WM_WINDOW_ROLE' | grep --color=never -Eo '".+' | rev | cut -c2- | rev | cut -c2-)
+        printf '%s\n' "$windowid $hostname $pid $desktop ${wm_class##*.} $title $role"
+    done < <(wmctrl -lpx)
+}
+
+get_active_windowid() {
+    local name windowid
+    read name windowid < <(xprop -root ' $0\n' _NET_ACTIVE_WINDOW)
+    printf '%s\n' "$windowid"
+}
+
+get_window_types() {
+    local name window_type
+    read -r name window_types < <(xprop -id "$1" ' $0+\n' _NET_WM_WINDOW_TYPE)
+    if [[ "$window_types" != 'not found.' ]]; then
+        printf '%s\n' "$window_types"
+    fi
+}
+
+activate_window() {
+    wmctrl -i -a "$1"
+}
+
+has_command() {
+    hash "$1" 2>/dev/null
+}
+
+fork_command() {
+    ("$@" >/dev/null 2>&1) &
+}
+
+exec_command() {
+    exec "$@"
+}
+
+get_hostname() {
+    hostname
+}
+
+die() {
+    printf '%s\n' "$1" >&2
+    exit 1
+}
+
+is_script_executed() {
+    [[ "${BASH_SOURCE[0]}" == "$0" ]]
+}
+
+
+if is_script_executed; then
+    main "$@"
+fi

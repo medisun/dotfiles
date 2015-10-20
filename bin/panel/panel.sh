@@ -13,14 +13,11 @@ FONT='-*-terminus-medium-r-normal-*-12-120-72-72-c-60-*-*'
 # FONT='-*-droidsans-*-r-normal-*-*-80-*-*-*-*-*-*'
 # FONT='xft:Ubuntu:pixelsize=12:antialias=false:hinting=true'
 
-# trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
+trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
 # [ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
 # mkfifo "$PANEL_FIFO"
 
 bspc config top_padding $PANEL_HEIGHT
-
-# conky -c /home/morock/.config/bspwm/panel/conkyrc > "/tmp/bspwm-panel-dzen2-conky" &
-# bspc control --subscribe | "/home/morock/.config/bspwm/panel/dzen_panel.sh" > "/tmp/bspwm-panel-dzen2-desktop" &
 
 bspc control --subscribe | "$SRCDIR/dzen_panel.sh" | LANG=ru_RU dzen2 -xs 2 -h $PANEL_HEIGHT -w $PANEL_WIDTH -ta l -fg $COLOR_FOREGROUND -bg $COLOR_BACKGROUND -fn $FONT

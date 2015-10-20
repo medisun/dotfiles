@@ -15,14 +15,18 @@ title=$(/usr/local/bin/xtitle "${wid}")
 case "$class" in
     "Firefox") case "$instance" in
 
-        "Dialog") echo 'center=off follow=on focus=on border=off'; eval $(xdotool getmouselocation --shell); xdotool windowmove $wid $X $Y; unset X Y SCREEN WINDOW;;
+        "Dialog") echo 'desktop=web center=off follow=on focus=on border=off'; eval $(xdotool getmouselocation --shell); xdotool windowmove $wid $X $Y; unset X Y SCREEN WINDOW;;
+
+        "Navigator") case "$role" in
+            "view-source")   echo 'desktop=web split_dir=right split_ratio=0.5';;
+        esac ;;
 
         "Firebug") case "$role" in
-            "Detached") echo 'split_dir=down split_ratio=0.75';;
+            "Detached")      echo 'desktop=web split_dir=down split_ratio=0.75';;
         esac ;;
 
         "Devtools") case "$role" in
-            "toolbox") echo 'split_dir=right split_ratio=0.7';;
+            "toolbox")       echo 'desktop=web split_dir=right split_ratio=0.7';;
         esac ;;
 
         "Window") case "$role" in
@@ -30,7 +34,7 @@ case "$class" in
         esac ;;
 
         "Toplevel") case "$title" in
-            "DOM Inspector") echo 'split_dir=right split_ratio=0.75';;
+            "DOM Inspector") echo 'desktop=web split_dir=right split_ratio=0.75';;
         esac ;;
 
     esac 
@@ -60,6 +64,7 @@ case "$class" in
                "gimp-dock") echo 'split_dir=right split_ratio=0.85';;
             "gimp-toolbox") echo 'split_dir=right split_ratio=0.85';;
         esac 
+        /home/morock/bin/desktop.sh 'dev' '1'
         echo 'desktop=gimp';;
     esac ;;
 esac

@@ -30,7 +30,7 @@ for monitor in $(bspc query -M); do
 done
 unset i
 
-bspc monitor 2 --add-desktops "gimp"
+# bspc monitor 2 --add-desktops "gimp"
 
 # bspc monitor DVI-0 -d D1 D2 D3
 # bspc monitor HDMI-2 -d H1 H2 H3
