@@ -26,13 +26,13 @@
 
 # reload sxhkd config:
 super + Delete
-											pkill -USR1 -x sxhkd
+											pkill -USR1 -x sxhkd; notify-send 'sxhkd config reloaded'
 shift + super + Delete
-											/bin/sh "$HOME/.config/bspwm/bspwmrc_conf.sh"
+											zenity --question --text 'bspwmrc_conf' && /bin/sh "$HOME/.config/bspwm/bspwmrc_conf.sh"
 alt + super + Delete
-											/bin/sh "$HOME/.config/bspwm/bspwmrc_run.sh"
+											zenity --question --text 'bspwmrc_run' && /bin/sh "$HOME/.config/bspwm/bspwmrc_run.sh"
 ctrl + super + Delete
-											bspc quit
+											zenity --question --text 'bspc quit' && bspc quit
  
 ## 
 ## Desktop
@@ -151,13 +151,13 @@ super + ctrl + button{4,5}
 
 ## 
 ## Applications
-## 
+## GLib-CRITICAL **: g_slice_set_config: assertion 'sys_page_size == 0' failed
+# jumpapp -f '/opt/thunderbird/thunderbird'; 
 
 
-ctrl + alt + super + r
+super + e
 											jumpapp '/opt/sublime_text_3/sublime_text'; \
 											/opt/firefox/firefox --profile $HOME/.mozilla/firefox/stable.profile; \
-											jumpapp -f '/usr/bin/thunderbird'; \
 											jumpapp spacefm; \
 											jumpapp mysql-workbench; \
 											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh'; \
@@ -188,16 +188,13 @@ super + shift + a
 											/usr/bin/spacefm -n
 super + shift + f
 											/usr/bin/thunar
-super + shift + e
-											/usr/bin/thunderbird
 super + x
 											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'
 super + w
 											jumpapp -c Firefox -i Navigator '/opt/firefox/firefox'
 super + t
 											jumpapp -c Skype -i skype -f '/usr/bin/skype'
-super + e
-											jumpapp -f '/usr/bin/thunderbird'
+
 super + s
 											jumpapp '/opt/sublime_text_3/sublime_text'
 super + q
@@ -212,8 +209,6 @@ super + y
 											wmctrl -a 'Log for '
 super + c
 											wmctrl -a 'HttpRequester'
-XF86Mail
-											jumpapp thunderbird
 super + Delete
 											/home/morock/bin/logout.sh
 super + alt + v

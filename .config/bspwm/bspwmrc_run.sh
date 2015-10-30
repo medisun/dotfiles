@@ -42,10 +42,10 @@ done
 
 # Two monitor config
 if [[ $(/usr/bin/xrandr -q | /bin/grep " connected " | /usr/bin/wc -l) == 2 ]]; then
-    (/usr/bin/xrandr --output DVI-0 --mode 1920x1080) &
-    (/usr/bin/xrandr --output HDMI-2 --mode 1920x1080) &
-    (sleep 3s && /usr/bin/xrandr --output DVI-0 --left-of HDMI-2) &
-    (/usr/bin/xrandr --output DVI-0 --primary) &
+    (/usr/bin/xrandr --output DVI-I-1 --mode 1920x1080) &
+    (/usr/bin/xrandr --output HDMI-0 --mode 1920x1080) &
+    (sleep 3s && /usr/bin/xrandr --output DVI-I-1 --left-of HDMI-0) &
+    (/usr/bin/xrandr --output DVI-I-1 --primary) &
 fi
 
 (pidof /usr/local/bin/sxhkd || sxhkd >> dirname $BSPWM_SOCKET/sxhkd.log) &

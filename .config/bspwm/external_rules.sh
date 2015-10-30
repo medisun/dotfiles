@@ -44,7 +44,9 @@ case "$class" in
             "Msgcompose") echo 'desktop=chat floating=on';;
                   "Mail") echo 'desktop=chat split_dir=down split_ratio=0.5';;
     esac 
-    echo 'locked=on split_dir=up' ;;
+    # /home/morock/bin/desktop.sh 'chat' '2'
+    echo 'desktop=chat locked=on split_dir=up' 
+    ;;
 
     "Skype") case "$instance" in
         "skype") case "$role" in
@@ -57,14 +59,26 @@ case "$class" in
                             *) echo 'split_dir=right split_ratio=0.75';;
             esac ;;
         esac ;;
-    esac ;;
+    esac 
+    # /home/morock/bin/desktop.sh 'chat' '2'
+    echo 'desktop=chat'
+    ;;
 
-    "Gimp") case "$instance" in
-        "gimp") case "$role" in
+    "Gimp-2.8") case "$instance" in
+        "gimp-2.8") case "$role" in
                "gimp-dock") echo 'split_dir=right split_ratio=0.85';;
             "gimp-toolbox") echo 'split_dir=right split_ratio=0.85';;
         esac 
-        /home/morock/bin/desktop.sh 'dev' '1'
+        # /home/morock/bin/desktop.sh 'gimp' '1'
         echo 'desktop=gimp';;
     esac ;;
+
+    "Sublime_text") case "$instance" in
+        "sublime_text") 
+            # /home/morock/bin/desktop.sh 'dev' '1'
+            echo 'desktop=dev'
+    esac ;;
 esac
+
+
+# ROLE GtkFileChooserDialog

@@ -107,7 +107,7 @@ bspc rule -l | sed "s/^\(.*\) => \(.*\)/'\1' /" | xargs bspc rule -r
 # bspc rule -a '*' floating=on    ## all windows will floated
 # bspc rule -a '*' desktop=music  ## all windows will appear only on selected desktop
 bspc rule -a '*'                  private=on    
-bspc rule -a Chromium             desktop=music 
+bspc rule -a chromium             desktop=music 
 bspc rule -a Conky                sticky=on      manage=off lower=on
 bspc rule -a Gmrun                floating=on    border=off
 bspc rule -a MPlayer              floating=on    border=off
@@ -115,11 +115,10 @@ bspc rule -a Mysql-workbench-bin  desktop=qp     locked=on
 bspc rule -a Nitrogen             floating=on    border=off
 bspc rule -a org-zaproxy-zap-ZAP  desktop=qp    
 bspc rule -a Pavucontrol          floating=on    border=off
-bspc rule -a Skype                split_dir=left desktop=chat split_ratio=0.4
 bspc rule -a SmartGit             desktop=git   
 bspc rule -a Spacefm              desktop=disk  
-bspc rule -a Sublime_text         desktop=dev   
 bspc rule -a Terminator           locked=on     
+bspc rule -a Leafpad              floating=on     
 bspc rule -a Thunar               floating=on    border=off
 bspc rule -a Tilda                floating=on    border=off locked=on
 bspc rule -a Viewnior             floating=on    border=off
