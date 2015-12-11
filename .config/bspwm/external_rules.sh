@@ -15,10 +15,18 @@ title=$(/usr/local/bin/xtitle "${wid}")
 case "$class" in
     "Firefox") case "$instance" in
 
-        "Dialog") echo 'desktop=web center=off follow=on focus=on border=off'; eval $(xdotool getmouselocation --shell); xdotool windowmove $wid $X $Y; unset X Y SCREEN WINDOW;;
+        "Dialog") case "$title" in
+            "Request Progress")   echo 'desktop=req floating=on center=on';;
+            *)                    echo 'desktop=web center=off follow=on focus=on border=off'; eval $(xdotool getmouselocation --shell); xdotool windowmove $wid $X $Y; unset X Y SCREEN WINDOW;;
+        esac ;;
 
         "Navigator") case "$role" in
             "view-source")   echo 'desktop=web split_dir=right split_ratio=0.5';;
+            *)               echo 'desktop=web';;
+        esac ;;
+
+        "SessionManager") case "$role" in
+            "SessionPrompt") echo 'desktop=web floating=on center=on';;
         esac ;;
 
         "Firebug") case "$role" in
@@ -41,11 +49,12 @@ case "$class" in
     echo 'locked=on';;
 
     "Thunderbird") case "$instance" in
-            "Msgcompose") echo 'desktop=chat floating=on';;
-                  "Mail") echo 'desktop=chat split_dir=down split_ratio=0.5';;
+            "Msgcompose") echo 'desktop=chat floating=on locked=on';;
+            "Navigator")  echo 'desktop=chat floating=on ';;
+                  "Mail") echo 'desktop=chat split_dir=down split_ratio=0.5 locked=on';;
     esac 
     # /home/morock/bin/desktop.sh 'chat' '2'
-    echo 'desktop=chat locked=on split_dir=up' 
+    echo 'desktop=chat split_dir=up' 
     ;;
 
     "Skype") case "$instance" in

@@ -1,34 +1,40 @@
 #!/bin/sh
 
+
+# Two monitor config
+if [[ $(/usr/bin/xrandr -q | /bin/grep " connected " | /usr/bin/wc -l) == 2 ]]; then
+    sleep 4s &
+    (/usr/bin/xrandr --output HDMI-0 --mode 1920x1080) &
+    (/usr/bin/xrandr --output HDMI-0 --primary) &
+    (/usr/bin/xrandr --output DVI-I-1 --mode 1920x1080) &
+    (/usr/bin/xrandr --output HDMI-0 --left-of DVI-I-1) &
+fi
+
+
 bspc config border_width   2
 bspc config window_gap     3
 bspc config top_padding   20
 
-i=1
-for monitor in $(bspc query -M); do
-    bspc monitor $monitor \
-        -n "$i" \
-        -d "D${i}1" "D${i}2" "D${i}3"  "D${i}4" "D${i}5"
 
-    if [ $i -eq '1' ]; then
-        bspc desktop ^1 -n "dev"  -l monocle
-        bspc desktop ^2 -n "term" -l tiled
-        bspc desktop ^3 -n "git" -l monocle
-        bspc desktop ^4 -n "qp" -l monocle
-        bspc desktop ^5 -n "disk" -l tiled
+    if [[ -n $(xrandr | grep 'HDMI-0 connected') ]]; then
+        bspc monitor 'HDMI-0' \
+            -d 'dev' 'term' 'git' 'qp' 'disk'
+        bspc desktop 'dev'  -l monocle
+        bspc desktop 'term' -l tiled
+        bspc desktop 'git' -l monocle
+        bspc desktop 'qp' -l monocle
+        bspc desktop 'disk' -l tiled
     fi
 
-    if [ $i -eq '2' ]; then
-        bspc desktop ^6 -n "web" -l tiled
-        bspc desktop ^7 -n "req" -l monocle
-        bspc desktop ^8 -n "chat" -l tiled
-        bspc desktop ^9 -n "music" -l monocle
-        bspc desktop ^10 -n "home" -l monocle
+    if [[ -n $(xrandr | grep 'DVI-I-1 connected') ]]; then
+        bspc monitor 'DVI-I-1' \
+            -d 'web' 'req' 'chat' 'music' 'home'
+        bspc desktop 'web' -l tiled
+        bspc desktop 'req' -l monocle
+        bspc desktop 'chat' -l tiled
+        bspc desktop 'music' -l monocle
+        bspc desktop 'home' -l monocle
     fi
-
-    i=$((i+1))
-done
-unset i
 
 # bspc monitor 2 --add-desktops "gimp"
 
@@ -118,6 +124,9 @@ bspc rule -a Pavucontrol          floating=on    border=off
 bspc rule -a SmartGit             desktop=git   
 bspc rule -a Spacefm              desktop=disk  
 bspc rule -a Terminator           locked=on     
+bspc rule -a dzen                 lower=on     
+bspc rule -a Surf                 floating=on     
+bspc rule -a Player               floating=on     
 bspc rule -a Leafpad              floating=on     
 bspc rule -a Thunar               floating=on    border=off
 bspc rule -a Tilda                floating=on    border=off locked=on

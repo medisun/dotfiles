@@ -40,10 +40,6 @@ shopt -s checkwinsize
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-shopt -s globstar
-
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
 HISTFILESIZE=20000
@@ -51,6 +47,10 @@ HISTFILESIZE=20000
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
 shopt -s globstar
+
+complete -cf sudo
+complete -cf man
+complete -d cd
 
 # Keybinds for search by up and down keys
 bind '"\e[A":history-search-backward'
@@ -148,12 +148,14 @@ function __prompt_command() {
     fi
 
     # if [ "$color_prompt" = yes ]; then
-        PS1="${CLR}${LOW}\nexit: ${EXIT}\n${GRN}┳ \#.${debian_chroot:+($debian_chroot)} $USER_PROMPT${GRN} [${BLWH} \w ${GRN}] ${WHB}\$(stat -c %A '$PWD')${GRN} shl:${SHLVL}${TMUX_PROMPT}${RANGER_PROMPT}\n┗${CLR} "
+        PS1="${CLR}${LOW}\nexit: ${EXIT}\n${GRN}┳ \#.${debian_chroot:+($debian_chroot)} $USER_PROMPT${GRN} [${BLWH} ${PWD//$HOME/~} ${GRN}] ${WHB}\$(stat -c %A '$PWD')${GRN} shl:${SHLVL}${TMUX_PROMPT}${RANGER_PROMPT}\n┗${CLR} "
     # else
     #     PS1="\nexit: ${EXIT}\n┳ \#.${debian_chroot:+($debian_chroot)} \u@\H \$ [ \w ] \$(stat -c %A '$PWD') SL:$SHLVL $RANGER_PROMPT\n┗ "
     # fi
 }
 
+export PS1='\[\e[1;35m\]▶\[\e[0m\] '
+export PS2='\[\e[1;30m\]◀\[\e[0m\] '
 PROMPT_COMMAND=__prompt_command
 
 unset color_prompt force_color_prompt
@@ -183,7 +185,7 @@ esac
 #     ╚═╝  ╚═╝╚══════╝╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ 
 
 function matrix {
-    echo -e "\e[1;40m" ; clear ; while :; do echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $( printf "\U$(( $RANDOM % 500 ))" ) ;sleep 0.05; done|gawk '{c=$4; letter=$4;a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
+    echo -e "\e[1;40m" ; clear ; while :; do sleep 0.05s; echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $( printf "\U$(( $RANDOM % 500 ))" ) ;sleep 0.05; done|gawk '{c=$4; letter=$4;a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
 }
 
 

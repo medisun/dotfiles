@@ -33,6 +33,8 @@ alt + super + Delete
 											zenity --question --text 'bspwmrc_run' && /bin/sh "$HOME/.config/bspwm/bspwmrc_run.sh"
 ctrl + super + Delete
 											zenity --question --text 'bspc quit' && bspc quit
+ctrl + shift + alt + super + Delete
+											poweroff
  
 ## 
 ## Desktop
@@ -59,7 +61,7 @@ super + n
 super + {_,shift +} Tab
 											bspc window --focus {next,prev}
 super + Home
-											bspc desktop --focus last.free
+											bspc desktop --focus next.free
 super + m
 											bspc desktop --layout next
 super + ctrl + {_,shift + } Tab
@@ -155,13 +157,13 @@ super + ctrl + button{4,5}
 # jumpapp -f '/opt/thunderbird/thunderbird'; 
 
 
-super + e
-											jumpapp '/opt/sublime_text_3/sublime_text'; \
-											/opt/firefox/firefox --profile $HOME/.mozilla/firefox/stable.profile; \
-											jumpapp spacefm; \
-											jumpapp mysql-workbench; \
-											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh'; \
-											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'; \
+ctrl + alt + super + r
+											jumpapp '/opt/sublime_text_3/sublime_text' & \
+											/opt/firefox/firefox --profile $HOME/.mozilla/firefox/stable.profile & \
+											jumpapp spacefm & \
+											jumpapp mysql-workbench & \
+											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh' & \
+											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh' & \
 											jumpapp -f '/usr/bin/skype'
 
 super + v
@@ -194,7 +196,8 @@ super + w
 											jumpapp -c Firefox -i Navigator '/opt/firefox/firefox'
 super + t
 											jumpapp -c Skype -i skype -f '/usr/bin/skype'
-
+super + e
+											jumpapp -c Thunderbird -i Mail '/usr/bin/thunderbird'
 super + s
 											jumpapp '/opt/sublime_text_3/sublime_text'
 super + q
@@ -203,6 +206,8 @@ super + a
 											jumpapp spacefm
 super + f
 											jumpapp thunar
+super + r
+											jumpapp -c Terminator -i terminator '/usr/bin/terminator'
 super + g
 											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh'
 super + y
@@ -216,7 +221,7 @@ super + alt + v
 super + alt + w
 											jumpapp -c Chromium -i Chromium '/usr/bin/chromium'
 shift + Print
-											xfce4-screenshooteri
+											xfce4-screenshooter
 Print
 											scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp; viewnior ~/images/$f'
 # XF86Tools
