@@ -45,6 +45,10 @@ case "$class" in
             "DOM Inspector") echo 'desktop=web split_dir=right split_ratio=0.75';;
         esac ;;
 
+        "Scrapbook") case "$role" in
+            "Scrapbook") echo 'floating=on';;
+        esac ;;
+
     esac 
     echo 'locked=on';;
 
@@ -62,6 +66,7 @@ case "$class" in
             "ConversationsWindow") echo 'split_dir=left split_ratio=0.75';;
 
             *) case $(echo "$title" | cut -c-11) in
+                    "Options") echo 'floating=on center=on';;
                 "File Transf") echo 'split_dir=down split_ratio=0.8';;
                 "Information") echo 'floating=on';;
                 "Profile for") echo 'floating=on';;

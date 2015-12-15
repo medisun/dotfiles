@@ -4,10 +4,10 @@
 # Two monitor config
 if [[ $(/usr/bin/xrandr -q | /bin/grep " connected " | /usr/bin/wc -l) == 2 ]]; then
     sleep 4s &
-    (/usr/bin/xrandr --output HDMI-0 --mode 1920x1080) &
-    (/usr/bin/xrandr --output HDMI-0 --primary) &
     (/usr/bin/xrandr --output DVI-I-1 --mode 1920x1080) &
+    (/usr/bin/xrandr --output HDMI-0 --mode 1920x1080) &
     (/usr/bin/xrandr --output HDMI-0 --left-of DVI-I-1) &
+    (/usr/bin/xrandr --output HDMI-0 --primary) &
 fi
 
 
