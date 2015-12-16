@@ -64,6 +64,7 @@ case "$class" in
     "Skype") case "$instance" in
         "skype") case "$role" in
             "ConversationsWindow") echo 'split_dir=left split_ratio=0.75';;
+                     "CallWindow") echo 'floating=on';;
 
             *) case $(echo "$title" | cut -c-11) in
                     "Options") echo 'floating=on center=on';;
@@ -92,6 +93,12 @@ case "$class" in
             # /home/morock/bin/desktop.sh 'dev' '1'
             echo 'desktop=dev'
     esac ;;
+
+    "chromium") case "$role" in
+        'pop-up') echo 'floating=on';;
+    esac 
+    echo 'desktop=music'
+    ;;
 esac
 
 
