@@ -39,6 +39,8 @@ for cmd in "${required_cmds[@]}"; do
         fi
 done
 
+sleep 3s &&
+
 
 # Two monitor config
 # if [[ $(/usr/bin/xrandr -q | /bin/grep " connected " | /usr/bin/wc -l) == 2 ]]; then
@@ -95,8 +97,12 @@ fi
 xbindkeys &
 
 ## Add russian layout
-setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num &
-
+# setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num -option shift:breaks_caps -option compose:rctrl -option lv3:ralt_switch &
+# https://wiki.archlinux.org/index.php/Xmodmap
+# https://wiki.archlinux.org/index.php/X_KeyBoard_extension#Level3
+# 
+# xkbcomp -xkb $DISPLAY xkbmap
+xkbcomp -w 0 ~/.xkbmap $DISPLAY &
 ## layout tray indicator
 # sbxkb & 
 

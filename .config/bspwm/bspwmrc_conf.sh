@@ -28,11 +28,11 @@ bspc config top_padding   20
 
     if [[ -n $(xrandr | grep 'DVI-I-1 connected') ]]; then
         bspc monitor 'DVI-I-1' \
-            -d 'web' 'req' 'chat' 'music' 'home'
+            -d 'web' 'req' 'chat' 'chrome' 'home'
         bspc desktop 'web' -l tiled
         bspc desktop 'req' -l monocle
         bspc desktop 'chat' -l tiled
-        bspc desktop 'music' -l monocle
+        bspc desktop 'chrome' -l tiled
         bspc desktop 'home' -l monocle
     fi
 
@@ -115,6 +115,7 @@ bspc rule -l | sed "s/^\(.*\) => \(.*\)/'\1' /" | xargs bspc rule -r
 bspc rule -a '*'                  private=on    
 bspc rule -a Conky                sticky=on      manage=off lower=on
 bspc rule -a Gmrun                floating=on    border=off
+bspc rule -a Atom                 floating=on    border=off
 bspc rule -a MPlayer              floating=on    border=off
 bspc rule -a Mysql-workbench-bin  desktop=qp     locked=on
 bspc rule -a Nitrogen             floating=on    border=off

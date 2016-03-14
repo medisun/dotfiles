@@ -166,8 +166,8 @@ ctrl + alt + super + r
 											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh' & \
 											jumpapp -f '/usr/bin/skype'
 
-super + v
-											bspc desktop -n $( zenity --entry --text "Rename current desktop" )
+super + shift + Return
+											terminator --profile red
 super + Return
 											terminator
 super + alt + Escape
@@ -176,8 +176,6 @@ alt + F2
 											/usr/bin/gmrun
 alt + F3
 											/home/morock/.config/dmenu/dmenu-bind.sh
-super + shift + w
-											zenity --question --text 'firefox stable'  && /opt/firefox/firefox -profile '/home/morock/.mozilla/firefox/stable.profile'
 super + shift + g
 											zenity --question --text 'smartgit'        && /opt/smartgit/bin/smartgit.sh
 super + shift + q
@@ -187,13 +185,15 @@ super + shift + x
 super + shift + r
 											zenity --question --text 'filezilla'       && /usr/bin/filezilla
 super + shift + a
-											/usr/bin/spacefm -n
+											/opt/Atom/atom
 super + shift + f
 											/usr/bin/thunar
 super + x
 											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'
 super + w
-											jumpapp -c Firefox -i Navigator '/opt/firefox/firefox'
+											wmctrl -a 'Mozilla Firefox'
+super + shift + w
+											wmctrl -a 'Firefox Developer Edition'
 super + t
 											jumpapp -c Skype -i skype -f '/usr/bin/skype'
 super + e
@@ -218,7 +218,7 @@ super + Delete
 											/home/morock/bin/logout.sh
 super + alt + v
 											( pidof pavucontrol && wmctrl -xa Pavucontrol ) || pavucontrol
-super + alt + w
+super + v
 											jumpapp -c Chromium -i Chromium '/usr/bin/chromium'
 shift + Print
 											xfce4-screenshooter

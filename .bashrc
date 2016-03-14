@@ -2,6 +2,7 @@
 export EDITOR=nano
 export TERMINAL=terminator
 export BROWSER=surf
+export VISUAL="vim"
 # Gtk themes 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
@@ -113,7 +114,7 @@ function __prompt_command() {
 
     if [ -n "$RANGER_LEVEL" ]; then
         RANGER_PROMPT=" rg:${RANGER_LEVEL}"
-    else
+    else 
         RANGER_PROMPT=''
     fi
 

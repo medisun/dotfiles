@@ -1,130 +1,124 @@
 [global_config]
   enabled_plugins = ,
-  title_transmit_bg_color = "#ffb200"
   inactive_color_offset = 1.0
   title_inactive_bg_color = "#000000"
+  title_transmit_bg_color = "#ffb200"
 [keybindings]
-  switch_to_tab_6 = <Primary>6
-  switch_to_tab_10 = <Primary>0
   broadcast_all = <Primary><Shift>d
-  switch_to_tab_7 = <Primary>7
-  switch_to_tab_4 = <Primary>4
-  switch_to_tab_5 = <Primary>5
+  broadcast_off = <Primary><Shift><Alt>d
+  hide_window = <Shift><Control>a
+  switch_to_tab_1 = <Primary>1
+  switch_to_tab_10 = <Primary>0
   switch_to_tab_2 = <Primary>2
   switch_to_tab_3 = <Primary>3
-  broadcast_off = <Primary><Shift><Alt>d
-  switch_to_tab_1 = <Primary>1
-  hide_window = <Shift><Control>a
+  switch_to_tab_4 = <Primary>4
+  switch_to_tab_5 = <Primary>5
+  switch_to_tab_6 = <Primary>6
+  switch_to_tab_7 = <Primary>7
   switch_to_tab_8 = <Primary>8
   switch_to_tab_9 = <Primary>9
-[profiles]
-  [[default]]
-    scrollbar_position = hidden
-    palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
-    background_image = None
-    background_darkness = 0.06
-    scrollback_lines = 5000
-    use_system_font = False
-    cursor_color = "#009dda"
-    foreground_color = "#c0b18b"
-    scroll_on_output = False
-    show_titlebar = False
-    color_scheme = custom
-    font = Terminus 8
-    background_color = "#1f1f1f"
-    scrollback_infinite = True
-  [[xgoup]]
-    scrollbar_position = hidden
-    use_system_font = False
-    background_image = None
-    cursor_color = "#ff6a0e"
-    scroll_on_output = False
-    show_titlebar = False
-    font = Courier 10 Pitch 11
-    scrollback_infinite = True
-  [[xgodown]]
-    scrollbar_position = hidden
-    use_system_font = False
-    background_image = None
-    cursor_color = "#ff4908"
-    foreground_color = "#e53c00"
-    scroll_on_output = False
-    show_titlebar = False
-    font = Courier 10 Pitch 11
-    scrollback_infinite = True
 [layouts]
   [[default]]
     [[[child1]]]
-      type = Terminal
       parent = window0
       profile = default
+      type = Terminal
     [[[window0]]]
-      type = Window
       parent = ""
       size = 800, 315
+      type = Window
   [[xgoup]]
     [[[child0]]]
-      position = 17:26
-      type = Window
       order = 0
       parent = ""
+      position = 17:26
       size = 981, 656
+      type = Window
     [[[child1]]]
       labels = None, None, None, None, None, None, None
-      type = Notebook
       order = 0
       parent = child0
+      type = Notebook
     [[[child2]]]
+      order = 0
+      parent = child1
       position = 493
       type = HPaned
-      order = 0
-      parent = child1
     [[[terminal10]]]
-      profile = xgoup
       command = gb-xgo-restart
-      type = Terminal
       order = 6
       parent = child1
-    [[[terminal3]]]
-      profile = xgodown
+      profile = xgoup
       type = Terminal
+    [[[terminal3]]]
+      command = /usr/bin/patch-exec screenfetch -n -D GoBang
       order = 0
       parent = child2
-      command = /usr/bin/patch-exec screenfetch -n -D GoBang
-    [[[terminal5]]]
-      profile = xgoup
-      command = mc
+      profile = xgodown
       type = Terminal
-      order = 1
-      parent = child1
     [[[terminal4]]]
-      profile = xgoup
       command = man xgo
-      type = Terminal
       order = 1
       parent = child2
-    [[[terminal7]]]
       profile = xgoup
-      command = netstat -tcp
       type = Terminal
-      order = 3
+    [[[terminal5]]]
+      command = mc
+      order = 1
       parent = child1
-    [[[terminal6]]]
       profile = xgoup
-      command = elinks
       type = Terminal
+    [[[terminal6]]]
+      command = elinks
       order = 2
       parent = child1
-    [[[terminal9]]]
       profile = xgoup
-      command = htop
       type = Terminal
-      order = 5
+    [[[terminal7]]]
+      command = netstat -tcp
+      order = 3
       parent = child1
-    [[[terminal8]]]
       profile = xgoup
-      command = alsamixer
       type = Terminal
+    [[[terminal8]]]
+      command = alsamixer
       order = 4
       parent = child1
+      profile = xgoup
+      type = Terminal
+    [[[terminal9]]]
+      command = htop
+      order = 5
+      parent = child1
+      profile = xgoup
+      type = Terminal
 [plugins]
+[profiles]
+  [[default]]
+    background_color = "#152028"
+    background_darkness = 0.06
+    background_image = None
+    color_scheme = custom
+    cursor_color = "#009dda"
+    font = Ubuntu Mono 10
+    foreground_color = "#a6b99f"
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
+    scroll_on_output = False
+    scrollback_infinite = True
+    scrollback_lines = 5000
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False
+  [[blue]]
+    background_image = None
+    font = Ubuntu Mono 10
+    show_titlebar = False
+    use_system_font = False
+  [[red]]
+    background_color = "#420707"
+    background_image = None
+    font = Ubuntu Mono 10
+    foreground_color = "#bebd75"
+    scrollbar_position = hidden
+    show_titlebar = False
+    use_system_font = False

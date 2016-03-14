@@ -12,6 +12,7 @@ title=$(/usr/local/bin/xtitle "${wid}")
 # echo 'instance ' $instance >> '/tmp/wininfo'
 # echo 'title ' $title >> '/tmp/wininfo'
 
+
 case "$class" in
     "Firefox") case "$instance" in
 
@@ -64,10 +65,11 @@ case "$class" in
     "Skype") case "$instance" in
         "skype") case "$role" in
             "ConversationsWindow") echo 'split_dir=left split_ratio=0.75';;
-                     "CallWindow") echo 'floating=on';;
+                     "CallWindow") echo 'floating=on sticky=on';;
 
             *) case $(echo "$title" | cut -c-11) in
                     "Options") echo 'floating=on center=on';;
+                "Are you sur") echo 'floating=on center=on';;
                 "File Transf") echo 'split_dir=down split_ratio=0.8';;
                 "Information") echo 'floating=on';;
                 "Profile for") echo 'floating=on';;
@@ -94,10 +96,29 @@ case "$class" in
             echo 'desktop=dev'
     esac ;;
 
-    "chromium") case "$role" in
-        'pop-up') echo 'floating=on';;
+    "chromium") 
+        case "$role" in
+            'pop-up') echo 'floating=on';;
+        esac
+        case $(echo "$title" | cut -c-15) in
+            "Developer Tools") echo 'floating=off split_dir=down split_ratio=0.4';;
+        esac
+        case $(echo "$title" | cut -c-8) in
+            "Hangouts") echo 'floating=on';;
+        esac
+    echo 'desktop=chrome'
+    ;;
+
+    # WM_CLASS(STRING) = "terminator", "Terminator"
+    # WM_ICON_NAME(STRING) = "Terminator Preferences"
+    # _NET_WM_ICON_NAME(UTF8_STRING) = "Terminator Preferences"
+    # WM_NAME(STRING) = "Terminator Preferences"
+    # _NET_WM_NAME(UTF8_STRING) = "Terminator Preferences"
+
+
+    "Terminator") case "$title" in
+        'Terminator Preferences') echo 'floating=on';;
     esac 
-    echo 'desktop=music'
     ;;
 esac
 
