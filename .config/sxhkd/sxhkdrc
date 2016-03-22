@@ -1,25 +1,3 @@
-## HOTKEY
-##     COMMAND
-## 
-## HOTKEY      := CHORD_1 ; CHORD_2 ; … ; CHORD_n
-## CHORD_i     := [MODIFIERS_i +] [@|;|~]KEYSYM_i
-## MODIFIERS_i := MODIFIER_i1 + MODIFIER_i2 + … + MODIFIER_ik
-## 
-## The valid modifier names are: super, hyper, meta, alt, control, ctrl, shift, mode_switch, lock, mod1, mod2, mod3, mod4, mod5 and any.
-## The keysym names are given by the output of xev.
-## Hotkeys and commands can be spread across multiple lines by ending each partial line with a backslash character.
-## When multiple chords are separated by semicolons, the hotkey is a chord chain: the command will only be executed after receiving each chord of the chain in consecutive order.
-## The colon character can be used instead of the semicolon to indicate that the chord chain shall not be aborted when the chain tail is reached.
-## If a command starts with a semicolon, it will be executed synchronously, otherwise asynchronously.
-## The Escape key can be used to abort a chord chain.
-## If @ is added at the beginning of the keysym, the command will be run on key release events, otherwise on key press events.
-## If ~ is added at the beginning of the keysym, the captured event will be replayed for the other clients.
-## Mouse hotkeys can be defined by using one of the following special keysym names: button1, button2, button3, …, button24.
-## The hotkey and the command may contain sequences of the form {STRING_1,…,STRING_N}.
-## In addition, the sequences can contain ranges of the form A-Z where A and Z are alphanumeric characters.
-## The underscore character represents an empty sequence element.
-
-
 ## 
 ## Bspwm
 ## 
@@ -27,13 +5,17 @@
 # reload sxhkd config:
 super + Delete
 											pkill -USR1 -x sxhkd; notify-send 'sxhkd config reloaded'
-shift + super + Delete
+# bspwm reconfigure
+super + shift + Delete
 											zenity --question --text 'bspwmrc_conf' && /bin/sh "$HOME/.config/bspwm/bspwmrc_conf.sh"
-alt + super + Delete
+# autorun
+super + alt + Delete
 											zenity --question --text 'bspwmrc_run' && /bin/sh "$HOME/.config/bspwm/bspwmrc_run.sh"
-ctrl + super + Delete
+# logout
+super + ctrl + Delete
 											zenity --question --text 'bspc quit' && bspc quit
-ctrl + shift + alt + super + Delete
+# poweroff
+super + ctrl + shift + alt + Delete
 											poweroff
  
 ## 
@@ -41,31 +23,31 @@ ctrl + shift + alt + super + Delete
 ## 
 
 super + {Next,Prior}
-											bspc desktop focused --circulate {forward,backward}
-ctrl + super + apostrophe
+											bspc node @focused:/ --circulate {forward,backward}
+super + ctrl + apostrophe
 											bspc monitor --swap last
 super + {less,greater}
 											bspc monitor --focus {prev,next}
 super + {comma,period}
 											bspc desktop --focus {prev,next}
-ctrl + shift + super + {comma,period}
+super + ctrl + shift + {comma,period}
 											bspc desktop --to-monitor {prev,next}
-ctrl + super + {comma,period}
+super + ctrl + {comma,period}
 											bspc desktop --swap {prev,next}
-alt + super + {comma,period}
-											{bspc window --to-desktop prev; bspc desktop --focus prev, bspc window --to-desktop next; bspc desktop --focus next}
-ctrl + alt + super + {comma,period}
+super + alt + {comma,period}
+											{bspc node --to-desktop prev; bspc desktop --focus prev, bspc node --to-desktop next; bspc desktop --focus next}
+super + ctrl + alt + {comma,period}
 											{bspc desktop --to-monitor prev; bspc monitor --focus prev, bspc desktop --to-monitor next; bspc monitor --focus next}
 super + n
-											bspc desktop --balance
+											bspc node @focused:/ --equalize
 super + {_,shift +} Tab
-											bspc window --focus {next,prev}
+											bspc desktop --focus {next,prev}
 super + Home
 											bspc desktop --focus next.free
 super + m
 											bspc desktop --layout next
 super + ctrl + {_,shift + } Tab
-											bspc desktop --circulate {backward,forward}
+											bspc node @focused:/ --circulate {backward,forward}
 super + apostrophe
 											bspc desktop --swap last
 super + alt + {_,shift + }{1-9,0}
@@ -78,48 +60,46 @@ super + semicolon ; {a,r,x}
 											{ zenity --entry --text 'add' | xargs --no-run-if-empty bspc monitor --add-desktops, \
 											  zenity --entry --text 'rename' | xargs --no-run-if-empty bspc desktop --rename, \
 											  zenity --question --text 'remove?' && bspc monitor --remove-desktops $(bspc query -d focused -D) }
-shift + super + {x,v}
-											bspc control --toggle-visibility
-super + d
-											bspc control --toggle-visibility
-super + b : {_,alt +,shift +,ctrl +} {Left,Down,Up,Right}
-											bspc window {--focus, --to-window, --swap, --presel} {left,down,up,right}
+# super + shift + {x,v}
+#											bspc control --toggle-visibility
+# super + d
+#											bspc control --toggle-visibility
 alt + {_,shift +} F4
-											bspc window --{close,kill}
-super + {i,o,p,space,alt + space}
-											bspc window --toggle {locked,sticky,private,floating,pseudo_tiled}
-super + F11
-											bspc window --toggle fullscreen
+											bspc node --{close,kill}
+super + {i,o,p,space,alt + space,F11}
+											bspc node --state {~locked,~sticky,~private,~floating,~pseudo_tiled,~fullscreen}
 alt + {_,shift +} Tab
-											bspc window --focus {next,prev}
-alt + e
-											bspc window --focus {last.floating,last.tiled}
+											bspc node --focus {next,prev}
 alt + Escape
-											bspc window --focus prev
+											bspc node --focus last
 super + Escape
-											bspc window --to-desktop next
+											bspc node --to-desktop next.free
 super + alt + Return
-											bspc window --swap biggest
+											bspc node --swap biggest
 super + {_,shift + } {Left,Down,Up,Right}
-											bspc window --{focus,swap} {left,down,up,right}
+											bspc node --{focus,swap} {west,south,north,east}
 super + {_,shift + } {h,j,k,l}
-											bspc window --{focus,swap} {left,down,up,right}
+											bspc node --{focus,swap} {west,south,north,east}
 super + u
-											bspc window --focus last.urgent
+											bspc node --focus last.urgent
 super + bracket{left,right}
-											bspc desktop --flip {horizontal,vertical}
+											bspc node @focused:/ --flip {horizontal,vertical}
 super + brace{left,right}
-											bspc desktop --rotate {270,90}
-super + ctrl + {Left,Down,Up,Right}
-											bspc window --presel {left,down,up,right}
-super + ctrl + {_,shift + }space
-											bspc {window --presel cancel,desktop --cancel-presel}
+											bspc node @focused:/ --rotate {270,90}
+super + ctrl + alt + {Left,Down,Up,Right}
+											bspc node --presel-dir {west,south,north,east}
+super + ctrl + alt + {1-9}
+											bspc node --presel-ratio {0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1}
+super + ctrl + {1-9}
+											bspc node focused --ratio {0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1}
+super + ctrl + alt + {_,shift + }space
+											bspc {node --presel-dir cancel,desktop --cancel-presel}
 super + alt + {Left,Down,Up,Right}
-											bspc window --edge {left -10,down +10,up -10,right +10}
+											bspc node --to-node {west,south,north,east}
 super + alt + shift + {Left,Down,Up,Right}
-											bspc window --edge {right -10,up +10,down -10,left +10}
+											bspc node focused --edge {right -10,up +10,down -10,left +10}
 super + {_,shift + }{1-9,0}
-											bspc {desktop --focus,window --to-desktop } ^{1-9,10}
+											bspc {desktop --focus,node --to-desktop } ^{1-9,10}
 super + {equal,minus}
 											bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 1 ))
 super + alt + {_, shift} + equal
@@ -141,13 +121,13 @@ alt + button{1-3}
 alt + @button{1-3}
 											bspc pointer --ungrab
 super + button1
-											/home/morock/bin/windowmap.sh $(bspc query -w focused -W)
+											"$HOME/bin/windowmap.sh" $(bspc query -n focused --nodes)
 super + button3
-											/home/morock/bin/windowmap.sh
+											"$HOME/bin/windowmap.sh"
 alt + button{4,5}
-											bspc window --focus {prev,next}
+											bspc node --focus {prev,next}
 super + shift + button{4,5}
-											{bspc window --to-desktop prev; bspc desktop --focus prev, bspc window --to-desktop next; bspc desktop --focus next}
+											{bspc node --to-desktop prev; bspc desktop --focus prev, bspc node --to-desktop next; bspc desktop --focus next}
 super + ctrl + button{4,5}
 											bspc desktop --focus {prev, next}
 
@@ -157,17 +137,14 @@ super + ctrl + button{4,5}
 # jumpapp -f '/opt/thunderbird/thunderbird'; 
 
 
-ctrl + alt + super + r
+super + ctrl + alt + r
 											jumpapp '/opt/sublime_text_3/sublime_text' & \
-											/opt/firefox/firefox --profile $HOME/.mozilla/firefox/stable.profile & \
+											firefox --profile $HOME/.mozilla/firefox/stable.profile & \
 											jumpapp spacefm & \
 											jumpapp mysql-workbench & \
 											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh' & \
 											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh' & \
 											jumpapp -f '/usr/bin/skype'
-
-super + shift + Return
-											terminator --profile red
 super + Return
 											terminator
 super + alt + Escape
@@ -175,13 +152,13 @@ super + alt + Escape
 alt + F2
 											/usr/bin/gmrun
 alt + F3
-											/home/morock/.config/dmenu/dmenu-bind.sh
+											"$HOME/.config/dmenu/dmenu-bind.sh"
 super + shift + g
 											zenity --question --text 'smartgit'        && /opt/smartgit/bin/smartgit.sh
 super + shift + q
 											zenity --question --text 'mysql-workbench' && /usr/bin/mysql-workbench
 super + shift + x
-											zenity --question --text 'zap'             && /opt/zap/zap.sh
+											zenity --question --text 'zap'             && zaproxy
 super + shift + r
 											zenity --question --text 'filezilla'       && /usr/bin/filezilla
 super + shift + a
@@ -189,9 +166,9 @@ super + shift + a
 super + shift + f
 											/usr/bin/thunar
 super + x
-											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'
+											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' zaproxy
 super + w
-											wmctrl -a 'Mozilla Firefox'
+											wmctrl -a 'Mozilla Firefox' firefox
 super + shift + w
 											wmctrl -a 'Firefox Developer Edition'
 super + t
@@ -199,7 +176,7 @@ super + t
 super + e
 											jumpapp -c Thunderbird -i Mail '/usr/bin/thunderbird'
 super + s
-											jumpapp '/opt/sublime_text_3/sublime_text'
+											jumpapp sublime_text
 super + q
 											jumpapp mysql-workbench
 super + a
@@ -209,13 +186,13 @@ super + f
 super + r
 											jumpapp -c Terminator -i terminator '/usr/bin/terminator'
 super + g
-											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh'
+											jumpapp -c SmartGit -i SmartGit 'smartgit'
 super + y
 											wmctrl -a 'Log for '
 super + c
 											wmctrl -a 'HttpRequester'
 super + Delete
-											/home/morock/bin/logout.sh
+											"$HOME/morock/bin/logout.sh"
 super + alt + v
 											( pidof pavucontrol && wmctrl -xa Pavucontrol ) || pavucontrol
 super + v
@@ -247,16 +224,3 @@ XF86AudioMute
 # XF86AudioLowerVolume
 # XF86AudioRaiseVolume
 # XF86AudioMute
-
-# DIR         := left | right | up | down
-# CYCLE_DIR   := next | prev
-
-##
-## Window States
-##
-# floating     - Is above any tiled window and can be moved/resized freely. Although it doesn’t occupy any tiling space, it is still part of the window tree.
-# pseudo_tiled - Has an unrestricted size while being centered in its tiling space.
-# fullscreen   - Fills its monitor rectangle, is above all the other windows and has no borders.
-# locked       - Ignores the close message.
-# sticky       - Stays in the focused desktop of its monitor.
-# private      - Tries to keep the same tiling position/size.
