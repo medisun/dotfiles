@@ -6,8 +6,8 @@ SRCDIR="$(dirname "$0")"
 
 num_mon=$(bspc query -M | wc -l)
 
-SESSION_FOLDER=$(dirname "${BSPWM_SOCKET}")
-WINDOW_STACK="${SESSION_FOLDER}/windowmap"
+# SESSION_FOLDER=$(dirname "${BSPWM_SOCKET}")
+# WINDOW_STACK="${SESSION_FOLDER}/windowmap"
 
 while read -r line ; do
     case $line in
@@ -34,7 +34,7 @@ while read -r line ; do
                 item=$1
                 name=${item#?}
                 case $item in
-                    M*)
+                    [mM]*)
                         # active monitor
                         if [ $num_mon -gt 1 ] ; then
                             wm_infos="$wm_infos ^fg($COLOR_ACTIVE_MONITOR_FG)^bg($COLOR_ACTIVE_MONITOR_BG)^ca(1, bspc monitor --focus ${name}) ${name} ^ca()^bg()^fg() "
@@ -80,7 +80,7 @@ while read -r line ; do
             ;;
     esac
 
-    wm_infos="${wm_infos} [h$(cat "${WINDOW_STACK}" | wc -l)] " 
+    # wm_infos="${wm_infos} [h$(cat "${WINDOW_STACK}" | wc -l)] " 
     # wm_infos="${wm_infos} ^ca(1, /home/morock/bin/dzen_menu.sh)[h$(cat "${WINDOW_STACK}" | wc -l)]^ca() " 
 
     echo "${wm_infos}"

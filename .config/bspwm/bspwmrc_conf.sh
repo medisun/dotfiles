@@ -1,19 +1,29 @@
 #!/bin/sh
 
-bspc monitor -d "dev" "term" "git" "zap" "sql" "disk" "ff" "req" "chat" "chrome" "home"
+if [[ -n $(xrandr | grep 'HDMI-0 connected') ]]; then
 
-bspc desktop "dev"    -l monocle
-bspc desktop "term"   -l tiled
-bspc desktop "git"    -l monocle
-bspc desktop "zap"    -l monocle
-bspc desktop "sql"    -l tiled
-bspc desktop "disk"   -l tiled
-bspc desktop "ff"     -l tiled
-bspc desktop "req"    -l monocle
-bspc desktop "chat"   -l tiled
-bspc desktop "chrome" -l tiled
-bspc desktop "home"   -l tiled
+    bspc monitor 'HDMI-0' \
+        -d "dev" "term" "git" "zap" "sql" "disk"
 
+    bspc desktop "dev"    -l monocle
+    bspc desktop "term"   -l tiled
+    bspc desktop "git"    -l monocle
+    bspc desktop "zap"    -l monocle
+    bspc desktop "sql"    -l tiled
+    bspc desktop "disk"   -l tiled
+fi
+
+if [[ -n $(xrandr | grep 'DVI-I-1 connected') ]]; then
+
+    bspc monitor 'DVI-I-1' \
+        -d "ff" "req" "chat" "chrome" "home"
+
+    bspc desktop "ff"     -l tiled
+    bspc desktop "req"    -l monocle
+    bspc desktop "chat"   -l tiled
+    bspc desktop "chrome" -l tiled
+    bspc desktop "home"   -l tiled
+fi
 
 bspc config border_width   2
 bspc config window_gap     3
@@ -94,23 +104,47 @@ bspc rule -l | sed "s/^\(.*\) => \(.*\)/'\1' /" | xargs bspc rule -r
 
 # bspc rule -a '*' state=floating    ## all windows will floated
 # bspc rule -a '*' desktop=music                     ## all windows will appear only on selected desktop
-bspc rule -a '*'                  private=on    
-bspc rule -a Chromium             desktop=chrome 
+
+bspc rule -a Chromium             desktop=chrome
 bspc rule -a Conky                sticky=on         manage=off layer=lower
 bspc rule -a Gmrun                state=floating    border=off
 bspc rule -a MPlayer              state=floating    border=off
 bspc rule -a Mysql-workbench-bin  desktop=sql       locked=on
 bspc rule -a Nitrogen             state=floating    border=off
-bspc rule -a org-zaproxy-zap-ZAP  desktop=zap    
+bspc rule -a org-zaproxy-zap-ZAP  desktop=zap
 bspc rule -a Pavucontrol          state=floating    border=off
 bspc rule -a Skype                split_dir=left    desktop=chat split_ratio=0.4
-bspc rule -a SmartGit             desktop=git   
-bspc rule -a Spacefm              desktop=disk  
-bspc rule -a Sublime_text         desktop=dev   
-bspc rule -a Terminator           locked=on     
+bspc rule -a SmartGit             desktop=git
+bspc rule -a Spacefm              desktop=disk
+bspc rule -a Sublime_text         desktop=dev
+bspc rule -a Terminator           locked=on
 bspc rule -a Thunar               state=floating    border=off
 bspc rule -a Tilda                state=floating    border=off locked=on
-bspc rule -a Main.py              state=floating    border=off locked=on
+bspc rule -a 'Main.py'            state=floating    border=off locked=on
+bspc rule -a Viewnior             state=floating    border=off
+bspc rule -a Xfce4-notifyd        state=floating    border=off sticky=on layer=above
+bspc rule -a Tint2                border=off        sticky=on  layer=above
+
+# bspc rule -a '*' state=floating    ## all windows will floated
+# bspc rule -a '*' desktop=music  ## all windows will appear only on selected desktop
+bspc rule -a '*'                  private=on
+bspc rule -a Conky                sticky=on      manage=off lower=on
+bspc rule -a Gmrun                state=floating    border=off
+bspc rule -a Atom                 state=floating    border=off
+bspc rule -a MPlayer              state=floating    border=off
+bspc rule -a Mysql-workbench-bin  desktop=sql        flag=locked
+bspc rule -a Nitrogen             state=floating    border=off
+bspc rule -a org-zaproxy-zap-ZAP  desktop=zap
+bspc rule -a Pavucontrol          state=floating    border=off
+bspc rule -a SmartGit             desktop=git
+bspc rule -a Spacefm              desktop=disk
+bspc rule -a Terminator           flag=locked     
+bspc rule -a dzen                 lower=on
+bspc rule -a Surf                 state=floating
+bspc rule -a Player               state=floating
+bspc rule -a Leafpad              state=floating
+bspc rule -a Thunar               state=floating    border=off
+bspc rule -a Tilda                state=floating    border=off flag=locked
 bspc rule -a Viewnior             state=floating    border=off
 bspc rule -a Xfce4-notifyd        state=floating    border=off sticky=on layer=above
 bspc rule -a Tint2                border=off        sticky=on  layer=above

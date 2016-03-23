@@ -7,7 +7,7 @@ required_cmds=(
     "/usr/bin/gnome-keyring-daemon"
     "/usr/bin/nitrogen"
     "/usr/bin/nm-applet"
-    "/usr/bin/pa-applet"
+    # "/usr/bin/pa-applet"
     "/usr/bin/redshift"
     "/usr/bin/setxkbmap"
     "/usr/bin/sleep"
@@ -17,10 +17,10 @@ required_cmds=(
     "/usr/bin/tilda"
     "/usr/bin/tint2"
     "/usr/bin/unclutter"
-    # "/usr/bin/volumeicon"
+    "/usr/bin/volumeicon"
     "/usr/bin/wmname"
     "/usr/bin/xbindkeys"
-    "/usr/bin/xfce4-power-manager"
+    # "/usr/bin/xfce4-power-manager"
     "/usr/bin/xkbcomp"
     "/usr/bin/xmodmap"
     "/usr/bin/xrandr"
@@ -41,12 +41,12 @@ done
 
 
 # Two monitor config
-if [[ $(/usr/bin/xrandr -q | /bin/grep " connected " | /usr/bin/wc -l) == 2 ]]; then
-    (/usr/bin/xrandr --output DVI-0 --mode 1920x1080) &
-    (/usr/bin/xrandr --output HDMI-2 --mode 1920x1080) &
-    (sleep 3s && /usr/bin/xrandr --output DVI-0 --left-of HDMI-2) &
-    (/usr/bin/xrandr --output DVI-0 --primary) &
-fi
+# if [[ $(/usr/bin/xrandr -q | /bin/grep " connected " | /usr/bin/wc -l) == 2 ]]; then
+#     (/usr/bin/xrandr --output DVI-I-1 --mode 1920x1080) &
+#     (/usr/bin/xrandr --output HDMI-0 --mode 1920x1080) &
+#     (sleep 3s && /usr/bin/xrandr --output HDMI-0 --left-of DVI-I-1) &
+#     (/usr/bin/xrandr --output HDMI-0 --primary) &
+# fi
 
 (pidof /usr/local/bin/sxhkd || sxhkd >> dirname $BSPWM_SOCKET/sxhkd.log) &
 
@@ -95,8 +95,12 @@ fi
 xbindkeys &
 
 ## Add russian layout
-setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:caps &
-
+# setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num -option shift:breaks_caps -option compose:rctrl -option lv3:ralt_switch &
+# https://wiki.archlinux.org/index.php/Xmodmap
+# https://wiki.archlinux.org/index.php/X_KeyBoard_extension#Level3
+# 
+# xkbcomp -xkb $DISPLAY xkbmap
+xkbcomp -w 0 ~/.xkbmap $DISPLAY &
 ## layout tray indicator
 # sbxkb & 
 
@@ -107,7 +111,7 @@ setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:caps &
 (pidof /usr/bin/thunar || thunar --daemon) &
 
 ## Volume icon
-(pidof /usr/bin/pa-applet || /usr/bin/pa-applet) &
+(pidof /usr/bin/volumeicon || /usr/bin/volumeicon) &
 
 ## Enable Eyecandy - off by default, uncomment one of the commands below.  
 ## Note: cairo-compmgr prefers a sleep delay, else it tends to produce
