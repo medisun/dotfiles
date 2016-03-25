@@ -53,6 +53,7 @@ case "$class" in
     echo 'state=locked';;
 
     "Thunderbird") case "$instance" in
+            "Mailnews") echo 'state=floating';;
             "Msgcompose") echo 'desktop=chat state=floating state=locked';;
             "Navigator")  echo 'desktop=chat state=floating ';;
                   "Mail") echo 'desktop=chat split_dir=south split_ratio=0.5 state=locked';;

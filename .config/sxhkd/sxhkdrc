@@ -1,6 +1,6 @@
-## 
+##
 ## Bspwm
-## 
+##
 
 # reload sxhkd config:
 super + Delete
@@ -17,10 +17,10 @@ super + ctrl + Delete
 # poweroff
 super + ctrl + shift + alt + Delete
 											poweroff
- 
-## 
+
+##
 ## Desktop
-## 
+##
 
 super + {Next,Prior}
 											bspc node @focused:/ --circulate {forward,backward}
@@ -43,7 +43,7 @@ super + n
 super + {_,shift +} Tab
 											bspc desktop --focus {next,prev}
 super + Home
-											bspc desktop --focus next.free
+											bspc desktop --focus 'next.!occupied'
 super + m
 											bspc desktop --layout next
 super + ctrl + {_,shift + } Tab
@@ -52,9 +52,9 @@ super + apostrophe
 											bspc desktop --swap last
 super + alt + {_,shift + }{1-9,0}
 											bspc {monitor --focus, desktop --to-monitor } ^{1-9,10}
-## 
+##
 ## Windows
-## 
+##
 
 super + semicolon ; {a,r,x}
 											{ zenity --entry --text 'add' | xargs --no-run-if-empty bspc monitor --add-desktops, \
@@ -66,8 +66,10 @@ super + semicolon ; {a,r,x}
 #											bspc control --toggle-visibility
 alt + {_,shift +} F4
 											bspc node --{close,kill}
-super + {i,o,p,space,alt + space,F11}
-											bspc node --state {~locked,~sticky,~private,~floating,~pseudo_tiled,~fullscreen}
+super + {space,alt + space,F11}
+											bspc node --state {~floating,~pseudo_tiled,~fullscreen}
+super + {i,o,p}
+											bspc node --flag {~locked,~sticky,~private}
 alt + {_,shift +} Tab
 											bspc node --focus {next,prev}
 alt + Escape
@@ -111,9 +113,9 @@ super + ctrl + {_, shift} + equal
 super + ctrl + {_, shift} + minus
 											bspc config -d focused top_padding    $((`bspc config -d focused top_padding` {+,-} 1 ))
 
-## 
+##
 ## Mouse
-## 
+##
 ~button1
 											bspc pointer --grab focus
 alt + button{1-3}
@@ -131,10 +133,10 @@ super + shift + button{4,5}
 super + ctrl + button{4,5}
 											bspc desktop --focus {prev, next}
 
-## 
+##
 ## Applications
 ## GLib-CRITICAL **: g_slice_set_config: assertion 'sys_page_size == 0' failed
-# jumpapp -f '/opt/thunderbird/thunderbird'; 
+# jumpapp -f '/opt/thunderbird/thunderbird';
 
 
 super + ctrl + alt + r
@@ -147,6 +149,8 @@ super + ctrl + alt + r
 											jumpapp -f '/usr/bin/skype'
 super + Return
 											terminator
+super + shift + Return
+											terminator --profile red
 super + alt + Escape
 											/opt/scripts/killbymouse.sh
 alt + F2
@@ -158,7 +162,7 @@ super + shift + g
 super + shift + q
 											zenity --question --text 'mysql-workbench' && /usr/bin/mysql-workbench
 super + shift + x
-											zenity --question --text 'zap'             && zaproxy
+											zenity --question --text 'zap'             && /opt/zap/zap.sh
 super + shift + r
 											zenity --question --text 'filezilla'       && /usr/bin/filezilla
 super + shift + a
@@ -166,7 +170,7 @@ super + shift + a
 super + shift + f
 											/usr/bin/thunar
 super + x
-											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' zaproxy
+											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'
 super + w
 											wmctrl -a 'Mozilla Firefox' firefox
 super + shift + w
@@ -186,7 +190,7 @@ super + f
 super + r
 											jumpapp -c Terminator -i terminator '/usr/bin/terminator'
 super + g
-											jumpapp -c SmartGit -i SmartGit 'smartgit'
+											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh'
 super + y
 											wmctrl -a 'Log for '
 super + c
