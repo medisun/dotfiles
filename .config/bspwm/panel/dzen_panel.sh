@@ -25,16 +25,16 @@ while read -r line ; do
             IFS=':'
             set -- ${line#?}
 
-            wm_infos="${wm_infos}^ca(1, bspc control --toggle-visibility )[ \` ]^ca()"
-            wm_infos="${wm_infos}^ca(1, zenity --question --text 'remove?' && bspc monitor --remove-desktops $(bspc query -d focused -D) )[ x ]^ca()"
-            wm_infos="${wm_infos}^ca(1, zenity --entry --text 'rename' | xargs --no-run-if-empty bspc desktop --rename )[ ~ ]^ca()"
-            wm_infos="${wm_infos}^ca(1, zenity --entry --text 'add' | xargs --no-run-if-empty bspc monitor --add-desktops )[ + ]^ca()"
+            # wm_infos="${wm_infos}^ca(1, bspc control --toggle-visibility )[ \` ]^ca()"
+            # wm_infos="${wm_infos}^ca(1, zenity --question --text 'remove?' && bspc monitor --remove-desktops $(bspc query -d focused -D) )[ x ]^ca()"
+            # wm_infos="${wm_infos}^ca(1, zenity --entry --text 'rename' | xargs --no-run-if-empty bspc desktop --rename )[ ~ ]^ca()"
+            # wm_infos="${wm_infos}^ca(1, zenity --entry --text 'add' | xargs --no-run-if-empty bspc monitor --add-desktops )[ + ]^ca()"
 
             while [ $# -gt 0 ] ; do
                 item=$1
                 name=${item#?}
                 case $item in
-                    [mM]*)
+                    M*)
                         # active monitor
                         if [ $num_mon -gt 1 ] ; then
                             wm_infos="$wm_infos ^fg($COLOR_ACTIVE_MONITOR_FG)^bg($COLOR_ACTIVE_MONITOR_BG)^ca(1, bspc monitor --focus ${name}) ${name} ^ca()^bg()^fg() "

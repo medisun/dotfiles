@@ -6,11 +6,12 @@ instance=$3
 role=$(/usr/bin/xprop -id "${wid}" 'WM_WINDOW_ROLE' | grep --color=never -Eo '".+' | rev | cut -c2- | rev | cut -c2-)
 title=$(/usr/local/bin/xtitle "${wid}")
 
-echo '' >> '/tmp/wininfo'
-echo 'role ' $role >> '/tmp/wininfo'
-echo 'class ' $class >> '/tmp/wininfo'
-echo 'instance ' $instance >> '/tmp/wininfo'
-echo 'title ' $title >> '/tmp/wininfo'
+# echo '' >> '/tmp/wininfo'
+# echo 'role ' $role >> '/tmp/wininfo'
+# echo 'class ' $class >> '/tmp/wininfo'
+# echo 'instance ' $instance >> '/tmp/wininfo'
+# echo 'title ' $title >> '/tmp/wininfo'
+
 
 case "$class" in
     "Firefox") case "$instance" in
