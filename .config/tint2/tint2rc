@@ -36,14 +36,14 @@ border_color = #FFFFFF 100
 # Panel
 panel_monitor = 1
 panel_position = top right horizontal
-# panel_items = LTSBC
-panel_items = TSC
+panel_items = ETSC
+# panel_size = 1100 20
 panel_size = 100% 20
 panel_margin = 0 0
 panel_padding = 0 0 0
 panel_dock = 1
 wm_menu = 1
-panel_layer = top
+panel_layer = normal
 panel_background_id = 1
 
 # Panel Autohide
@@ -128,5 +128,15 @@ bat2_font = Sans 12
 battery_font_color = #FFFFFF 100
 battery_padding = 0 0
 battery_background_id = 0
+
+execp = new
+execp_command = bspc subscribe report | /home/morock/.config/bspwm/panel/bspwm_tint_panel.sh
+execp_font = terminus 9
+execp_markup = 1
+execp_interval = 1
+execp_continuous = 1
+execp_padding = 0 0
+execp_dwheel_command = bspc desktop --focus next
+execp_uwheel_command = bspc desktop --focus prev
 
 # End of config

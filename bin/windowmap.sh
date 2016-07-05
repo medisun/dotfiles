@@ -2,21 +2,26 @@
 #
 #
 
-wid=$1
+WINDOW_STACK="${HOME}/.cache/windowmap"
 
-if [ -n "$BSPWM_SOCKET" ]; then
-    SESSION_FOLDER=$(dirname "${BSPWM_SOCKET}")
-else  
-    echo 'BSPWM_SOCKET is not defined'
-    exit 1
+PLACE_TO_CURRENT_DESKTOP=true
+
+if [ "$1" == "-d" ]; then
+    PLACE_TO_CURRENT_DESKTOP=false
+else
+    wid=$1
 fi
-
-WINDOW_STACK="${SESSION_FOLDER}/windowmap"
 
 if [ -z "${wid}" ]; then
     wid=$(tail -n1 "${WINDOW_STACK}")
-    [ -n "${wid}" ] && sed -i '$ d' "${WINDOW_STACK}" && xdotool windowmap "${wid}"
+    # [ -n "${wid}" ] && sed -i '$ d' "${WINDOW_STACK}" && xdotool windowmap "${wid}"
+    if [ -n "${wid}" ] && sed -i '$ d' "${WINDOW_STACK}"; then
+        [ $PLACE_TO_CURRENT_DESKTOP ] && bspc node "${wid}" --to-desktop focused
+        bspc node "${wid}" --flag hidden=off
+        bspc node "${wid}" --focus
+    fi
 else
-    xdotool windowunmap "$wid"
+    # xdotool windowunmap "$wid"
     echo "${wid}" >> "${WINDOW_STACK}"
+    bspc node "${wid}" --flag hidden=on
 fi

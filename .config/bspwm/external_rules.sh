@@ -1,17 +1,23 @@
 #! /bin/sh
 
+# use this command to 
+# xprop | grep 'WM'
+
+# WM_WINDOW_ROLE(STRING) = "browser"
+# WM_CLASS(STRING) = "Navigator", "Firefox"
+# WM_NAME(STRING) = "Sitename - Mozilla Firefox"
+
 wid=$1
 class=$2
 instance=$3
 role=$(/usr/bin/xprop -id "${wid}" 'WM_WINDOW_ROLE' | grep --color=never -Eo '".+' | rev | cut -c2- | rev | cut -c2-)
-title=$(/usr/local/bin/xtitle "${wid}")
+title=$(/usr/bin/xtitle "${wid}")
 
 # echo '' >> '/tmp/wininfo'
 # echo 'role ' $role >> '/tmp/wininfo'
 # echo 'class ' $class >> '/tmp/wininfo'
 # echo 'instance ' $instance >> '/tmp/wininfo'
 # echo 'title ' $title >> '/tmp/wininfo'
-
 
 case "$class" in
     "Firefox") case "$instance" in
@@ -46,31 +52,36 @@ case "$class" in
             "DOM Inspector") echo 'desktop=ff split_dir=east split_ratio=0.75';;
         esac ;;
 
+        "Browser") case $(echo "$title" | cut -c-5) in
+            "About") echo 'state=floating';;
+        esac ;;
+
         "Scrapbook") case "$role" in
             "Scrapbook") echo 'state=floating';;
         esac ;;
 
     esac
-    echo 'state=locked';;
+    echo 'locked=on';;
 
     "Thunderbird") case "$instance" in
-            "Mailnews") echo 'state=floating';;
-            "Msgcompose") echo 'desktop=chat state=floating state=locked';;
-            "Navigator")  echo 'desktop=chat state=floating ';;
-                  "Mail") echo 'desktop=chat split_dir=south split_ratio=0.5 state=locked';;
+            "Mailnews")   echo 'state=floating';;
+            "Msgcompose") echo 'desktop=email state=floating locked=on';;
+            "Navigator")  echo 'desktop=email state=floating ';;
+                  "Mail") echo 'desktop=email split_dir=south split_ratio=0.5 locked=on';;
     esac
     # /home/morock/bin/desktop.sh 'chat' '2'
-    echo 'desktop=chat split_dir=north'
+    echo 'desktop=email split_dir=north'
     ;;
 
     "Skype") case "$instance" in
         "skype") case "$role" in
             "ConversationsWindow") echo 'split_dir=west split_ratio=0.75';;
-                     "CallWindow") echo 'state=floating state=sticky';;
+                     "CallWindow") echo 'state=floating sticky=on';;
 
             *) case $(echo "$title" | cut -c-11) in
                     "Options") echo 'state=floating';;
                 "Are you sur") echo 'state=floating';;
+                "Add a Skype") echo 'state=floating';;
                 "File Transf") echo 'split_dir=south split_ratio=0.8';;
                 "Information") echo 'state=floating';;
                 "Profile for") echo 'state=floating';;
@@ -107,15 +118,9 @@ case "$class" in
         case $(echo "$title" | cut -c-8) in
             "Hangouts") echo 'state=floating';;
         esac
-    echo 'desktop=chrome'
+        
+        echo 'desktop=chrome'
     ;;
-
-    # WM_CLASS(STRING) = "terminator", "Terminator"
-    # WM_ICON_NAME(STRING) = "Terminator Preferences"
-    # _NET_WM_ICON_NAME(UTF8_STRING) = "Terminator Preferences"
-    # WM_NAME(STRING) = "Terminator Preferences"
-    # _NET_WM_NAME(UTF8_STRING) = "Terminator Preferences"
-
 
     "Terminator") case "$title" in
         'Terminator Preferences') echo 'state=floating';;

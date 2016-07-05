@@ -37,38 +37,38 @@ while read -r line ; do
                     M*)
                         # active monitor
                         if [ $num_mon -gt 1 ] ; then
-                            wm_infos="$wm_infos ^fg($COLOR_ACTIVE_MONITOR_FG)^bg($COLOR_ACTIVE_MONITOR_BG)^ca(1, bspc monitor --focus ${name}) ${name} ^ca()^bg()^fg() "
+                            wm_infos="$wm_infos ^fg($COLOR_ACTIVE_MONITOR_FG)^bg($COLOR_ACTIVE_MONITOR_BG)^ca(1, bspc monitor --focus '${name}') ${name} ^ca()^bg()^fg() "
                         fi
                         ;;
                     m*)
                         # inactive monitor
                         if [ $num_mon -gt 1 ] ; then
-                            wm_infos="$wm_infos ^fg($COLOR_INACTIVE_MONITOR_FG)^bg($COLOR_INACTIVE_MONITOR_BG)^ca(1, bspc monitor --focus ${name}) ${name} ^ca()^bg()^fg() "
+                            wm_infos="$wm_infos ^fg($COLOR_INACTIVE_MONITOR_FG)^bg($COLOR_INACTIVE_MONITOR_BG)^ca(1, bspc monitor --focus '${name}') ${name} ^ca()^bg()^fg() "
                         fi
                         ;;
                     O*)
                         # focused occupied desktop
-                        wm_infos="${wm_infos}^fg($COLOR_FOCUSED_OCCUPIED_FG)^bg($COLOR_FOCUSED_OCCUPIED_BG)^ca(1, bspc desktop --focus ${name}) ${name} ^ca()^bg()^fg()"
+                        wm_infos="${wm_infos}^fg($COLOR_FOCUSED_OCCUPIED_FG)^bg($COLOR_FOCUSED_OCCUPIED_BG)^ca(1, bspc desktop --focus '${name}') ${name} ^ca()^bg()^fg()"
                         ;;
                     F*)
                         # focused free desktop
-                        wm_infos="${wm_infos}^fg($COLOR_FOCUSED_FREE_FG)^bg($COLOR_FOCUSED_FREE_BG)^ca(1, bspc desktop --focus ${name}) ${name} ^ca()^bg()^fg()"
+                        wm_infos="${wm_infos}^fg($COLOR_FOCUSED_FREE_FG)^bg($COLOR_FOCUSED_FREE_BG)^ca(1, bspc desktop --focus '${name}') ${name} ^ca()^bg()^fg()"
                         ;;
                     U*)
                         # focused urgent desktop
-                        wm_infos="${wm_infos}^fg($COLOR_FOCUSED_URGENT_FG)^bg($COLOR_FOCUSED_URGENT_BG)^ca(1, bspc desktop --focus ${name}) ${name} ^ca()^bg()^fg()"
+                        wm_infos="${wm_infos}^fg($COLOR_FOCUSED_URGENT_FG)^bg($COLOR_FOCUSED_URGENT_BG)^ca(1, bspc desktop --focus '${name}') ${name} ^ca()^bg()^fg()"
                         ;;
                     o*)
                         # occupied desktop
-                        wm_infos="${wm_infos}^fg($COLOR_OCCUPIED_FG)^bg($COLOR_OCCUPIED_BG)^ca(1, bspc desktop --focus ${name}) ${name} ^ca()^bg()^fg()"
+                        wm_infos="${wm_infos}^fg($COLOR_OCCUPIED_FG)^bg($COLOR_OCCUPIED_BG)^ca(1, bspc desktop --focus '${name}') ${name} ^ca()^bg()^fg()"
                         ;;
                     f*)
                         # free desktop
-                        wm_infos="${wm_infos}^fg($COLOR_FREE_FG)^bg($COLOR_FREE_BG)^ca(1, bspc desktop --focus ${name}) ${name} ^ca()^bg()^fg()"
+                        wm_infos="${wm_infos}^fg($COLOR_FREE_FG)^bg($COLOR_FREE_BG)^ca(1, bspc desktop --focus '${name}') ${name} ^ca()^bg()^fg()"
                         ;;
                     u*)
                         # urgent desktop
-                        wm_infos="${wm_infos}^fg($COLOR_URGENT_FG)^bg($COLOR_URGENT_BG)^ca(1, bspc desktop --focus ${name}) ${name} ^ca()^bg()^fg()"
+                        wm_infos="${wm_infos}^fg($COLOR_URGENT_FG)^bg($COLOR_URGENT_BG)^ca(1, bspc desktop --focus '${name}') ${name} ^ca()^bg()^fg()"
                         ;;
                     L*)
                         # layout

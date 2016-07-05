@@ -95,14 +95,11 @@
 [plugins]
 [profiles]
   [[default]]
-    background_color = "#152028"
     background_darkness = 0.06
     background_image = None
     color_scheme = custom
     cursor_color = "#009dda"
     font = Ubuntu Mono 10
-    foreground_color = "#a6b99f"
-    palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
     scroll_on_output = False
     scrollback_infinite = True
     scrollback_lines = 5000

@@ -7,7 +7,7 @@ required_cmds=(
     "/usr/bin/gnome-keyring-daemon"
     "/usr/bin/nitrogen"
     "/usr/bin/nm-applet"
-    # "/usr/bin/pa-applet"
+    "/usr/bin/pa-applet"
     "/usr/bin/redshift"
     "/usr/bin/setxkbmap"
     "/usr/bin/sleep"
@@ -16,11 +16,11 @@ required_cmds=(
     "/usr/bin/thunar"
     "/usr/bin/tilda"
     "/usr/bin/tint2"
-    "/usr/bin/unclutter"
-    "/usr/bin/volumeicon"
+    # "/usr/bin/unclutter"
+    # "/usr/bin/volumeicon"
     "/usr/bin/wmname"
     "/usr/bin/xbindkeys"
-    # "/usr/bin/xfce4-power-manager"
+    "/usr/bin/xfce4-power-manager"
     "/usr/bin/xkbcomp"
     "/usr/bin/xmodmap"
     "/usr/bin/xrandr"
@@ -32,23 +32,23 @@ required_cmds=(
 )
 
 for cmd in "${required_cmds[@]}"; do
-        if [ -x "/usr/bin/notify-send" ]; then
-            [ ! -x "${cmd}" ] && /usr/bin/notify-send "${cmd} not exist" 
-        else
-            [ ! -x "${cmd}" ] && echo "${cmd} not exist" >> "$HOME/bspwm_autorun.log"
-        fi
+    if [ -x "/usr/bin/notify-send" ]; then
+        [ ! -x "${cmd}" ] && /usr/bin/notify-send "${cmd} not exist" &
+    else
+        [ ! -x "${cmd}" ] && echo "${cmd} not exist" >> "$HOME/bspwm_autorun.log" &
+    fi
 done
 
 
 # Two monitor config
-# if [[ $(/usr/bin/xrandr -q | /bin/grep " connected " | /usr/bin/wc -l) == 2 ]]; then
-#     (/usr/bin/xrandr --output DVI-I-1 --mode 1920x1080) &
-#     (/usr/bin/xrandr --output HDMI-0 --mode 1920x1080) &
-#     (sleep 3s && /usr/bin/xrandr --output HDMI-0 --left-of DVI-I-1) &
-#     (/usr/bin/xrandr --output HDMI-0 --primary) &
-# fi
+if [[ $(/usr/bin/xrandr -q | /bin/grep " connected " | /usr/bin/wc -l) == 2 ]]; then
+    (/usr/bin/xrandr --output DVI-0 --mode 1920x1080) &
+    (/usr/bin/xrandr --output HDMI-2 --mode 1920x1080) &
+    (sleep 3s && /usr/bin/xrandr --output DVI-0 --left-of HDMI-2) &
+    (/usr/bin/xrandr --output DVI-0 --primary) &
+fi
 
-(pidof /usr/local/bin/sxhkd || sxhkd >> dirname $BSPWM_SOCKET/sxhkd.log) &
+(pidof /usr/local/bin/sxhkd || sxhkd >> ~/sxhkd.log) &
 
 ## GNOME PolicyKit and Keyring
 eval $(/usr/bin/gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
@@ -63,10 +63,12 @@ eval $(/usr/bin/gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 (pidof /usr/bin/compton || /usr/bin/compton) &
 
 # xrdb ~/.Xresources &
+# Fix for Java applications
 /usr/bin/wmname LG3D &
+# 
 /usr/bin/xsetroot -cursor_name left_ptr &
 
-## Set root window colour
+## Set root window color
 /usr/bin/xsetroot -solid "#2E3436" &
 
 ## Wallpaper
@@ -86,7 +88,7 @@ if egrep -iq 'touchpad' /proc/bus/input/devices; then
 fi
 
 ## Hide mouse pointer after 1 sec idle
-(pidof /usr/bin/unclutter || /usr/bin/unclutter -idle 1) &
+# (pidof /usr/bin/unclutter || /usr/bin/unclutter -idle 1) &
 
 ## Turn on/off system beep
 /usr/bin/xset b off &
@@ -95,12 +97,12 @@ fi
 xbindkeys &
 
 ## Add russian layout
-# setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:num -option shift:breaks_caps -option compose:rctrl -option lv3:ralt_switch &
+setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:caps -option shift:breaks_caps -option lv3:ralt_switch &
 # https://wiki.archlinux.org/index.php/Xmodmap
 # https://wiki.archlinux.org/index.php/X_KeyBoard_extension#Level3
 # 
 # xkbcomp -xkb $DISPLAY xkbmap
-xkbcomp -w 0 ~/.xkbmap $DISPLAY &
+# xkbcomp -w 0 ~/.xkbmap $DISPLAY &
 ## layout tray indicator
 # sbxkb & 
 
@@ -111,7 +113,7 @@ xkbcomp -w 0 ~/.xkbmap $DISPLAY &
 (pidof /usr/bin/thunar || thunar --daemon) &
 
 ## Volume icon
-(pidof /usr/bin/volumeicon || /usr/bin/volumeicon) &
+(pidof /usr/bin/pa-applet || /usr/bin/pa-applet) &
 
 ## Enable Eyecandy - off by default, uncomment one of the commands below.  
 ## Note: cairo-compmgr prefers a sleep delay, else it tends to produce
@@ -121,20 +123,20 @@ xkbcomp -w 0 ~/.xkbmap $DISPLAY &
 
 ## Panels
 (pidof tint2 || tint2) &
-(sleep 4s && (pidof dzen2 || $HOME/.config/bspwm/panel/panel.sh)) &
+# (pidof dzen2 || $HOME/.config/bspwm/panel/panel.sh) &
 # (sleep 4s && PATH=$PATH:/home/morock/.config/bspwm/panel PANEL_FIFO="/tmp/panel-fifo" panel) &
 
 ## Launch network manager applet
-(sleep 3s && (pidof nm-applet || nm-applet)) &
+(pidof nm-applet || nm-applet) &
 
 ## Start xscreensaver
 (pidof xscreensaver || xscreensaver -no-splash) &
 
 ## Start Clipboard manager
-(sleep 3s && (pidof clipit || clipit)) &
+(pidof clipit || clipit) &
 
 ## Top tilda
-(sleep 3s && (pidof tilda || tilda)) &
+(pidof tilda || tilda) &
 
 ## Right ALT = Super_Lq
 # xmodmap -e "keycode 108 = Super_L" &
@@ -146,5 +148,6 @@ xkbcomp -w 0 ~/.xkbmap $DISPLAY &
 
 # [ ! -s ~/.mpd/pid ] && mpd &
 
+# (pidof gnome-pie || gnome-pie) &
 
 terminator &

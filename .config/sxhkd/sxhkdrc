@@ -17,6 +17,8 @@ super + ctrl + Delete
 # poweroff
 super + ctrl + shift + alt + Delete
 											poweroff
+XF86Launch1
+											systemctl suspend
 
 ##
 ## Desktop
@@ -60,27 +62,31 @@ super + semicolon ; {a,r,x}
 											{ zenity --entry --text 'add' | xargs --no-run-if-empty bspc monitor --add-desktops, \
 											  zenity --entry --text 'rename' | xargs --no-run-if-empty bspc desktop --rename, \
 											  zenity --question --text 'remove?' && bspc monitor --remove-desktops $(bspc query -d focused -D) }
-# super + shift + {x,v}
-#											bspc control --toggle-visibility
-# super + d
-#											bspc control --toggle-visibility
+super + alt + l ; {b,n,a}
+											bspc node focused --layer {below,normal,above}
+super + alt + s ; {t,f,p}
+											bspc node focused --state {tiled,floating,pseudo_tiled}
+super + alt + f ; {h,s,p,l}
+											bspc node focused --flag {hidden,sticky,private,locked}
+super + F11
+											bspc node focused --state fullscreen
 alt + {_,shift +} F4
 											bspc node --{close,kill}
-super + {space,alt + space,F11}
-											bspc node --state {~floating,~pseudo_tiled,~fullscreen}
-super + {i,o,p}
-											bspc node --flag {~locked,~sticky,~private}
+# super + {i,o,p}
+#											bspc node @focused:/ --flag {locked,sticky,private}
+super + ctrl + i
+											bspc node @focused:/ --insert-receptacle
 alt + {_,shift +} Tab
-											bspc node --focus {next,prev}
+											bspc node --focus {next.local,prev.local}
 alt + Escape
-											bspc node --focus last
-super + Escape
-											bspc node --to-desktop next.free
+											bspc node --focus older
+super + d
+											"$HOME/bin/windowmap.sh" $(bspc query -n focused --nodes)
+super + shift + d
+											"$HOME/bin/windowmap.sh"
 super + alt + Return
 											bspc node --swap biggest
 super + {_,shift + } {Left,Down,Up,Right}
-											bspc node --{focus,swap} {west,south,north,east}
-super + {_,shift + } {h,j,k,l}
 											bspc node --{focus,swap} {west,south,north,east}
 super + u
 											bspc node --focus last.urgent
@@ -116,18 +122,22 @@ super + ctrl + {_, shift} + minus
 ##
 ## Mouse
 ##
+## ~button1
+## 											bspc pointer --grab focus
+## alt + button{1-3}
+## 											; bspc pointer --grab {move,resize_side,resize_corner}
+## alt + @button{1-3}
+## 											bspc pointer --ungrab
 ~button1
-											bspc pointer --grab focus
-alt + button{1-3}
-											; bspc pointer --grab {move,resize_side,resize_corner}
-alt + @button{1-3}
-											bspc pointer --ungrab
+											bspc node --focus pointed
 super + button1
 											"$HOME/bin/windowmap.sh" $(bspc query -n focused --nodes)
+super + button2
+											"$HOME/bin/windowmap.sh" -d
 super + button3
 											"$HOME/bin/windowmap.sh"
 alt + button{4,5}
-											bspc node --focus {prev,next}
+											bspc node --focus {prev.local,next.local}
 super + shift + button{4,5}
 											{bspc node --to-desktop prev; bspc desktop --focus prev, bspc node --to-desktop next; bspc desktop --focus next}
 super + ctrl + button{4,5}
@@ -135,24 +145,21 @@ super + ctrl + button{4,5}
 
 ##
 ## Applications
-## GLib-CRITICAL **: g_slice_set_config: assertion 'sys_page_size == 0' failed
-# jumpapp -f '/opt/thunderbird/thunderbird';
-
-
-super + ctrl + alt + r
-											jumpapp '/opt/sublime_text_3/sublime_text' & \
-											firefox --profile $HOME/.mozilla/firefox/stable.profile & \
-											jumpapp spacefm & \
-											jumpapp mysql-workbench & \
-											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh' & \
-											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh' & \
-											jumpapp -f '/usr/bin/skype'
+##											
 super + Return
 											terminator
+super + b
+											gcolor2
+XF86ScreenSaver
+											xscreensaver-command -activate
+super + l
+											xscreensaver-command -activate
+super + shift + l
+											xscreensaver-command -lock
 super + shift + Return
 											terminator --profile red
 super + alt + Escape
-											/opt/scripts/killbymouse.sh
+											killbymouse.sh
 alt + F2
 											/usr/bin/gmrun
 alt + F3
@@ -162,7 +169,7 @@ super + shift + g
 super + shift + q
 											zenity --question --text 'mysql-workbench' && /usr/bin/mysql-workbench
 super + shift + x
-											zenity --question --text 'zap'             && /opt/zap/zap.sh
+											zenity --question --text 'zap'             && zaproxy
 super + shift + r
 											zenity --question --text 'filezilla'       && /usr/bin/filezilla
 super + shift + a
@@ -170,13 +177,13 @@ super + shift + a
 super + shift + f
 											/usr/bin/thunar
 super + x
-											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' '/opt/zap/zap.sh'
+											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' zaproxy
 super + w
-											wmctrl -a 'Mozilla Firefox' firefox
-super + shift + w
-											wmctrl -a 'Firefox Developer Edition'
+											jumpapp -c Firefox -f '/home/morock/opt/firefox/firefox'
 super + t
 											jumpapp -c Skype -i skype -f '/usr/bin/skype'
+super + h
+											jumpapp -c HipChat -i HipChat4 -f '/opt/HipChat4/bin/HipChat4'
 super + e
 											jumpapp -c Thunderbird -i Mail '/usr/bin/thunderbird'
 super + s
@@ -190,7 +197,7 @@ super + f
 super + r
 											jumpapp -c Terminator -i terminator '/usr/bin/terminator'
 super + g
-											jumpapp -c SmartGit -i SmartGit '/opt/smartgit/bin/smartgit.sh'
+											jumpapp -c SmartGit -i SmartGit 'smartgit'
 super + y
 											wmctrl -a 'Log for '
 super + c

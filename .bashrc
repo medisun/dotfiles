@@ -170,6 +170,9 @@ esac
 function matrix {
     echo -e "\e[1;40m" ; clear ; while :; do sleep 0.05s; echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $( printf "\U$(( $RANDOM % 500 ))" ) ;sleep 0.05; done|gawk '{c=$4; letter=$4;a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}'
 }
+function top_inotify {
+    for foo in /proc/*/fd/*; do readlink -f $foo; done | grep inotify | cut -d/ -f3 | xargs -I '{}' -- ps --no-headers -o '%p %U %c' -p '{}' | uniq -c | sort -nr
+}
 
 
 # enable programmable completion features (you don't need to enable
@@ -208,8 +211,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Tools
-alias lh='ls -Alh'
-alias ll='ls -Alh'
+alias ll='ls -AlhFZ --group-directories-first'
 alias la='ls -A'
 alias l='ls -CF'
 alias composer='composer --ansi'
@@ -240,4 +242,5 @@ alias dbseed='php artisan db:seed'
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 [ -f ~/.bash/bspc_completion ] && source ~/.bash/bspc_completion
