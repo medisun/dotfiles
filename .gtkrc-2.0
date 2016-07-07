@@ -2,17 +2,18 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/morock/.gtkrc-2.0.mine"
-gtk-theme-name="Menda"
-gtk-icon-theme-name="matefaenzadark"
-gtk-font-name="Sans 8"
+gtk-theme-name="Arc-Dark"
+gtk-icon-theme-name="Faenza-Ambiance"
+gtk-font-name="Sans 9"
 gtk-cursor-theme-name="Menda-Cursor"
-gtk-cursor-theme-size=8
-gtk-toolbar-style=GTK_TOOLBAR_BOTH
-gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
-gtk-button-images=1
+gtk-cursor-theme-size=0
+gtk-toolbar-style=GTK_TOOLBAR_ICONS
+gtk-toolbar-icon-size=GTK_ICON_SIZE_BUTTON
+gtk-button-images=0
 gtk-menu-images=1
 gtk-enable-event-sounds=1
 gtk-enable-input-feedback-sounds=1
 gtk-xft-antialias=1
 gtk-xft-hinting=1
-gtk-xft-hintstyle="hintfull"
+gtk-xft-hintstyle="hintslight"
+gtk-xft-rgba="rgb"
