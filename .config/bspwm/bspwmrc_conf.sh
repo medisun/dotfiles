@@ -18,13 +18,11 @@ bspc monitor -d "dev" "term" "git" "zap" "sql" "disk" "ff" "req" "email" "hip" "
 
 
 bspc config border_width   2
-bspc config window_gap     3
-bspc config top_padding    20
+bspc config window_gap     2
+bspc config -m LVDS1 top_padding 20
 bspc config right_padding  2
 bspc config bottom_padding 2
 bspc config left_padding   2
-
-
 
 # shift, control, lock, mod1, mod2, mod3, mod4, mod5.
 bspc config pointer_modifier mod1
@@ -32,7 +30,7 @@ bspc config pointer_modifier mod1
 bspc config pointer_action1 move
 bspc config pointer_action2 resize_side
 bspc config pointer_action3 resize_corner
-bspc config pointer_motion_interval 10
+bspc config pointer_motion_interval 5
 
 # Visual options
 bspc config remove_disabled_monitors     false
@@ -43,8 +41,8 @@ bspc config merge_overlapping_monitors   true
 # bspc config auto_alternate               true
 # bspc config auto_cancel                  true
 
-bspc config center_pseudo_tiled       true
-bspc config initial_polarity          second_child    # first_child, second_child.
+bspc config center_pseudo_tiled       false
+bspc config initial_polarity          first_child    # first_child, second_child.
 bspc config split_ratio               0.66
 
 bspc config focus_follows_pointer     true
@@ -88,11 +86,12 @@ bspc rule -a Nitrogen             state=floating    border=off
 bspc rule -a org-zaproxy-zap-ZAP  desktop=zap
 bspc rule -a Pavucontrol          state=floating    border=off
 bspc rule -a Player               state=floating
-bspc rule -a Scribes              state=floating
+bspc rule -a Gucharmap            state=floating
 bspc rule -a SmartGit             desktop=git
 bspc rule -a Spacefm              desktop=disk
 bspc rule -a Surf                 state=floating
 bspc rule -a Terminator           locked=on
+bspc rule -a Meld                 locked=on
 bspc rule -a Thunar               state=floating
 bspc rule -a Tilda                state=floating    border=off locked=on
 bspc rule -a Tint2                border=off        sticky=on  layer=below

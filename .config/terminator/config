@@ -99,7 +99,7 @@
     background_image = None
     color_scheme = custom
     cursor_color = "#009dda"
-    font = Ubuntu Mono 10
+    font = Monospace 8
     scroll_on_output = False
     scrollback_infinite = True
     scrollback_lines = 5000
@@ -109,14 +109,15 @@
   [[blue]]
     background_color = "#002b36"
     background_image = None
-    font = Ubuntu Mono 10
+    font = Monospace 8
     foreground_color = "#839496"
+    scrollbar_position = hidden
     show_titlebar = False
     use_system_font = False
   [[red]]
     background_color = "#420707"
     background_image = None
-    font = Ubuntu Mono 10
+    font = Monospace 8
     foreground_color = "#bebd75"
     scrollbar_position = hidden
     show_titlebar = False

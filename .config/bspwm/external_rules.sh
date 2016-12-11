@@ -20,6 +20,9 @@ title=$(/usr/bin/xtitle "${wid}")
 # echo 'title ' $title >> '/tmp/wininfo'
 
 case "$class" in
+    "ncmpcpp_gui") echo 'state=floating border=off' ;;
+    "OWASP") echo 'desktop=zap' ;;
+
     "Firefox") case "$instance" in
 
         "Dialog") case "$title" in
@@ -85,6 +88,7 @@ case "$class" in
                 "File Transf") echo 'split_dir=south split_ratio=0.8';;
                 "Information") echo 'state=floating';;
                 "Profile for") echo 'state=floating';;
+                "Add people") echo 'state=floating';;
                             *) echo 'split_dir=east split_ratio=0.75';;
             esac ;;
         esac ;;
@@ -108,7 +112,7 @@ case "$class" in
             echo 'desktop=dev'
     esac ;;
 
-    "chromium")
+    "chromium"|"Chromium")
         case "$role" in
             'pop-up') echo 'state=floating';;
         esac
@@ -119,7 +123,7 @@ case "$class" in
             "Hangouts") echo 'state=floating';;
         esac
         
-        echo 'desktop=chrome'
+        echo 'desktop=chrome border=on'
     ;;
 
     "Terminator") case "$title" in

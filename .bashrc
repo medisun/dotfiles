@@ -1,8 +1,7 @@
 # Add nano as default editor
-export EDITOR=nano
+export EDITOR=vi
 export TERMINAL=terminator
-export BROWSER=surf
-export VISUAL="vim"
+export VISUAL=vim
 # Gtk themes 
 export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
@@ -94,15 +93,23 @@ function __prompt_command() {
     local EXIT="$?"             # This needs to be first
     PS1=""
 
-    local LOW='\[\e[m\]'
-    local RED='\[\e[0;91m\]'
-    local REDB='\[\e[1;92m\]'
-    local GRN='\[\e[0;92m\]'
-    local GRNB='\[\e[1;92m\]'
-    local BLWH='\[\e[1;30;107m\]'
-    local WHB='\[\e[1;37m\]'
-    local CLR='\[\e[0;0m\]'
+    local LOW=''
+    local RED=''
+    local REDB=''
+    local REDBG=''
+    local GRN=''
+    local GRNB=''
+    local BLWH=''
+    local WHB=''
+    local CLR=''
+    local BRWN=''
+    local YLLW_ON_BROWN=''
+    local BLUE_ON_MAGENTA=''
 
+    local USER_PROMPT=''
+    local DIRECTORY_PROMPT=''
+    local TMUX_PROMPT=''
+    local RANGER_PROMPT=''
     # We have color support; assume it's compliant with Ecma-48
     # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
     # a case would tend to support setf rather than setaf.)
@@ -112,29 +119,42 @@ function __prompt_command() {
         color_prompt=
     fi
 
-    if [ -n "$RANGER_LEVEL" ]; then
-        RANGER_PROMPT=" rg:${RANGER_LEVEL}"
-    else 
-        RANGER_PROMPT=''
+    if [ "$color_prompt" = yes ]; then
+        LOW='\[\e[m\]'
+        RED='\[\e[0;91m\]'
+        REDB='\[\e[1;91m\]'
+        REDBG='\[\e[1;37;41m\]'
+        GRN='\[\e[0;92m\]'
+        GRNB='\[\e[1;92m\]'
+        BLWH='\[\e[7;49;93m\]'
+        WHB='\[\e[1;37m\]'
+        CLR='\[\e[0;0;0m\]'
+        BRWN='\[\e[;;40m\]'
+        YLLW_ON_BROWN='\[\e[33;40m\]'
+        BLUE_ON_MAGENTA='\[\e[1;33;40m\]'
     fi
 
-    if [ "$EUID" -ne 0 ] && [ "$color_prompt" = yes ]; then
-        USER_PROMPT="${GRNB}\u@\H \$"
+    if [ "$EUID" -ne 0 ]; then
+        USER_PROMPT="${YLLW_ON_BROWN} \u${BRWN}@${BLUE_ON_MAGENTA}\H${BRWN}"
     else
-        USER_PROMPT="${REDB}\u@\H \$"
+        USER_PROMPT="${REDB} \u${BRWN}@${BLUE_ON_MAGENTA}\H${BRWN}"
+    fi
+
+    if [ -w "$PWD" ]; then
+        DIRECTORY_PROMPT=":${BLWH}${PWD//$HOME/~} ${CLR}"
+    else 
+        DIRECTORY_PROMPT=":${REDBG}${PWD//$HOME/~} ${CLR}"
     fi
 
     if [ -n "$TMUX" ]; then
         TMUX_PROMPT=" tmux"
-    else
-        TMUX_PROMPT=""
     fi
 
-    if [ "$color_prompt" = yes ]; then
-        PS1="${CLR}${LOW}\nexit: ${EXIT}\n${GRN}┳ \#.${debian_chroot:+($debian_chroot)} $USER_PROMPT${GRN} [${BLWH} ${PWD//$HOME/~} ${GRN}] ${WHB}\$(stat -c %A '$PWD')${GRN} shl:${SHLVL}${TMUX_PROMPT}${RANGER_PROMPT}\n┗${CLR} "
-    else
-        PS1="\nexit: ${EXIT}\n┳ \#.${debian_chroot:+($debian_chroot)} \u@\H \$ [ ${PWD//$HOME/~} ] \$(stat -c %A '$PWD') SL:$SHLVL $RANGER_PROMPT\n┗ "
+    if [ -n "$RANGER_LEVEL" ]; then
+        RANGER_PROMPT=" ranger:${RANGER_LEVEL}"
     fi
+
+    PS1="${CLR}${LOW}\nexit: ${EXIT}\n${GRN}▼ \#.${debian_chroot:+($debian_chroot)}${USER_PROMPT}${DIRECTORY_PROMPT}${BRWN} shl:${SHLVL}${TMUX_PROMPT}${RANGER_PROMPT} \T ${CLR}\n"
 }
 
 export PS1='\[\e[1;35m\]▶\[\e[0m\] '
@@ -173,7 +193,9 @@ function matrix {
 function top_inotify {
     for foo in /proc/*/fd/*; do readlink -f $foo; done | grep inotify | cut -d/ -f3 | xargs -I '{}' -- ps --no-headers -o '%p %U %c' -p '{}' | uniq -c | sort -nr
 }
-
+function ippublic {
+    wget http://ipinfo.io/ip -qO -
+}
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -244,3 +266,11 @@ alias dbseed='php artisan db:seed'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -f ~/.bash/bspc_completion ] && source ~/.bash/bspc_completion
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+export JAVA_HOME='/usr/lib/jvm/java-7-openjdk/'
+export ANDROID_HOME="$HOME/Android/Sdk/"
+
+[ -s "/etc/profile.d/android-sdk-platform-tools.sh" ] && . "/etc/profile.d/android-sdk-platform-tools.sh" 

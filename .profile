@@ -21,6 +21,11 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# add ruby environment
+if [ -d "$HOME/.gem/ruby/2.3.0/bin" ] ; then
+    PATH="$PATH:$HOME/.gem/ruby/2.3.0/bin"
+fi
+
 # Path LC_ALL=
 if [ -e "/home/$USER/.pam_environment" ]; then
         LANG=$( cat ~/.pam_environment | grep LANGUAGE | cut -d= -f2 | cut -c 1-5 )
@@ -34,3 +39,5 @@ if [ -e "/home/$USER/.pam_environment" ]; then
         export LANGUAGE=en_US.UTF-8
     fi
 fi
+
+export PATH="${PATH}:/opt/android-sdk/platform-tools:/opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:/opt/android-sdk-linux/build-tools/23.0.2"

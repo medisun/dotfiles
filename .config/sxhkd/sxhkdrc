@@ -82,6 +82,10 @@ alt + Escape
 											bspc node --focus older
 super + d
 											"$HOME/bin/windowmap.sh" $(bspc query -n focused --nodes)
+super + ctrl + b ; {1,2,3,4,5,6,7,8,9,0}
+											bspc config border_width {1,2,3,4,5,6,7,8,9,0}
+super + d
+											"$HOME/bin/windowmap.sh" $(bspc query -n focused --nodes)
 super + shift + d
 											"$HOME/bin/windowmap.sh"
 super + alt + Return
@@ -99,13 +103,15 @@ super + ctrl + alt + {Left,Down,Up,Right}
 super + ctrl + alt + {1-9}
 											bspc node --presel-ratio {0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1}
 super + ctrl + {1-9}
-											bspc node focused --ratio {0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1}
+											bspc node @focused:/ --ratio {0.9,0.8,0.7,0.6,0.5,0.4,0.3,0.2,0.1}
 super + ctrl + alt + {_,shift + }space
 											bspc {node --presel-dir cancel,desktop --cancel-presel}
 super + alt + {Left,Down,Up,Right}
 											bspc node --to-node {west,south,north,east}
 super + alt + shift + {Left,Down,Up,Right}
-											bspc node focused --edge {right -10,up +10,down -10,left +10}
+											bspc node focused --resize {right -10 0,up 0 +10,down 0 -10,left +10 0}
+super + alt + shift + {Left,Down,Up,Right}
+											bspc node focused --move {-10 0,10 0,0 10,0 -10}
 super + {_,shift + }{1-9,0}
 											bspc {desktop --focus,node --to-desktop } ^{1-9,10}
 super + {equal,minus}
@@ -148,6 +154,10 @@ super + ctrl + button{4,5}
 ##											
 super + Return
 											terminator
+super + shift + Return
+											terminator --profile red
+super + ctrl + Return
+											terminator --profile blue
 super + b
 											gcolor2
 XF86ScreenSaver
@@ -156,8 +166,6 @@ super + l
 											xscreensaver-command -activate
 super + shift + l
 											xscreensaver-command -lock
-super + shift + Return
-											terminator --profile red
 super + alt + Escape
 											killbymouse.sh
 alt + F2
@@ -177,13 +185,13 @@ super + shift + a
 super + shift + f
 											/usr/bin/thunar
 super + x
-											jumpapp -c 'org-zaproxy-zap-ZAP' -i 'sun-awt-X11-XFramePeer' zaproxy
+											jumpapp -c 'OWASP' -i 'sun-awt-X11-XFramePeer' zaproxy
 super + w
-											jumpapp -c Firefox -f '/home/morock/opt/firefox/firefox'
+											(( pidof /home/morock/opt/firefox/firefox && wmctrl -xa Firefox ) || /usr/bin/optirun /home/morock/opt/firefox/firefox)
 super + t
 											jumpapp -c Skype -i skype -f '/usr/bin/skype'
 super + h
-											jumpapp -c HipChat -i HipChat4 -f '/opt/HipChat4/bin/HipChat4'
+											wmctrl -xa 'NetBeans IDE 8.1'
 super + e
 											jumpapp -c Thunderbird -i Mail '/usr/bin/thunderbird'
 super + s
@@ -207,21 +215,28 @@ super + Delete
 super + alt + v
 											( pidof pavucontrol && wmctrl -xa Pavucontrol ) || pavucontrol
 super + v
-											jumpapp -c Chromium -i Chromium '/usr/bin/chromium'
+											( pidof chromium && wmctrl -xa Chromium ) || /usr/bin/optirun /usr/bin/chromium
+shift + super + v
+											optirun chromium --proxy-server=127.0.0.1:8080
 shift + Print
 											xfce4-screenshooter
 Print
 											scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp; viewnior ~/images/$f'
-# XF86Tools
-											# urxvt -e ncmpcpp
-# XF86Audio{Prev,Next,Play,Stop}
-											# mpc -q {prev,next,play,pause}
-# shift + XF86Audio{Prev,Next}
-											# mpc seek {-,+}00:00:10
-XF86Audio{Lower,Raise}Volume
-											amixer -D pulse sset Master 4%{-,+} &> /dev/null
-XF86AudioMute
-											amixer -D pulse sset Master toggle &> /dev/null
+XF86AudioStop
+											wmctrl -x -a ncmpcpp_gui || xterm -class ncmpcpp_gui -bg "rgb:20/20/20" -fa "DejaVu Sans Mono:size=8:antialias=true" -e ncmpcpp
+XF86AudioPlay
+											mpc -q toggle
+XF86Audio{Prev,Next}
+											mpc -q {prev,next}
+shift + XF86Audio{Prev,Next}
+											mpc seek {-,+}00:00:5
+ctrl + XF86Audio{Prev,Next}
+											mpc seek {-,+}00:01:00
+# this key already reserved by pa-applet
+# XF86Audio{Lower,Raise}Volume
+#											amixer -D pulse sset Master 4%{-,+} &> /dev/null
+# XF86AudioMute
+#											amixer -D pulse sset Master toggle &> /dev/null
 
 # XF86Back
 # XF86Forward
