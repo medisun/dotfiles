@@ -6,7 +6,7 @@ desktop=$1
 monitor=$2
 
 if [ -z "$monitor" ]; then
-    monitor=$(bspc query -M | head -n1)
+    monitor='focused'
 fi
 
-[ $(bspc query -m "$monitor" -D | grep "${desktop}") ] || bspc monitor "$monitor" --add-desktops "$desktop"
+[ $(bspc query -m "${monitor}" -D --names | grep "${desktop}") ] || bspc monitor "$monitor" --add-desktops "$desktop"

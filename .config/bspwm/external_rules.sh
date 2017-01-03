@@ -12,6 +12,7 @@ class=$2
 instance=$3
 role=$(/usr/bin/xprop -id "${wid}" 'WM_WINDOW_ROLE' | grep --color=never -Eo '".+' | rev | cut -c2- | rev | cut -c2-)
 title=$(/usr/bin/xtitle "${wid}")
+# notify-send "${title}"
 
 # echo '' >> '/tmp/wininfo'
 # echo 'role ' $role >> '/tmp/wininfo'
@@ -19,9 +20,14 @@ title=$(/usr/bin/xtitle "${wid}")
 # echo 'instance ' $instance >> '/tmp/wininfo'
 # echo 'title ' $title >> '/tmp/wininfo'
 
+if [[ "$role" == 'GtkFileChooserDialog' ]]; then
+    exit 0;
+fi
+
 case "$class" in
+    *plugin-container) echo 'state=tiled border=off';;
     "ncmpcpp_gui") echo 'state=floating border=off' ;;
-    "OWASP") echo 'desktop=zap' ;;
+    "OWASP ZAP") echo 'desktop=zap' ;;
 
     "Firefox") case "$instance" in
 

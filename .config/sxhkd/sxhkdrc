@@ -81,13 +81,11 @@ alt + {_,shift +} Tab
 alt + Escape
 											bspc node --focus older
 super + d
-											"$HOME/bin/windowmap.sh" $(bspc query -n focused --nodes)
-super + ctrl + b ; {1,2,3,4,5,6,7,8,9,0}
-											bspc config border_width {1,2,3,4,5,6,7,8,9,0}
-super + d
-											"$HOME/bin/windowmap.sh" $(bspc query -n focused --nodes)
+											"$HOME/bin/windowmap.sh" -w $(bspc query -n focused --nodes)
 super + shift + d
 											"$HOME/bin/windowmap.sh"
+super + ctrl + b ; {1,2,3,4,5,6,7,8,9,0}
+											bspc config border_width {1,2,3,4,5,6,7,8,9,0}
 super + alt + Return
 											bspc node --swap biggest
 super + {_,shift + } {Left,Down,Up,Right}
@@ -137,7 +135,7 @@ super + ctrl + {_, shift} + minus
 ~button1
 											bspc node --focus pointed
 super + button1
-											"$HOME/bin/windowmap.sh" $(bspc query -n focused --nodes)
+											"$HOME/bin/windowmap.sh" -w $(bspc query -n focused --nodes)
 super + button2
 											"$HOME/bin/windowmap.sh" -d
 super + button3
@@ -173,33 +171,31 @@ alt + F2
 alt + F3
 											"$HOME/.config/dmenu/dmenu-bind.sh"
 super + shift + g
-											zenity --question --text 'smartgit'        && /opt/smartgit/bin/smartgit.sh
+											zenity --question --text 'smartgit'        && desktop.sh git && sleep 1 && /opt/smartgit/bin/smartgit.sh
 super + shift + q
-											zenity --question --text 'mysql-workbench' && /usr/bin/mysql-workbench
+											zenity --question --text 'mysql-workbench' && desktop.sh sql && sleep 1 && /usr/bin/mysql-workbench
 super + shift + x
-											zenity --question --text 'zap'             && zaproxy
+											zenity --question --text 'zap'             && desktop.sh zap && sleep 1 && zaproxy
 super + shift + r
-											zenity --question --text 'filezilla'       && /usr/bin/filezilla
-super + shift + a
-											/opt/Atom/atom
+											zenity --question --text 'filezilla'       && desktop.sh disk && sleep 1 && /usr/bin/filezilla
 super + shift + f
 											/usr/bin/thunar
 super + x
-											jumpapp -c 'OWASP' -i 'sun-awt-X11-XFramePeer' zaproxy
+											desktop.sh zap ; jumpapp -c 'OWASP' -i 'sun-awt-X11-XFramePeer' zaproxy
 super + w
 											(( pidof /home/morock/opt/firefox/firefox && wmctrl -xa Firefox ) || /usr/bin/optirun /home/morock/opt/firefox/firefox)
 super + t
 											jumpapp -c Skype -i skype -f '/usr/bin/skype'
 super + h
-											wmctrl -xa 'NetBeans IDE 8.1'
+											(( pidof /home/morock/opt/netbeans-8.1/bin/jre/bin/java && wmctrl -xa 'NetBeans IDE 8.1' ) || desktop.sh nb /home/morock/opt/netbeans-8.1/bin/netbeans)
 super + e
-											jumpapp -c Thunderbird -i Mail '/usr/bin/thunderbird'
+											desktop.sh mail ; jumpapp -c Thunderbird -i Mail '/usr/bin/thunderbird'
 super + s
-											jumpapp sublime_text
+											desktop dev ; jumpapp sublime_text
 super + q
 											jumpapp mysql-workbench
 super + a
-											jumpapp spacefm
+											desktop.sh disk ; jumpapp spacefm
 super + f
 											jumpapp thunar
 super + r
@@ -217,7 +213,7 @@ super + alt + v
 super + v
 											( pidof chromium && wmctrl -xa Chromium ) || /usr/bin/optirun /usr/bin/chromium
 shift + super + v
-											optirun chromium --proxy-server=127.0.0.1:8080
+											optirun chromium --disable-background-networking --incognito --disable-client-side-phishing-detection --proxy-server=127.0.0.1:8080
 shift + Print
 											xfce4-screenshooter
 Print
