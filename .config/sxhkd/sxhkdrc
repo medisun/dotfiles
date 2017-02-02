@@ -138,6 +138,8 @@ super + button1
 											"$HOME/bin/windowmap.sh" -w $(bspc query -n focused --nodes)
 super + button2
 											"$HOME/bin/windowmap.sh" -d
+super + shift + button3
+											"$HOME/bin/windowmap.sh" -d
 super + button3
 											"$HOME/bin/windowmap.sh"
 alt + button{4,5}
@@ -182,6 +184,10 @@ super + shift + f
 											/usr/bin/thunar
 super + x
 											desktop.sh zap ; jumpapp -c 'OWASP' -i 'sun-awt-X11-XFramePeer' zaproxy
+super + grave
+											wmctrl -Fa Min
+super + shift + grave
+											/usr/lib/electron/electron /usr/bin/min
 super + w
 											(( pidof /home/morock/opt/firefox/firefox && wmctrl -xa Firefox ) || /usr/bin/optirun /home/morock/opt/firefox/firefox)
 super + t
@@ -191,7 +197,7 @@ super + h
 super + e
 											desktop.sh mail ; jumpapp -c Thunderbird -i Mail '/usr/bin/thunderbird'
 super + s
-											desktop dev ; jumpapp sublime_text
+											desktop.sh dev ; jumpapp sublime_text
 super + q
 											jumpapp mysql-workbench
 super + a

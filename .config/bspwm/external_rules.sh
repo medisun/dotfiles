@@ -109,7 +109,7 @@ case "$class" in
             "gimp-toolbox") echo 'split_dir=east split_ratio=0.85';;
         esac
         # /home/morock/bin/desktop.sh 'gimp' '1'
-        echo 'desktop=gimp';;
+        echo 'desktop=gimp state=floating';;
     esac ;;
 
     "Sublime_text") case "$instance" in

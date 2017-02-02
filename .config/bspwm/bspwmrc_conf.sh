@@ -90,6 +90,7 @@ bspc rule -a Spacefm              desktop=disk
 bspc rule -a Surf                 state=floating
 bspc rule -a Terminator           locked=on
 bspc rule -a Meld                 locked=on
+bspc rule -a Min                  desktop=M
 bspc rule -a Thunar               state=floating
 bspc rule -a Tilda                state=floating    border=off locked=on
 bspc rule -a Tint2                border=off        sticky=on  layer=below

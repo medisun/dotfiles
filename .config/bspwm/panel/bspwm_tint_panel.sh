@@ -27,18 +27,20 @@ while read -r line ; do
 
             while [ $# -gt 0 ] ; do
                 item=$1
-                name=${item#?}
+                full_name=${item#?}
+                name=$(echo "${full_name}" | cut -c1-2)
+
                 case $item in
                     M*)
                         # active monitor
                         if [ $num_mon -gt 1 ] ; then
-                            wm_infos="$wm_infos <span foreground=\"$COLOR_ACTIVE_MONITOR_FG\" background=\"$COLOR_ACTIVE_MONITOR_BG\"> ${name} </span>"
+                            wm_infos="$wm_infos<span foreground=\"$COLOR_ACTIVE_MONITOR_FG\" background=\"$COLOR_ACTIVE_MONITOR_BG\"> ${name} </span>"
                         fi
                         ;;
                     m*)
                         # inactive monitor
                         if [ $num_mon -gt 1 ] ; then
-                            wm_infos="$wm_infos <span foreground=\"$COLOR_INACTIVE_MONITOR_FG\" background=\"$COLOR_INACTIVE_MONITOR_BG\"> ${name} </span>"
+                            wm_infos="$wm_infos<span foreground=\"$COLOR_INACTIVE_MONITOR_FG\" background=\"$COLOR_INACTIVE_MONITOR_BG\"> ${name} </span>"
                         fi
                         ;;
                     O*)
@@ -68,10 +70,10 @@ while read -r line ; do
                     L*) case ${name} in
                         # layout
                         T*) 
-                            wm_infos="$wm_infos <span foreground=\"$COLOR_LAYOUT_FG\" background=\"$COLOR_LAYOUT_BG\"> ◱ </span>"
+                            wm_infos="$wm_infos<span foreground=\"$COLOR_LAYOUT_FG\" background=\"$COLOR_LAYOUT_BG\"> ◱ </span>"
                             ;;
                         M*)
-                            wm_infos="$wm_infos <span foreground=\"$COLOR_LAYOUT_FG\" background=\"$COLOR_LAYOUT_BG\"> ◻ </span>"
+                            wm_infos="$wm_infos<span foreground=\"$COLOR_LAYOUT_FG\" background=\"$COLOR_LAYOUT_BG\"> ◻ </span>"
                             ;;
                         esac
                         ;;

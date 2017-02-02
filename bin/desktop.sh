@@ -9,4 +9,4 @@ if [ -z "$monitor" ]; then
     monitor='focused'
 fi
 
-[ $(bspc query -m "${monitor}" -D --names | grep "${desktop}") ] || bspc monitor "$monitor" --add-desktops "$desktop"
+[ $(bspc query -m "${monitor}" -D --names | grep "${desktop}" | wc -l) -eq 0 ] && bspc monitor "$monitor" --add-desktops "$desktop"
