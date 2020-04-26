@@ -37,13 +37,13 @@ while read -r line ; do
                     M*)
                         # active monitor
                         if [ $num_mon -gt 1 ] ; then
-                            wm_infos="$wm_infos ^fg($COLOR_ACTIVE_MONITOR_FG)^bg($COLOR_ACTIVE_MONITOR_BG)^ca(1, bspc monitor --focus '${name}') ${name} ^ca()^bg()^fg() "
+                            wm_infos="$wm_infos^fg($COLOR_ACTIVE_MONITOR_FG)^bg($COLOR_ACTIVE_MONITOR_BG)^ca(1, bspc monitor --focus '${name}') ${name} ^ca()^bg()^fg()"
                         fi
                         ;;
                     m*)
                         # inactive monitor
                         if [ $num_mon -gt 1 ] ; then
-                            wm_infos="$wm_infos ^fg($COLOR_INACTIVE_MONITOR_FG)^bg($COLOR_INACTIVE_MONITOR_BG)^ca(1, bspc monitor --focus '${name}') ${name} ^ca()^bg()^fg() "
+                            wm_infos="$wm_infos^fg($COLOR_INACTIVE_MONITOR_FG)^bg($COLOR_INACTIVE_MONITOR_BG)^ca(1, bspc monitor --focus '${name}') ${name} ^ca()^bg()^fg()"
                         fi
                         ;;
                     O*)
@@ -72,7 +72,7 @@ while read -r line ; do
                         ;;
                     L*)
                         # layout
-                        wm_infos="$wm_infos ^fg($COLOR_LAYOUT_FG)^bg($COLOR_LAYOUT_BG)^ca(1, bspc desktop --layout next) ${name} ^ca()^bg()^fg()"
+                        wm_infos="${wm_infos}^fg($COLOR_LAYOUT_FG)^bg($COLOR_LAYOUT_BG)^ca(1, bspc desktop --layout next) ${name} ^ca()^bg()^fg()"
                         ;;
                 esac
                 shift
@@ -81,7 +81,7 @@ while read -r line ; do
     esac
 
     # wm_infos="${wm_infos} [h$(cat "${WINDOW_STACK}" | wc -l)] " 
-    # wm_infos="${wm_infos} ^ca(1, /home/morock/bin/dzen_menu.sh)[h$(cat "${WINDOW_STACK}" | wc -l)]^ca() " 
+    # wm_infos="${wm_infos} ^ca(1, $HOME/bin/dzen_menu.sh)[h$(cat "${WINDOW_STACK}" | wc -l)]^ca() " 
 
     echo "${wm_infos}"
 done

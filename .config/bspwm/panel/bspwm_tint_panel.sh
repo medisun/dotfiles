@@ -1,5 +1,6 @@
 #! /bin/sh
 
+
 SRCDIR="$(dirname "$0")"
 
 . "$SRCDIR/panel_colors"
@@ -34,46 +35,48 @@ while read -r line ; do
                     M*)
                         # active monitor
                         if [ $num_mon -gt 1 ] ; then
-                            wm_infos="$wm_infos<span foreground=\"$COLOR_ACTIVE_MONITOR_FG\" background=\"$COLOR_ACTIVE_MONITOR_BG\"> ${name} </span>"
+                            wm_infos="$wm_infos<span foreground=\"$COLOR_ACTIVE_MONITOR_FG\" background=\"$COLOR_ACTIVE_MONITOR_BG\"> ${name}</span>"
                         fi
                         ;;
                     m*)
                         # inactive monitor
                         if [ $num_mon -gt 1 ] ; then
-                            wm_infos="$wm_infos<span foreground=\"$COLOR_INACTIVE_MONITOR_FG\" background=\"$COLOR_INACTIVE_MONITOR_BG\"> ${name} </span>"
+                            wm_infos="$wm_infos<span foreground=\"$COLOR_INACTIVE_MONITOR_FG\" background=\"$COLOR_INACTIVE_MONITOR_BG\"> ${name}</span>"
                         fi
                         ;;
                     O*)
                         # focused occupied desktop
-                        wm_infos="${wm_infos}<span foreground=\"$COLOR_FOCUSED_OCCUPIED_FG\" background=\"$COLOR_FOCUSED_OCCUPIED_BG\"> ${name} </span>"
+                        wm_infos="${wm_infos}<span foreground=\"$COLOR_FOCUSED_OCCUPIED_FG\" underline=\"single\" background=\"$COLOR_FOCUSED_OCCUPIED_BG\">[${name}]</span>"
+                        # wm_infos="${wm_infos}<span foreground=\"$COLOR_FOCUSED_OCCUPIED_FG\" underline=\"single\" background=\"$COLOR_FOCUSED_OCCUPIED_BG\"> ${name}</span>"
                         ;;
                     F*)
                         # focused free desktop
-                        wm_infos="${wm_infos}<span foreground=\"$COLOR_FOCUSED_FREE_FG\" background=\"$COLOR_FOCUSED_FREE_BG\"> ${name} </span>"
+                        wm_infos="${wm_infos}<b><span foreground=\"$COLOR_FOCUSED_FREE_FG\" underline=\"single\" background=\"$COLOR_FOCUSED_FREE_BG\">[${name}]</span></b>"
+                        # wm_infos="${wm_infos}<b><span foreground=\"$COLOR_FOCUSED_FREE_FG\" underline=\"single\" background=\"$COLOR_FOCUSED_FREE_BG\"> ${name}</span></b>"
                         ;;
                     U*)
                         # focused urgent desktop
-                        wm_infos="${wm_infos}<span foreground=\"$COLOR_FOCUSED_URGENT_FG\" background=\"$COLOR_FOCUSED_URGENT_BG\"> ${name} </span>"
+                        wm_infos="${wm_infos}<b><span foreground=\"$COLOR_FOCUSED_URGENT_FG\" background=\"$COLOR_FOCUSED_URGENT_BG\"> ${name}</span></b>"
                         ;;
                     o*)
                         # occupied desktop
-                        wm_infos="${wm_infos}<span foreground=\"$COLOR_OCCUPIED_FG\" background=\"$COLOR_OCCUPIED_BG\"> ${name} </span>"
+                        wm_infos="${wm_infos}<span foreground=\"$COLOR_OCCUPIED_FG\" background=\"$COLOR_OCCUPIED_BG\"> ${name}</span>"
                         ;;
                     f*)
                         # free desktop
-                        wm_infos="${wm_infos}<span foreground=\"$COLOR_FREE_FG\" background=\"$COLOR_FREE_BG\"> ${name} </span>"
+                        wm_infos="${wm_infos}<span foreground=\"$COLOR_FREE_FG\" background=\"$COLOR_FREE_BG\"> ${name}</span>"
                         ;;
                     u*)
                         # urgent desktop
-                        wm_infos="${wm_infos}<span foreground=\"$COLOR_URGENT_FG\" background=\"$COLOR_URGENT_BG\"> ${name} </span>"
+                        wm_infos="${wm_infos}<span foreground=\"$COLOR_URGENT_FG\" background=\"$COLOR_URGENT_BG\"> ${name}</span>"
                         ;;
                     L*) case ${name} in
                         # layout
                         T*) 
-                            wm_infos="$wm_infos<span foreground=\"$COLOR_LAYOUT_FG\" background=\"$COLOR_LAYOUT_BG\"> ◱ </span>"
+                            wm_infos="$wm_infos<span foreground=\"$COLOR_LAYOUT_FG\" background=\"$COLOR_LAYOUT_BG\"> ◱</span>"
                             ;;
                         M*)
-                            wm_infos="$wm_infos<span foreground=\"$COLOR_LAYOUT_FG\" background=\"$COLOR_LAYOUT_BG\"> ◻ </span>"
+                            wm_infos="$wm_infos<span foreground=\"$COLOR_LAYOUT_FG\" background=\"$COLOR_LAYOUT_BG\"> ☐</span>"
                             ;;
                         esac
                         ;;
@@ -84,7 +87,7 @@ while read -r line ; do
     esac
 
     # wm_infos="${wm_infos} [h$(cat "${WINDOW_STACK}" | wc -l)] " 
-    # wm_infos="${wm_infos} ^ca(1, /home/morock/bin/dzen_menu.sh)[h$(cat "${WINDOW_STACK}" | wc -l)]^ca() " 
+    # wm_infos="${wm_infos} ^ca(1, $HOME/bin/dzen_menu.sh)[h$(cat "${WINDOW_STACK}" | wc -l)]^ca() " 
 
-    echo "${wm_infos}"
+    echo "${wm_infos} "
 done

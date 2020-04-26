@@ -4,9 +4,8 @@
   title_inactive_bg_color = "#000000"
   title_transmit_bg_color = "#ffb200"
 [keybindings]
-  broadcast_all = <Primary><Shift>d
-  broadcast_off = <Primary><Shift><Alt>d
-  hide_window = <Shift><Control>a
+  edit_tab_title = <Primary><Shift><Alt>e
+  hide_window = None
   switch_to_tab_1 = <Primary>1
   switch_to_tab_10 = <Primary>0
   switch_to_tab_2 = <Primary>2
@@ -21,104 +20,68 @@
   [[default]]
     [[[child1]]]
       parent = window0
-      profile = default
       type = Terminal
     [[[window0]]]
       parent = ""
-      size = 800, 315
       type = Window
-  [[xgoup]]
-    [[[child0]]]
-      order = 0
-      parent = ""
-      position = 17:26
-      size = 981, 656
-      type = Window
-    [[[child1]]]
-      labels = None, None, None, None, None, None, None
-      order = 0
-      parent = child0
-      type = Notebook
-    [[[child2]]]
-      order = 0
-      parent = child1
-      position = 493
-      type = HPaned
-    [[[terminal10]]]
-      command = gb-xgo-restart
-      order = 6
-      parent = child1
-      profile = xgoup
-      type = Terminal
-    [[[terminal3]]]
-      command = /usr/bin/patch-exec screenfetch -n -D GoBang
-      order = 0
-      parent = child2
-      profile = xgodown
-      type = Terminal
-    [[[terminal4]]]
-      command = man xgo
-      order = 1
-      parent = child2
-      profile = xgoup
-      type = Terminal
-    [[[terminal5]]]
-      command = mc
-      order = 1
-      parent = child1
-      profile = xgoup
-      type = Terminal
-    [[[terminal6]]]
-      command = elinks
-      order = 2
-      parent = child1
-      profile = xgoup
-      type = Terminal
-    [[[terminal7]]]
-      command = netstat -tcp
-      order = 3
-      parent = child1
-      profile = xgoup
-      type = Terminal
-    [[[terminal8]]]
-      command = alsamixer
-      order = 4
-      parent = child1
-      profile = xgoup
-      type = Terminal
-    [[[terminal9]]]
-      command = htop
-      order = 5
-      parent = child1
-      profile = xgoup
-      type = Terminal
 [plugins]
 [profiles]
   [[default]]
-    background_darkness = 0.06
-    background_image = None
+    background_color = "#002b35"
+    background_darkness = 0.9
+    background_type = transparent
     color_scheme = custom
     cursor_color = "#009dda"
     font = Monospace 8
-    scroll_on_output = False
+    foreground_color = "#ebdbb2"
+    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
     scrollback_infinite = True
     scrollback_lines = 5000
     scrollbar_position = hidden
     show_titlebar = False
+    urgent_bell = True
     use_system_font = False
   [[blue]]
     background_color = "#002b36"
-    background_image = None
+    background_darkness = 0.91
+    background_type = transparent
+    cursor_color = "#839496"
     font = Monospace 8
     foreground_color = "#839496"
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    scrollback_infinite = True
     scrollbar_position = hidden
     show_titlebar = False
     use_system_font = False
-  [[red]]
-    background_color = "#420707"
-    background_image = None
+  [[raw]]
+    background_color = "#282828"
+    background_darkness = 0.7
+    cursor_color = "#bebd75"
     font = Monospace 8
-    foreground_color = "#bebd75"
+    foreground_color = "#ebdbb2"
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    show_titlebar = False
+    urgent_bell = True
+    use_system_font = False
+    visible_bell = True
+  [[red]]
+    background_color = "#520a0a"
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Monospace 8
+    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
+    show_titlebar = False
+    use_system_font = False
+  [[secondary]]
+    background_color = "#300a24"
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Monospace 8
+    foreground_color = "#ffffff"
+    scrollback_infinite = True
     scrollbar_position = hidden
     show_titlebar = False
     use_system_font = False

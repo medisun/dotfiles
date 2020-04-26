@@ -1,0 +1,96 @@
+partial alphanumeric_keys xkb_symbols "arrows" {
+    include "level3"
+    key <CAPS> { [ISO_Level3_Shift ] };
+    key <LatT> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               t,               T,              Prior ],
+        symbols[Group2]= [     Cyrillic_ie,     Cyrillic_IE,              Prior ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<PGUP>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<PGUP>, clearmods=ISO_Level3_Shift)]
+    };
+    key <LatG> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               g,               G,              Next ],
+        symbols[Group2]= [     Cyrillic_pe,     Cyrillic_PE,              Next ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<PGDN>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<PGDN>, clearmods=ISO_Level3_Shift)]
+    };
+    key <LatQ> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               q,               Q,              Home ],
+        symbols[Group2]= [ Cyrillic_shorti, Cyrillic_SHORTI,              Home ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<HOME>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<HOME>, clearmods=ISO_Level3_Shift)]
+    };
+    key <LatE> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               e,               E,              End ],
+        symbols[Group2]= [      Cyrillic_u,      Cyrillic_U,              End ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<END>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<END>, clearmods=ISO_Level3_Shift)]
+    };
+    key <LatF> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               f,               F,              Left ],
+        symbols[Group2]= [      Cyrillic_a,      Cyrillic_A,              Left ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<BKSP>, clearmods=ISO_Level3_Shift), RedirectKey(key=<DELE>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<BKSP>, clearmods=ISO_Level3_Shift), RedirectKey(key=<DELE>, clearmods=ISO_Level3_Shift)]
+    };
+    key <LatW> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               w,               W,              Up ],
+        symbols[Group2]= [    Cyrillic_tse,    Cyrillic_TSE,              Up ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<UP>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<UP>, clearmods=ISO_Level3_Shift)]
+    };
+    key <LatA> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               a,               A,              Left ],
+        symbols[Group2]= [     Cyrillic_ef,     Cyrillic_EF,              Left ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<LEFT>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<LEFT>, clearmods=ISO_Level3_Shift)]
+    };
+    key <LatS> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               s,               S,           Down ],
+        symbols[Group2]= [   Cyrillic_yeru,   Cyrillic_YERU,           Down ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<DOWN>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<DOWN>, clearmods=ISO_Level3_Shift)]
+    };
+    key <LatD> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               d,               D,           Right ],
+        symbols[Group2]= [     Cyrillic_ve,     Cyrillic_VE,           Right ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<RGHT>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<RGHT>, clearmods=ISO_Level3_Shift)]
+    };
+
+    key <LatO> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               o,               O,              Up ],
+        symbols[Group2]= [  Cyrillic_shcha,  Cyrillic_SHCHA,              Up ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<UP>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<UP>, clearmods=ISO_Level3_Shift)]
+    };
+    key <LatK> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               k,               K,              Left ],
+        symbols[Group2]= [     Cyrillic_el,     Cyrillic_EL,              Left ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<LEFT>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<LEFT>, clearmods=ISO_Level3_Shift)]
+    };
+    key <LatL> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [               l,               L,           Down ],
+        symbols[Group2]= [     Cyrillic_de,     Cyrillic_DE,           Down ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<DOWN>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<DOWN>, clearmods=ISO_Level3_Shift)]
+    };
+    key <AC10> {
+        type= "THREE_LEVEL",
+        symbols[Group1]= [       semicolon,           colon,           Right ],
+        symbols[Group2]= [    Cyrillic_zhe,    Cyrillic_ZHE,           Right ],
+        actions[Group1]= [      NoAction(),      NoAction(),         RedirectKey(key=<RGHT>, clearmods=ISO_Level3_Shift)],
+        actions[Group2]= [      NoAction(),      NoAction(),         RedirectKey(key=<RGHT>, clearmods=ISO_Level3_Shift)]
+    };
+};

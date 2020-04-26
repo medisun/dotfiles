@@ -3,22 +3,22 @@
 required_cmds=(
     "/usr/bin/clipit"
     "/usr/bin/compton"
-    "/usr/bin/dzen2"
+    # "/usr/bin/dzen2"
     "/usr/bin/gnome-keyring-daemon"
     "/usr/bin/nitrogen"
     "/usr/bin/nm-applet"
     "/usr/bin/pa-applet"
     "/usr/bin/redshift"
-    "/usr/bin/setxkbmap"
+    # "/usr/bin/setxkbmap"
     "/usr/bin/sleep"
-    "/usr/bin/synclient"
+    # "/usr/bin/synclient"
     "/usr/bin/terminator"
     "/usr/bin/thunar"
     "/usr/bin/tilda"
     "/usr/bin/tint2"
     # "/usr/bin/unclutter"
     # "/usr/bin/volumeicon"
-    "/usr/bin/wmname"
+    # "/usr/bin/wmname"
     "/usr/bin/xbindkeys"
     "/usr/bin/xfce4-power-manager"
     "/usr/bin/xkbcomp"
@@ -48,7 +48,7 @@ if [[ $(/usr/bin/xrandr -q | /bin/grep " connected " | /usr/bin/wc -l) == 2 ]]; 
     (/usr/bin/xrandr --output DVI-0 --primary) &
 fi
 
-(pidof /usr/local/bin/sxhkd || sxhkd >> ~/sxhkd.log) &
+(pidof /usr/local/bin/sxhkd || sxhkd >> ~/.sxhkd.log) &
 
 ## GNOME PolicyKit and Keyring
 eval $(/usr/bin/gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
@@ -57,12 +57,11 @@ eval $(/usr/bin/gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 # adjusts the color temperature of your screen according to your surroundings. 
 # This may help your eyes hurt less if you are working in front of the screen at night.
 # This program is inspired by f.lux.
-(pidof /usr/bin/redshift || /usr/bin/redshift -l 50.0318313:36.2242183 -t 6500:4500) &
+(pidof /usr/bin/redshift || (/usr/bin/redshift -l 50.0318313:36.2242183 -t 6500:4500 -b 1:0.9 -m randr & DISPLAY=:8  /usr/bin/redshift -l 50.0318313:36.2242183 -t 6500:5000 -b 1:0.9 -m randr)) &
 
 ## sample X compositing manager
 (pidof /usr/bin/compton || /usr/bin/compton) &
 
-# xrdb ~/.Xresources &
 # Fix for Java applications
 /usr/bin/wmname LG3D &
 # 
@@ -80,6 +79,13 @@ eval $(/usr/bin/gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 
 ## Set mouse speed
 /usr/bin/xset m 3 3 &
+xset -dpms &
+
+# disable screensaver
+xset s off &
+
+# update X config
+xrdb ~/.Xresources &
 
 ## Detect and configure touchpad. See 'man synclient' for more info.
 if egrep -iq 'touchpad' /proc/bus/input/devices; then
@@ -97,14 +103,11 @@ fi
 xbindkeys &
 
 ## Add russian layout
-setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:caps -option shift:breaks_caps -option lv3:ralt_switch &
+# setxkbmap -layout us,ru -option '' -option grp:caps_toggle -option grp_led:caps -option shift:breaks_caps &
+setxkbmap -option -layout us,ru -option grp:caps_toggle -option grp_led:caps -option shift:breaks_caps -option lv3:ralt_switch &
 # https://wiki.archlinux.org/index.php/Xmodmap
 # https://wiki.archlinux.org/index.php/X_KeyBoard_extension#Level3
-# 
-# xkbcomp -xkb $DISPLAY xkbmap
-# xkbcomp -w 0 ~/.xkbmap $DISPLAY &
-## layout tray indicator
-# sbxkb & 
+#xkbcomp -w 0 -I$HOME/.config/xkb $HOME/.config/xkb/keymap.xkb $DISPLAY &
 
 ## Enable power management
 (pidof xfce4-power-manager || xfce4-power-manager) &
@@ -116,7 +119,7 @@ setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:caps -option shi
 (pidof /usr/bin/pa-applet || /usr/bin/pa-applet) &
 
 ## Enable Eyecandy - off by default, uncomment one of the commands below.  
-## Note: cairo-compmgr prefers a sleep delay, else it tends to produce
+## Note: cairo-compmgr prefers a sleep delay, else it tends to prodЁЁuce
 ## odd shadows/quirks around tint2 & Conky.
 #(sleep 10s && gb-compmgr --cairo-compmgr) &
 #gb-compmgr --xcompmgr & 
@@ -124,7 +127,7 @@ setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:caps -option shi
 ## Panels
 (pidof tint2 || tint2) &
 # (pidof dzen2 || $HOME/.config/bspwm/panel/panel.sh) &
-# (sleep 4s && PATH=$PATH:/home/morock/.config/bspwm/panel PANEL_FIFO="/tmp/panel-fifo" panel) &
+# (sleep 4s && PATH=$PATH:$HOME/.config/bspwm/panel PANEL_FIFO="/tmp/panel-fifo" panel) &
 
 ## Launch network manager applet
 (pidof nm-applet || nm-applet) &
@@ -148,6 +151,6 @@ setxkbmap -layout us,ru -option grp:caps_toggle -option grp_led:caps -option shi
 
 # [ ! -s ~/.mpd/pid ] && mpd &
 
-# (pidof gnome-pie || gnome-pie) &
-
 terminator &
+rofi &
+# owncloud &

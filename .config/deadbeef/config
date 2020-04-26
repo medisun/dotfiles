@@ -1,0 +1,69 @@
+artwork.filemask *cover*.jpg;*front*.jpg;*folder*.jpg;*cover*.png;*front*.png;*folder*.png
+deadbeef_version 0.7.2
+gtkui.columns.playlist [{"title":"♫","id":"1","format":"%playstatus%","size":"50","align":"0","color_override":"0","color":"#ff000000"},{"title":"Artist / Album","id":"-1","format":"%artist% - %album%","size":"326","align":"0","color_override":"0","color":"#ff000000"},{"title":"Title","id":"-1","format":"%title%","size":"510","align":"0","color_override":"0","color":"#ff000000"},{"title":"Duration","id":"-1","format":"%length%","size":"76","align":"0","color_override":"0","color":"#ff000000"}]
+gtkui.eq.visible 0
+gtkui.layout.0.6.2 vbox expand="0 1" fill="1 1" homogeneous=0 {hbox expand="0 1 0" fill="1 1 1" homogeneous=0 {playtb {} seekbar {} volumebar {} } tabbed_playlist hideheaders=0 width=1600 {} } 
+gtkui.statusbar.visible 1
+gtkui.tabscroll 0
+hotkey.key01 "Ctrl f" 0 0 find
+hotkey.key02 "Ctrl o" 0 0 open_files
+hotkey.key03 "Ctrl q" 0 0 quit
+hotkey.key04 "Ctrl n" 0 0 new_playlist
+hotkey.key05 "Ctrl a" 0 0 select_all
+hotkey.key06 "Escape" 0 0 deselect_all
+hotkey.key07 "Ctrl m" 0 0 toggle_stop_after_current
+hotkey.key08 "Ctrl j" 0 0 jump_to_current_track
+hotkey.key09 "F1" 0 0 help
+hotkey.key10 "Delete" 1 0 remove_from_playlist
+hotkey.key11 "Ctrl w" 0 0 remove_current_playlist
+hotkey.key14 "Return" 0 0 play
+hotkey.key15 "Ctrl p" 0 0 toggle_pause
+hotkey.key16 "Alt 1" 0 0 playlist1
+hotkey.key17 "Alt 2" 0 0 playlist2
+hotkey.key18 "Alt 3" 0 0 playlist3
+hotkey.key19 "Alt 4" 0 0 playlist4
+hotkey.key20 "Alt 5" 0 0 playlist5
+hotkey.key21 "Alt 6" 0 0 playlist6
+hotkey.key22 "Alt 7" 0 0 playlist7
+hotkey.key23 "Alt 8" 0 0 playlist8
+hotkey.key24 "Alt 9" 0 0 playlist9
+hotkey.key25 "Alt 0" 0 0 playlist10
+hotkey.key26 z 0 0 prev
+hotkey.key27 x 0 0 play
+hotkey.key28 c 0 0 toggle_pause
+hotkey.key29 v 0 0 stop
+hotkey.key30 b 0 0 next
+hotkey.key31 n 0 0 playback_random
+hotkey.key32 "Ctrl k" 0 0 toggle_stop_after_album
+hotkeys_created 1
+mainwin.geometry.h 884
+mainwin.geometry.w 1600
+mainwin.geometry.x 0
+mainwin.geometry.y 0
+playback.loop 0
+playback.order 1
+playback.volume -1.000000
+playlist.current 1
+playlist.cursor.0 8
+playlist.cursor.1 0
+playlist.cursor.2 2
+playlist.cursor.3 2
+playlist.scroll.0 0
+playlist.scroll.1 217
+playlist.scroll.2 0
+playlist.scroll.3 0
+playlist.scroll.cursorfollowplayback 1
+playlist.tab.00000 New Playlist
+playlist.tab.00001 Default
+resume.paused 0
+resume.playlist 1
+resume.position 1381.2684
+resume.track 0
+searchwin.geometry.h 537
+searchwin.geometry.w 627
+searchwin.geometry.x 448
+searchwin.geometry.y 284
+trkproperties.geometry.h 575
+trkproperties.geometry.w 616
+trkproperties.geometry.x 299
+trkproperties.geometry.y 104

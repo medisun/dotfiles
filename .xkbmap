@@ -1175,7 +1175,7 @@ xkb_compatibility "complete+lednum(group_lock)" {
     };
 };
 
-xkb_symbols "pc+us+ru:2+inet(evdev)+capslock(grouplock)+level3(ralt_switch)+level3(enter_switch)+compose(rctrl)+" {
+xkb_symbols "pc+us+ru:2+inet(evdev)+capslock(grouplock)+level3(ralt_switch)+compose(rctrl)+" {
 
     name[group1]="English (US)";
     name[group2]="Russian";

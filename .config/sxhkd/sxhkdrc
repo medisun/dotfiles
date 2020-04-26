@@ -59,9 +59,9 @@ super + alt + {_,shift + }{1-9,0}
 ##
 
 super + semicolon ; {a,r,x}
-											{ zenity --entry --text 'add' | xargs --no-run-if-empty bspc monitor --add-desktops, \
-											  zenity --entry --text 'rename' | xargs --no-run-if-empty bspc desktop --rename, \
-											  zenity --question --text 'remove?' && bspc monitor --remove-desktops $(bspc query -d focused -D) }
+											{ rofi -dmenu -p 'add: ' | xargs --no-run-if-empty bspc monitor --add-desktops, \
+											  rofi -dmenu -p 'rename: ' | xargs --no-run-if-empty bspc desktop --rename, \
+											  bspc monitor --remove-desktops $(bspc query -d focused -D) }
 super + alt + l ; {b,n,a}
 											bspc node focused --layer {below,normal,above}
 super + alt + s ; {t,f,p}
@@ -71,7 +71,7 @@ super + alt + f ; {h,s,p,l}
 super + F11
 											bspc node focused --state fullscreen
 alt + {_,shift +} F4
-											bspc node --{close,kill}
+											bspc node @focused:/ --{close,kill}
 # super + {i,o,p}
 #											bspc node @focused:/ --flag {locked,sticky,private}
 super + ctrl + i
@@ -108,8 +108,12 @@ super + alt + {Left,Down,Up,Right}
 											bspc node --to-node {west,south,north,east}
 super + alt + shift + {Left,Down,Up,Right}
 											bspc node focused --resize {right -10 0,up 0 +10,down 0 -10,left +10 0}
-super + alt + shift + {Left,Down,Up,Right}
+super + ctrl + shift + {Left,Down,Up,Right}
 											bspc node focused --move {-10 0,10 0,0 10,0 -10}
+super + alt + ctrl + shift + {Left,Down,Up,Right}
+											(bspc node --focus {brother, first, parent, brother}; notify-send $(bspc query -n focused --nodes))
+super + alt + ctrl + shift + m
+											notify-send $(bspc query -n focused --nodes)
 super + {_,shift + }{1-9,0}
 											bspc {desktop --focus,node --to-desktop } ^{1-9,10}
 super + {equal,minus}
@@ -151,9 +155,11 @@ super + ctrl + button{4,5}
 
 ##
 ## Applications
-##											
+##
+super + space
+											rofi -combi-modi window -show window
 super + Return
-											terminator
+											terminator &
 super + shift + Return
 											terminator --profile red
 super + ctrl + Return
@@ -172,25 +178,26 @@ alt + F2
 											/usr/bin/gmrun
 alt + F3
 											"$HOME/.config/dmenu/dmenu-bind.sh"
-super + shift + g
-											zenity --question --text 'smartgit'        && desktop.sh git && sleep 1 && /opt/smartgit/bin/smartgit.sh
-super + shift + q
-											zenity --question --text 'mysql-workbench' && desktop.sh sql && sleep 1 && /usr/bin/mysql-workbench
-super + shift + x
-											zenity --question --text 'zap'             && desktop.sh zap && sleep 1 && zaproxy
-super + shift + r
-											zenity --question --text 'filezilla'       && desktop.sh disk && sleep 1 && /usr/bin/filezilla
+super + shift + o
+											kill -s 9 $(pidof  intel-virtual-output) ; intel-virtual-output ; "$HOME/.screenlayout/1600-1900-screenlayout.733.sh"
 super + shift + f
 											/usr/bin/thunar
 super + x
 											desktop.sh zap ; jumpapp -c 'OWASP' -i 'sun-awt-X11-XFramePeer' zaproxy
+shift + super + x
+											wmctrl -a 'HttpRequester'
 super + grave
-											wmctrl -Fa Min
-super + shift + grave
-											/usr/lib/electron/electron /usr/bin/min
+											wmctrl -xa 'Terminator'
 super + w
-											(( pidof /home/morock/opt/firefox/firefox && wmctrl -xa Firefox ) || /usr/bin/optirun /home/morock/opt/firefox/firefox)
+											(wmctrl -xa Firefox || /usr/bin/optirun /home/morock/opt/firefox/firefox --new-instance --ProfileManager)
+shift + super + w
+											/usr/bin/optirun /home/morock/opt/firefox/firefox --new-instance --ProfileManager
+#											(( pidof /home/morock/opt/firefox/firefox && wmctrl -xa Firefox ) || /usr/bin/optirun /home/morock/opt/firefox/firefox)
+super + c
+											jumpapp -i FFdev '/home/morock/opt/firefox/firefox --new-instance --class=FFdev --P "web-development"'
+#											(( wmctrl -xa FFdev ) || /home/morock/opt/firefox/firefox --new-instance --class=FFdev --P 'web-development')
 super + t
+#											jumpapp -c skypeforlinux -i skypeforlinux -f '/usr/bin/skypeforlinux'
 											jumpapp -c Skype -i skype -f '/usr/bin/skype'
 super + h
 											(( pidof /home/morock/opt/netbeans-8.1/bin/jre/bin/java && wmctrl -xa 'NetBeans IDE 8.1' ) || desktop.sh nb /home/morock/opt/netbeans-8.1/bin/netbeans)
@@ -204,28 +211,35 @@ super + a
 											desktop.sh disk ; jumpapp spacefm
 super + f
 											jumpapp thunar
+#super + r
+#											jumpapp -c Terminator -i terminator '/usr/bin/terminator'
 super + r
-											jumpapp -c Terminator -i terminator '/usr/bin/terminator'
+											jumpapp -c robo3t -i robo3t '/opt/robomongo/bin/robo3t'
 super + g
 											jumpapp -c SmartGit -i SmartGit 'smartgit'
 super + y
 											wmctrl -a 'Log for '
-super + c
-											wmctrl -a 'HttpRequester'
 super + Delete
 											"$HOME/morock/bin/logout.sh"
 super + alt + v
 											( pidof pavucontrol && wmctrl -xa Pavucontrol ) || pavucontrol
 super + v
-											( pidof chromium && wmctrl -xa Chromium ) || /usr/bin/optirun /usr/bin/chromium
+											jumpapp -i Google-chrome '/usr/bin/google-chrome-stable'
+#											( pidof chrome && wmctrl -xa Google-chrome ) || /usr/bin/google-chrome-stable
+#											( pidof /opt/google/chrome/chrome && wmctrl -xa Google-chrome ) || /usr/bin/optirun google-chrome-stable
+#											jumpapp -c google-chrome -i Google-chrome 'google-chrome-stable'
+#											( pidof chromium && wmctrl -xa Chromium ) || LIBGL_ALWAYS_INDIRECT=1  __GL_THREADED_OPTIMIZATIONS=1 /usr/bin/optirun /usr/bin/chromium
+#											( pidof chromium && wmctrl -xa Chromium ) || /usr/bin/chromium
 shift + super + v
-											optirun chromium --disable-background-networking --incognito --disable-client-side-phishing-detection --proxy-server=127.0.0.1:8080
+											/usr/bin/google-chrome-stable --disable-background-networking --incognito --bwsi --disable-client-side-phishing-detection --proxy-server=127.0.0.1:8000
+#                                           google-chrome-stable --incognito --proxy-server=127.0.0.1:8000
+#											chromium --disable-background-networking --disable-client-side-phishing-detection --proxy-server=127.0.0.1:8080
 shift + Print
 											xfce4-screenshooter
 Print
 											scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp; viewnior ~/images/$f'
 XF86AudioStop
-											wmctrl -x -a ncmpcpp_gui || xterm -class ncmpcpp_gui -bg "rgb:20/20/20" -fa "DejaVu Sans Mono:size=8:antialias=true" -e ncmpcpp
+											wmctrl -x -a ncmpcpp_gui || xterm -class ncmpcpp_gui -bg "rgb:20/20/20" +sb -geometry 120x34+300+150 -fa "DejaVu Sans Mono:size=8:antialias=true" -e ncmpcpp
 XF86AudioPlay
 											mpc -q toggle
 XF86Audio{Prev,Next}

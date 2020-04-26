@@ -78,7 +78,6 @@ case "$class" in
             "Navigator")  echo 'desktop=email state=floating ';;
                   "Mail") echo 'desktop=email split_dir=south split_ratio=0.5 locked=on';;
     esac
-    # /home/morock/bin/desktop.sh 'chat' '2'
     echo 'desktop=email split_dir=north'
     ;;
 
@@ -94,13 +93,13 @@ case "$class" in
                 "File Transf") echo 'split_dir=south split_ratio=0.8';;
                 "Information") echo 'state=floating';;
                 "Profile for") echo 'state=floating';;
+                "Received co") echo 'state=floating';;
                 "Add people") echo 'state=floating';;
                             *) echo 'split_dir=east split_ratio=0.75';;
             esac ;;
         esac ;;
     esac
-    # /home/morock/bin/desktop.sh 'chat' '2'
-    echo 'desktop=chat'
+    echo 'desktop=skype'
     ;;
 
     "Gimp-2.8") case "$instance" in
@@ -108,17 +107,15 @@ case "$class" in
                "gimp-dock") echo 'split_dir=east split_ratio=0.85';;
             "gimp-toolbox") echo 'split_dir=east split_ratio=0.85';;
         esac
-        # /home/morock/bin/desktop.sh 'gimp' '1'
         echo 'desktop=gimp state=floating';;
     esac ;;
 
     "Sublime_text") case "$instance" in
         "sublime_text")
-            # /home/morock/bin/desktop.sh 'dev' '1'
             echo 'desktop=dev'
     esac ;;
 
-    "chromium"|"Chromium")
+    "google-chrome"|"Google-chrome"|"Chromium"|"chromium")
         case "$role" in
             'pop-up') echo 'state=floating';;
         esac

@@ -1,0 +1,355 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# font pango:monospace 8
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:DejaVu Sans Mono 8
+
+# Before i3 v4.8, we used to recommend this one as the default:
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+##
+## Config
+##
+# Drawing marks on window decoration
+show_marks yes
+
+## smart|urgent|focus|none
+focus_on_window_activation smart
+
+## Automatic back-and-forth when switching to the current workspace
+workspace_auto_back_and_forth yes
+
+## Popups during fullscreen mode
+popup_during_fullscreen smart
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+
+# kill focused window
+bindsym Mod1+F4 kill
+
+# start dmenu (a program launcher)
+# bindsym $mod+d exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+bindsym Mod1+F2 exec --no-startup-id i3-dmenu-desktop
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Mod5+Left  focus left
+bindsym $mod+Mod5+Down  focus down
+bindsym $mod+Mod5+Up    focus up
+bindsym $mod+Mod5+Right focus right
+
+# bindsym Mod1+Tab       exec "i3-cycle next"
+# bindsym Mod1+Shift+Tab exec "i3-cycle prev"
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+Mod1+h split h
+
+# split in vertical orientation
+bindsym $mod+Mod1+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+Mod1+f fullscreen toggle
+bindsym $mod+F11 fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+F1 layout stacking
+bindsym $mod+F2 layout tabbed
+bindsym $mod+F3 layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Mod1+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+Tab focus mode_toggle
+
+# focus the parent container
+# bindsym $mod+a focus parent
+bindsym $mod+Prior focus parent
+
+# focus the child container
+# bindsym $mod+d focus child
+bindsym $mod+Next focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+bindsym $mod+grave  exec "i3-msg workspace $(i3-msg -t get_workspaces | jq '.[] | .name' | rofi -dmenu)"
+bindsym $mod+Shift+grave exec "i3-msg move container to workspace $(i3-msg -t get_workspaces | jq '.[] | .name' | rofi -dmenu)"
+bindsym $mod+ctrl+r exec "i3-msg rename workspace to $(zenity --entry --text='Rename workspace' --entry-text=$(i3-msg -t get_workspaces  | jq '.[] | select(.focused==true).name'))"
+
+# reload the configuration file
+bindsym $mod+Delete reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Mod1+Delete restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Mod1+Ctrl+Delete exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+Shift+r mode "resize"
+mode "resize" {
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 5 px or 2 ppt
+        bindsym Down resize grow height 5 px or 2 ppt
+        bindsym Up resize shrink height 5 px or 2 ppt
+        bindsym Right resize grow width 5 px or 2 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+# bar {
+#         status_command i3blocks
+#         tray_output primary
+#         position top
+# }
+
+
+##
+## USER DEFINED KEYBINDS
+##
+
+bindsym $mod+ctrl+space mark --toggle focused
+bindsym $mod+ctrl+shift+space move container to mark focused
+
+
+# focus monitors
+bindsym $mod+braceleft focus output up
+bindsym $mod+braceright focus output down
+#bindsym $mod+braceleft focus output left
+#bindsym $mod+braceright focus output right
+
+# Move workspace to output
+bindsym ctrl+$mod+braceleft move workspace to output up
+bindsym ctrl+$mod+braceright move workspace to output down
+bindsym ctrl+shift+$mod+braceleft move workspace to output right
+bindsym ctrl+shift+$mod+braceright move workspace to output left
+
+bindsym ctrl+$mod+1 move workspace to output VIRTUAL3
+bindsym ctrl+$mod+2 move workspace to output LVDS1
+
+# rotate workspaces
+bindsym $mod+comma workspace prev
+bindsym $mod+period workspace next
+
+# Make the currently focused window a scratchpad
+bindsym $mod+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+equal scratchpad show
+
+# Show the sup-mail scratchpad window, if any.
+# bindsym $mod+g [title="Geany"] scratchpad show
+
+# Show the sup-mail scratchpad window, if any.
+bindsym $mod+o [con_id=__focused__] sticky enable
+bindsym $mod+shift+o [con_id=__focused__] sticky disable
+bindsym $mod+space [con_id=__focused__] border toggle
+
+### 
+### ##
+### ## APPLICATIONS KEYBINDINGS
+### ##
+
+### bindsym $mod+Mod4+Escape             exec "killbymouse.sh"
+### bindsym shift+Mod4+o                 exec "kill -s 9 $(pidof  intel-virtual-output) ; intel-virtual-output ; $HOME'/.screenlayout/VIRTUAL1.1920x1080.sh'"
+### bindsym Mod4+r                       exec "jumpapp -c robo3t -i robo3t '/opt/robomongo/bin/robo3t'"
+## bindsym Mod1+F2                      exec "/usr/bin/gmrun"
+## bindsym Mod4+grave                   exec "wmctrl -xa 'Terminator'"
+
+# bindsym Mod4+c                       exec "(( wmctrl -xa FFdev ) || $HOME/opt/firefox/firefox --new-instance --class=FFdev --P 'web-development')"
+# bindsym Mod4+d                       exec "$HOME/bin/unmap.sh -w $(xdotool getwindowfocus)"
+# bindsym Mod4+h                       exec "(( pidof $HOME/opt/netbeans-8.1/bin/jre/bin/java && wmctrl -xa 'NetBeans IDE 8.1' ))"
+# bindsym Mod4+m                       exec "jumpapp -c Min -i min -f /usr/bin/min"
+# bindsym Mod4+shift+d                 exec "$HOME/bin/unmap.sh"
+# bindsym Mod4+w                       exec "(wmctrl -xa Firefox || $HOME/opt/firefox-nigthly/firefox --new-instance --ProfileManager)"
+## bindsym Mod4+i                       exec "jumpapp -c MindForger '/usr/bin/mindforger'"
+bindsym ctrl+Mod4+Return             exec "terminator --profile blue"
+bindsym Mod1+F3                      exec "$HOME'/.config/dmenu/dmenu-bind.sh'"
+bindsym Mod4+a                       exec "jumpapp spacefm"
+bindsym Mod4+c                       exec "jumpapp firefox"
+bindsym Mod4+d                       exec "jumpapp -c 'VSCodium' '/usr/bin/vscodium'"
+bindsym Mod4+e                       exec "jumpapp -c Thunderbird -i Mail '/usr/bin/thunderbird'"
+bindsym Mod4+f                       exec "jumpapp pcmanfm"
+bindsym Mod4+g                       exec "jumpapp -c SmartGit -i SmartGit 'smartgit'"
+bindsym Mod4+i                       exec "jumpapp -c 'VirtualBox' virtualbox"
+bindsym Mod4+j                       exec "jumpapp -c discord -i discord '/usr/bin/discord'"
+bindsym Mod4+k                       exec "jumpapp -c 'jetbrains-phpstorm' -i 'sun-awt-X11-XFramePeer' /opt/phpstorm/bin/phpstorm.sh"
+bindsym Mod4+l                       exec "xscreensaver-command -activate"
+bindsym Mod4+p                       exec "jumpapp pavucontrol"
+bindsym Mod4+q                       exec "jumpapp mysql-workbench"
+bindsym Mod4+r                       exec "rofi -combi-modi window -show window"
+bindsym Mod4+Return                  exec "terminator &"
+bindsym Mod4+s                       exec "jumpapp -c Sublime_text /opt/sublime_text/sublime_text"
+bindsym Mod4+t                       exec "jumpapp -c Skype -i skype -f '/usr/bin/skype'"
+bindsym Mod4+b                       exec "jumpapp -i 'Brave-browser' /usr/bin/brave"
+bindsym Mod4+v                       exec "jumpapp -i Chromium /usr/bin/chromium --enable-net-benchmarking"
+bindsym Mod4+w                       exec "jumpapp gnome-todo"
+bindsym Mod4+x                       exec "jumpapp -c 'OWASP' -i 'sun-awt-X11-XFramePeer' zaproxy"
+bindsym Mod4+XF86AudioRaiseVolume    exec "pactl set-sink-volume alsa_output.pci-0000_00_1b.0.analog-stereo 150%"
+bindsym Mod4+y                       exec "jumpapp -c TelegramDesktop -i Telegram '/home/morock/opt/telegram/telegram'"
+bindsym Print                        exec "scrot '%Y-%m-%d--%s_$wx$h_scrot.png' -e 'mv $f ~/images/ &amp; viewnior ~/images/$f'"
+bindsym shift+Mod4+b                 exec "gcolor2"
+bindsym shift+Mod4+f                 exec "/usr/bin/thunar"
+bindsym shift+Mod4+l                 exec "xscreensaver-command -lock"
+bindsym shift+Mod4+Return            exec "terminator --profile red"
+bindsym shift+Mod4+v                 exec "/usr/bin/chromium --disable-background-networking --incognito --bwsi --disable-client-side-phishing-detection --proxy-server=127.0.0.1:8080"
+bindsym shift+Mod4+w                 exec "/usr/bin/optirun $HOME/opt/firefox/firefox --new-instance --ProfileManager"
+bindsym shift+Mod4+x                 exec "wmctrl -a 'HttpRequester'"
+bindsym shift+Print                  exec "xfce4-screenshooter"
+bindsym XF86ScreenSaver              exec "xscreensaver-command -activate"
+
+
+## Music
+bindsym XF86AudioPlay                exec "mpc -q toggle"
+bindsym XF86AudioStop                exec "jumpapp -i cantata /usr/bin/cantata"
+bindsym XF86AudioPrev                exec "mpc -q prev"
+bindsym XF86AudioNext                exec "mpc -q next"
+bindsym ctrl+XF86AudioPrev           exec "mpc seek -00:01:00"
+bindsym ctrl+XF86AudioNext           exec "mpc seek +00:01:00"
+bindsym shift+XF86AudioPrev          exec "mpc seek -00:00:5"
+bindsym shift+XF86AudioNext          exec "mpc seek +00:00:5"
+# bindsym XF86AudioMicMute           exec "amixer set Capture toggle"
+bindsym XF86AudioMicMute             exec "pactl set-source-mute 1 toggle"
+bindsym shift+XF86AudioMute          exec "pactl set-source-mute 1 toggle"
+
+
+bindsym CapsLock         notify-send CAPS
+
+##
+## STARTUP
+##
+exec_always --no-startup-id $HOME/bin/startup.sh    
+
+
+##
+## WINDOW PREFERENCES
+##
+
+
+assign [class="^Chromium$"]            → chr
+assign [class="^discord$"]             → dsc
+assign [class="^FFdev$"]               → ffd
+assign [class="^firefox$"]             → ff
+assign [class="^Gimp-2.8$"]            → gimp
+assign [class="^Gimp-2.10$"]           → gimp
+assign [class="^MindForger$"]          → md
+assign [class="^Brave-browser$"]       → br
+assign [class="^cantata$"]             → music
+assign [class="^Mysql-workbench-bin$"] → mysql
+assign [class="^jetbrains-phpstorm$"]  → ps
+assign [class="^VSCodium$"]            → vs
+assign [class="^NetBeans IDE 8.1$"]    → netb
+assign [class="^OWASP ZAP$"]           → zap
+assign [class="^Pcmanfm$"]             → fs
+assign [class="^Skype$"]               → skp
+assign [class="^skypeforlinux$"]       → skp
+assign [class="^SmartGit$"]            → git
+assign [class="^Spacefm$"]             → fs
+assign [class="^Sublime_text$"]        → dev
+assign [class="^Thunderbird$"]         → mail
+assign [class="^TelegramDesktop$"]     → tg
+assign [class="^Virtualbox$"]          → vm
+
+
+for_window [class="Atom"]                              floating enable
+for_window [class="Geany"]                             floating enable
+for_window [class="Evince"]                            floating enable
+for_window [class="libreoffice"]                       floating enable
+for_window [class="sun-awt-X11-XFramePeer"]            floating enable
+for_window [class="Gnome-todo"]                        floating enable
+for_window [class="Gmrun"]                             floating enable
+for_window [class="Gedit"]                             floating enable
+for_window [class="Gucharmap"]                         floating enable
+for_window [class="Leafpad"]                           floating enable
+for_window [class="MPlayer"]                           floating enable
+for_window [class="ncmpcpp_gui"]                       floating enable
+for_window [class="Nitrogen"]                          floating enable
+for_window [class="Pavucontrol"]                       floating enable
+for_window [class="Player"]                            floating enable
+for_window [class="Skype" title="^Add a Skype"]        floating enable
+for_window [class="Skype" title="^Add people"]         floating enable
+for_window [class="Skype" title="^Are you sur"]        floating enable
+for_window [class="Skype" title="^File Transf"]        floating enable
+for_window [class="Skype" title="^Information"]        floating enable
+for_window [class="Skype" title="^Information"]        floating enable
+for_window [class="Skype" title="Options"]             floating enable
+for_window [class="Skype" title="^Received co"]        floating enable
+for_window [class="Skype" title="Block this person"]   floating enable
+for_window [class="Skype" window_role="CallWindow"]    floating enable
+for_window [class="Surf"]                              floating enable
+for_window [class="Thunar"]                            floating enable
+for_window [class="Qpaeq"]                             floating enable
+for_window [class="Vlc"]                               floating enable
+for_window [class="Thunderbird" instance="Mailnews"]   floating enable
+for_window [class="Thunderbird" instance="Msgcompose"] floating enable
+for_window [class="Thunderbird" instance="Navigator"]  floating enable
+for_window [class="Viewnior"]                          floating enable
+for_window [class="Xfce4-notifyd"]                     floating enable, sticky enable
+for_window [title="Terminator Preferences"]            floating enable
+for_window [window_role="pop-up"]                      floating enable
+for_window [class="i3-frame"]                          floating enable
+for_window [class="MEGAsync"]                          floating enable
+
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff

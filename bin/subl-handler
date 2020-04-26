@@ -1,9 +1,0 @@
-#!/bin/bash
-
-FILE=$1
-FILE=${FILE/subl:\/\/open\?url=file:\/\//}
-FILE=${FILE/&line=/:} 
-RN=$(printf "php -r \"echo urldecode('%s');\"" $FILE)
-FILE=$(RN)
-
-sublime_text $FILE

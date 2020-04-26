@@ -18,13 +18,13 @@ border_color = #D8D8D8 25
 # ID 3
 rounded = 2
 border_width = 0
-background_color = #737373 100
+background_color = #737373 23
 border_color = #000000 23
 
 # ID 4
 rounded = 0
 border_width = 0
-background_color = #58C5F1 57
+background_color = #20A0FF 25
 border_color = #FFFFFF 100
 
 # ID 5
@@ -56,17 +56,20 @@ strut_policy = follow_size
 # Taskbar
 #taskbar_mode = single_desktop
 taskbar_mode = multi_desktop
-taskbar_padding = 1 0 5
+taskbar_padding = 0 0 0
 taskbar_background_id = 2
 taskbar_active_background_id = 3
+taskbar_distribute_size=1
+#taskbar_hide_if_empty=1
+#taskbar_hide_inactive_tasks=1
 
 # Tasks
 urgent_nb_of_blink = 3
 task_icon = 1
 task_text = 0
 task_centered = 1
-task_maximum_size = 70 25
-task_padding = 5 1
+task_maximum_size = 2000 25
+task_padding = 0 0
 task_background_id = 0
 task_active_background_id = 4
 task_urgent_background_id = 5
@@ -108,7 +111,7 @@ tooltip = 1
 tooltip_padding = 2 2
 tooltip_show_timeout = 0.0
 tooltip_hide_timeout = 0.0
-tooltip_background_id = 3
+tooltip_background_id = 0
 tooltip_font = Liberation Sans normal 9.0
 tooltip_font_color = #D8D8D8 100
 
